@@ -1,0 +1,2 @@
+class SavedDataset < ApplicationRecord
+end
