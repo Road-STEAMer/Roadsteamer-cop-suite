@@ -127,8 +127,9 @@ function createQuillEditor(container) {
     var titleElement = document.createElement('h1');
     titleElement.textContent = "Saved Dataset";
     linksDiv.appendChild(titleElement);
-    var descriptionElement = document.createElement("h4");
-    descriptionElement.textContent = "Select a dataset to insert in text editor";
+    titleElement.className = "text-center";
+    var descriptionElement = document.createElement("h5");
+    descriptionElement.textContent = "Select a dataset to insert in text editor:";
     descriptionElement.style.color = "gray";
     linksDiv.appendChild(descriptionElement);
 

@@ -1,9 +1,50 @@
-
-
-<ul id="datasets-list">
-<h2>Saved Datasets</h2>
+<div class="ml-5" id="datasets-list">
+  <h2 class="text-center">Saved Datasets</h2>
+  <br>
   <% @datasets.each do |dataset| %>
-    <li><a href="#"><%= dataset.title %></a></li>
+    <button onclick="updateFromModal('<%= dataset.title %>')" style="color: var(--warning)">★</button> <a href="#"><%= dataset.title %></a><br><br>
   <% end %>
-</ul>
+</div>
+
+<script> 
+
+  function refreshPage() {
+  location.href = location.href; // Reload the current page by navigating to the same URL
+  } 
+
+
+  function closeModalIfEmpty() {
+    if(counter === 0) {
+    var modalOverlay = document.querySelector(".modal-overlay");
+    modalOverlay.style.display = "none";
+    refreshPage()
+    }
+  }
+
+  function updateFromModal(title) {
+    fetch('/idra_create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+      },
+      body: JSON.stringify({ selected_titles: title })
+    })
+    .then(response => {
+      if (response.ok) {
+        updatePartialView();
+        counter--;
+        closeModalIfEmpty()
+      } else {
+        // Handle errors if needed
+      }
+    })
+    .catch(error => {
+      // Handle errors if needed
+    });
+
+
+    
+  }
+</script>
 
