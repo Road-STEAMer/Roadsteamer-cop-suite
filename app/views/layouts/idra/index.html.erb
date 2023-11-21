@@ -237,20 +237,17 @@
   }
 </style>
 <div class="container">
-
-   <div class="modal-overlay">
-        <div class="modal">
-            <div id="partial-view-container">
-              <%= render partial: "layouts/idra/datasets_list" %>
-            </div>
-             <span class="close" id="closeModal">&times;</span>
-        </div>
+  <div class="modal-overlay">
+    <div class="modal">
+      <div id="partial-view-container">
+        <%= render partial: "layouts/idra/datasets_list" %>
+      </div>
+      <span class="close" id="closeModal">&times;</span>
     </div>
-  
-  
+  </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-   
+
     function openModal() {
     var modalOverlay = document.querySelector(".modal-overlay");
     modalOverlay.style.display = "block";
@@ -259,7 +256,9 @@
     function closeModal() {
     var modalOverlay = document.querySelector(".modal-overlay");
     modalOverlay.style.display = "none";
+    if (deleted > 0){
     refreshPage()
+    }
     }
 
     var openModalButton = document.getElementById("openModalButton");
@@ -494,12 +493,12 @@
 
 
   <!-- Buttons on top -->
-
-  
    <div <%= "hidden" if @search_value == "" %> class="col col-right">
                             <div class="div-buttons" style=" width: 100%">
+                              <%if current_user %>
                               <div><button id="openModalButton" class="button" style="padding: 0px;display:flex; align-items: center;width:3em;height:3em;color:var(--warning);background-color: transparent;" 
                             onclick="openModal()"><span style="font-size:30px">★</span>(<span id="count"></span>)</button></div>
+                            <%end%>
                               <div class="div-buttons">
                                 <% if @start.to_i > 0 %>
                                   <button class="button"><%= link_to "First Page", idra_path(request.query_parameters.merge(start: 0)) %></button>
@@ -534,14 +533,14 @@
                                   <div style="display: flex;  align-items: baseline; justify-content: space-between">
                                     <h4><a><%= result["title"] %></a></h4>
                                     <!-- Save dataset -->
+                                    <% if current_user %>
                                     <button id='buttonId-<%= index %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
         onclick="SaveTitle('<%= result['title'] %>','buttonId-<%= index %>'); toggleStar('buttonId-<%= index %>')" data-star="<% if @list.include?(result["title"]) %>1<% else %>0<% end %>">
-  <% if @list.include?(result["title"]) %><span style="color: var(--warning)">★</span><% else %>☆<% end %>
-</button>
+                                      <% if @list.include?(result["title"]) %><span style="color: var(--warning)">★</span><% else %>☆<% end %>
+                                    </button>
+                                    <%end%>
                                   </div>
                                   <script type="text/javascript">
-
-
                                     var counter = '<%= @element_count %>';
                                     var counterText = document.getElementById("count");
                                     counterText.innerHTML = counter;
@@ -555,7 +554,7 @@
                                       starCounterButton.disabled = true
                                     }else{starCounterButton.disabled= false;}
 
-                                    
+
                                     function toggleStar(buttonId) {
                                       var button = document.getElementById(buttonId);
                                       var isStar = button.getAttribute('data-star');
@@ -578,7 +577,7 @@
                                         starCounterButton.disabled = false;
                                     }
                                     }
-                                    
+
 
                                     function updatePartialView() {
                                             // Fetch the updated content from the server
@@ -614,6 +613,7 @@
                                               .then(response => {
                                                 if (response.ok) {
                                                   updatePartialView();
+
                                                 } else {
                                                   // Handle errors if needed
                                                 }
@@ -621,6 +621,29 @@
                                               .catch(error => {
                                                 // Handle errors if needed
                                               });
+
+                                                function updateFromModal(title) {
+                                        fetch('/idra_create', {
+                                          method: 'POST',
+                                          headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+                                          },
+                                          body: JSON.stringify({ selected_titles: title })
+                                        })
+                                        .then(response => {
+                                          if (response.ok) {
+                                            updatePartialView();
+                                            counter--;
+                                            closeModalIfEmpty()
+                                          } else {
+                                            // Handle errors if needed
+                                          }
+                                        })
+                                        .catch(error => {
+                                          // Handle errors if needed
+                                        });
+                                      }
                                           }
                                   </script>
                                 </div>

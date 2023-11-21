@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_25_090745) do
+ActiveRecord::Schema.define(version: 2023_11_16_112557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1638,8 +1638,10 @@ ActiveRecord::Schema.define(version: 2023_10_25_090745) do
 
   create_table "saved_datasets", force: :cascade do |t|
     t.string "title"
+    t.bigint "decidim_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_user_id"], name: "index_saved_datasets_on_decidim_user_id"
   end
 
   create_table "versions", force: :cascade do |t|
@@ -1700,4 +1702,5 @@ ActiveRecord::Schema.define(version: 2023_10_25_090745) do
   add_foreign_key "oauth_access_tokens", "decidim_users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_applications", "decidim_organizations"
+  add_foreign_key "saved_datasets", "decidim_users"
 end

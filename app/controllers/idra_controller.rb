@@ -177,8 +177,8 @@ class IdraController < Decidim::ApplicationController
       @selected_filters.delete(deleted_filter)
     end
 
-    @datasets = SavedDataset.all
-    @element_count = SavedDataset.count
+    @datasets = SavedDataset.where(decidim_user: current_user)
+    @element_count = @datasets.count
 
     @list = [] 
     
@@ -190,23 +190,24 @@ class IdraController < Decidim::ApplicationController
     render "layouts/idra/index.html.erb"
   end
 
+
   def create
     selected_title = params[:selected_titles]
-    existing_dataset = SavedDataset.find_by(title: selected_title)
+    existing_dataset = SavedDataset.find_by(title: selected_title,decidim_user: current_user)
 
     if existing_dataset
       existing_dataset.destroy
     else
-      saved_dataset = SavedDataset.create(title: selected_title)
+      saved_dataset = SavedDataset.create(title: selected_title, decidim_user: current_user)
 
-      @datasets = SavedDataset.all
+      @datasets = SavedDataset.where(title: selected_title, decidim_user: current_user)
     end
-
-    
   end
-
+  
   def update
-    @datasets = SavedDataset.all
+    @datasets = SavedDataset.where(decidim_user: current_user)
+  
+  
     respond_to do |format|
       format.html { render partial: "layouts/idra/datasets_list", layout: false } 
     end
