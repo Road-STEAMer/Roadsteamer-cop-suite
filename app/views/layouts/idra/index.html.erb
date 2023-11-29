@@ -182,6 +182,15 @@
      margin-top:40px;
    }
 
+   .tag-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px;
+  margin-top: 40px;
+  flex-direction: row; 
+}
+
+
    .format-box{
      border: 1px solid;
      border-color: gray;
@@ -235,6 +244,19 @@
   #openModalButton:hover{
     transform:scale(1.05,1.05)
   }
+
+
+
+  .cloud {
+  padding-top: 60px;
+  max-width: 1000px;
+  text-align: center;
+  line-height: 1 /* Adjust this value to reduce or increase space between lines */
+  }
+
+  .cloud span{
+  cursor: pointer;
+  }
 </style>
 <div class="container">
   <div class="modal-overlay">
@@ -269,10 +291,11 @@
 
     });
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Search form -->
   <form class="search-form" action="<%= url_for(controller: "idra", action: "index") %>" method="get">
-    <% search_value = params[:search] || session[:search_value] %>
-    <input type="text" name="search" placeholder="Search your dataset" value="<%= search_value %>">
+    <% search_value = params[:search].presence || session[:search_value].presence || "" %>
+    <input type="text" name="search" value="<%= search_value.presence%>">
     <div class="dropdown-container">
       <div class="content-on-left">
         <div class="dropdown-pages">
@@ -286,8 +309,111 @@
       </div>
       <input class="button content-on-right" type="submit" value="Submit">
     </div>
-    <p <%= "hidden" if @search_value == "" %> style="color:black; padding-bottom:20px"><%= @total_results %> results found.</p>
+    <p <%= "hidden" if @search_value == '""'%> style="color:black; padding-bottom:20px"><%= @total_results %> results found.</p>
   </form>
+  <% if @search_value === '""'%>
+    <div class="cloud">
+      <p>
+        <% @tags_values.each do |tag| %>
+          <span class="search-trigger" ><%= tag["facet"] %></span>
+        <% end %>
+      </p>
+    </div>
+  <%end%>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var searchTriggers = document.querySelectorAll('.search-trigger');
+
+      searchTriggers.forEach(function(trigger) {
+        trigger.addEventListener('click', function() {
+          var searchValue = this.textContent.trim(); // Ottieni il testo dello span cliccato
+
+          // Imposta il valore dell'input di ricerca
+          var searchInput = document.querySelector('input[name="search"]');
+          if (searchInput) {
+            searchInput.value = searchValue;
+
+            // Invia il modulo
+            var searchForm = document.querySelector('.search-form');
+            if (searchForm) {
+              searchForm.submit();
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    var spans = document.querySelectorAll('.cloud span');
+    var colors = ['--primary', '--secondary', '--warning'];
+
+    spans.forEach(function(span, index) {
+      var colorIndex = index % colors.length;
+      var colorVariable = colors[colorIndex];
+      span.style.color = `var(${colorVariable})`;
+
+      var text = span.textContent.trim();
+      var number = text.match(/\(\d+\)/);
+
+      if (number !== null) {
+        var newText = text.replace(number[0], '').replace(/\(|\)/g, '').trim();
+        span.textContent = newText + " " + " ";
+
+        var weight = parseInt(number[0].replace(/\(|\)/g, ''));
+        var fontSize = weight
+
+        fontSize = Math.min(Math.max(fontSize, 1), 35);
+
+        span.style.fontSize = fontSize + 'px';
+      }
+    });
+
+    function highlightSpan() {
+      // Ottieni il colore corrente in formato RGB
+      var currentColor = getComputedStyle(this).color;
+
+      // Estrai i valori di rosso, verde e blu dal colore RGB
+      var rgbValues = currentColor.match(/\d+/g);
+      var red = rgbValues[0];
+      var green = rgbValues[1];
+      var blue = rgbValues[2];
+
+      // Imposta il colore con un'opacità del 50%
+      var rgbaColor = 'rgba(' + red + ', ' + green + ', ' + blue + ', 0.3)';
+
+      // Imposta il colore di sfondo con trasparenza
+      this.style.backgroundColor = rgbaColor;
+    }
+
+
+    // Funzione per gestire l'evento mouseleave
+    function resetHighlight() {
+      this.style.backgroundColor = ''; // Ripristina il colore di sfondo predefinito
+    }
+
+    // Aggiungi eventi mouseenter e mouseleave a ciascuno span
+    spans.forEach(function (span) {
+      span.addEventListener('mouseenter', highlightSpan);
+      span.addEventListener('mouseleave', resetHighlight);
+    });
+
+    var shuffledSpans = shuffle(Array.from(spans));
+
+    var parentContainer = document.querySelector('.cloud');
+    parentContainer.innerHTML = '';
+
+    shuffledSpans.forEach(function(span) {
+      parentContainer.appendChild(span);
+    });
+  </script>
   <!-- Filters -->
   <div class="filter-box">
     <% if @selected_filters.present? %>
@@ -357,7 +483,7 @@
   </div>
   <div class="row-body">
     <!-- Left cards column -->
-    <div <%= "hidden" if @search_value == "" %> class="col col-left">
+    <div <%= "hidden" if @search_value == '""' %> class="col col-left">
       <!-- Start card -->
       <div class="facets-card">
         <div class="card-title"><%= @tags["displayName"] %></div>
@@ -493,12 +619,11 @@
 
 
   <!-- Buttons on top -->
-   <div <%= "hidden" if @search_value == "" %> class="col col-right">
+   <div <%= "hidden" if @search_value == '""' %> class="col col-right">
                             <div class="div-buttons" style=" width: 100%">
-                              <%if current_user %>
-                              <div><button id="openModalButton" class="button" style="padding: 0px;display:flex; align-items: center;width:3em;height:3em;color:var(--warning);background-color: transparent;" 
-                            onclick="openModal()"><span style="font-size:30px">★</span>(<span id="count"></span>)</button></div>
-                            <%end%>
+                              <div><%if current_user %><button id="openModalButton" class="button" style="padding: 0px;display:flex; align-items: center;width:3em;height:3em;color:var(--warning);background-color: transparent;" 
+                            onclick="openModal()"><span style="font-size:30px">★</span>(<span id="count"></span>)</button><%end%>
+                              </div>
                               <div class="div-buttons">
                                 <% if @start.to_i > 0 %>
                                   <button class="button"><%= link_to "First Page", idra_path(request.query_parameters.merge(start: 0)) %></button>
@@ -534,10 +659,10 @@
                                     <h4><a><%= result["title"] %></a></h4>
                                     <!-- Save dataset -->
                                     <% if current_user %>
-                                    <button id='buttonId-<%= index %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
+                                      <button id='buttonId-<%= index %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
         onclick="SaveTitle('<%= result['title'] %>','buttonId-<%= index %>'); toggleStar('buttonId-<%= index %>')" data-star="<% if @list.include?(result["title"]) %>1<% else %>0<% end %>">
-                                      <% if @list.include?(result["title"]) %><span style="color: var(--warning)">★</span><% else %>☆<% end %>
-                                    </button>
+                                        <% if @list.include?(result["title"]) %><span style="color: var(--warning)">★</span><% else %>☆<% end %>
+                                      </button>
                                     <%end%>
                                   </div>
                                   <script type="text/javascript">
@@ -657,7 +782,7 @@
                                       <hr style= "height: 1px; border: none;background-color: lightgray; width: 100%; padding: 0px;margin: 0px">
                                       <div style="width: 100%" class="row">
                                         <p style="font-weight: bold">Tags</p>
-                                        <div class="format-container" style="margin-bottom: 20px; margin-top: 0px">
+                                        <div class="tag-container" style="margin-bottom: 20px; margin-top: 0px">
                                           <% result["keywords"].each_with_index do |obj, index| %>
                                             <div class="format-box"><%= obj %></div>
                                           <% end %>
@@ -677,7 +802,6 @@
                                             <% end %>
                                             <div class="column">
                                               <button class="button show-more-details-button" style="margin:0px; padding:10px" data-target="show-more-details-<%= index %>">+</button>
-                                              <button class="button" style="margin:0px; padding:10px">View</button>
                                               <%= link_to "Download", obj["downloadURL"], class: "button", style: "margin:0px; padding:10px", target: "_blank" %>
                                             </div>
                                           </div>
@@ -715,9 +839,14 @@
                                   </div>
                                   <a href="#" class="expand-link" data-card-index="<%= index %>">Read More</a>
                                   <div class="format-container">
+                                    <% displayed_formats = [] %>
                                     <% result["distributions"].each do |elem| %>
-                                      <div class="format-box"><%= elem["format"] %>
-                                      </div>
+                                      <% unless elem["format"].to_s.empty? || displayed_formats.include?(elem["format"]) %>
+                                        <div class="format-box">
+                                          <%= elem["format"] %>
+                                        </div>
+                                        <% displayed_formats << elem["format"] %>
+                                      <% end %>
                                     <% end %>
                                   </div>
                                 </div>
@@ -753,7 +882,6 @@
                           </div>
                         </div>
                       </div>
-                      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                       <script>
                         $(document).ready(function() {
                           // When the "Read More" link is clicked

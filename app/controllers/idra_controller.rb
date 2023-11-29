@@ -1,52 +1,60 @@
 class IdraController < Decidim::ApplicationController
   def index
-    url = URI("https://idra.ecosystem-urbanage.eu/Idra/api/v1/client/search")
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
+
+    # url = URI("https://idra.ecosystem-urbanage.eu/Idra/api/v1/client/search")
+    # https = Net::HTTP.new(url.host, url.port)
+    # https.use_ssl = true
+    # catalogues_info_url = URI("https://idra.ecosystem-urbanage.eu/Idra/api/v1/client/cataloguesInfo")
+    # catalogues_info_https = Net::HTTP.new(catalogues_info_url.host, catalogues_info_url.port)
+    # catalogues_info_https.use_ssl = true
+    # catalogues_info_request = Net::HTTP::Get.new(catalogues_info_url)
+    # catalogues_info_response = catalogues_info_https.request(catalogues_info_request)
+    # catalogues_info_data = JSON.parse(catalogues_info_response.body)
+    # request = Net::HTTP::Post.new(url)
+    # request["Content-Type"] = "application/json"
+
+    require "net/http"
+    require "json"
+
+    url = URI("http://91.109.58.79/Idra/api/v1/client/search")
+    http = Net::HTTP.new(url.host, url.port)
+    # No need to specify use_ssl = true as it's not an HTTPS URL
+
+    catalogues_info_url = URI("http://91.109.58.79/Idra/api/v1/client/cataloguesInfo")
+    catalogues_info_http = Net::HTTP.new(catalogues_info_url.host, catalogues_info_url.port)
+    # No need to specify use_ssl = true as it's not an HTTPS URL
+
+    catalogues_info_request = Net::HTTP::Get.new(catalogues_info_url)
+    catalogues_info_response = catalogues_info_http.request(catalogues_info_request)
+    catalogues_info_data = JSON.parse(catalogues_info_response.body)
+
+    request = Net::HTTP::Post.new(url)
+    request["Content-Type"] = "application/json"
+
+    # ... rest of your code using the 'request' object
 
     #form
 
-    if params[:search].present?
-      search_value = params[:search]
-    else
-      search_value = ""
-    end
-
-    @search_value = search_value
-
-    selected_option = params[:field] || "title"
-
-    field = params[:field].presence || "title"
-
-    @rows = params[:rows].presence || "5"
-
-    @start = params[:start] || "0"
-
-    start = @start.to_i
+    @search_value = params[:search].presence || '""'
+    selected_option = params[:field].presence || "title"
+    field = selected_option.presence || "title"
+    @rows = (params[:rows].presence || "5").to_i # Convert to integer if needed
+    @start = (params[:start].presence || "0").to_i # Convert to integer if needed
+    start = @start
 
     @nodes = []
 
-    catalogues_info_url = URI("https://idra.ecosystem-urbanage.eu/Idra/api/v1/client/cataloguesInfo")
-    catalogues_info_https = Net::HTTP.new(catalogues_info_url.host, catalogues_info_url.port)
-    catalogues_info_https.use_ssl = true
-
-    catalogues_info_request = Net::HTTP::Get.new(catalogues_info_url)
-
-    catalogues_info_response = catalogues_info_https.request(catalogues_info_request)
-
-    catalogues_info_data = JSON.parse(catalogues_info_response.body)
-
-    if params[:search].present?
       catalogues_info_data.each do |catalogue_info|
         id = catalogue_info["id"]
         @nodes << id.to_i
       end
-    end
 
+   
     filters = [{
       "field": "ALL",
-      "value": search_value,
+      "value": @search_value,
     }]
+    
 
     @tags_value = params[:tags_value]
 
@@ -105,8 +113,6 @@ class IdraController < Decidim::ApplicationController
 
     deleted_filter = params[:deleted_filter]
 
-    request = Net::HTTP::Post.new(url)
-    request["Content-Type"] = "application/json"
     request.body = JSON.dump({
       "filters": filters,
       "live": false,
@@ -125,7 +131,7 @@ class IdraController < Decidim::ApplicationController
       },
     })
 
-    response = https.request(request)
+    response = http.request(request)
 
     @api_results = JSON.parse(response.read_body)
 
@@ -180,20 +186,18 @@ class IdraController < Decidim::ApplicationController
     @datasets = SavedDataset.where(decidim_user: current_user)
     @element_count = @datasets.count
 
-    @list = [] 
-    
+    @list = []
+
     @datasets.each do |data|
       @list << data.title
     end
 
-
     render "layouts/idra/index.html.erb"
   end
 
-
   def create
     selected_title = params[:selected_titles]
-    existing_dataset = SavedDataset.find_by(title: selected_title,decidim_user: current_user)
+    existing_dataset = SavedDataset.find_by(title: selected_title, decidim_user: current_user)
 
     if existing_dataset
       existing_dataset.destroy
@@ -203,15 +207,12 @@ class IdraController < Decidim::ApplicationController
       @datasets = SavedDataset.where(title: selected_title, decidim_user: current_user)
     end
   end
-  
+
   def update
     @datasets = SavedDataset.where(decidim_user: current_user)
-  
-  
+
     respond_to do |format|
-      format.html { render partial: "layouts/idra/datasets_list", layout: false } 
+      format.html { render partial: "layouts/idra/datasets_list", layout: false }
     end
   end
-
-  
 end
