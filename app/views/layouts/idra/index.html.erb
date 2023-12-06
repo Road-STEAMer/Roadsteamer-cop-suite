@@ -370,7 +370,7 @@
         var weight = parseInt(number[0].replace(/\(|\)/g, ''));
         var fontSize = weight
 
-        fontSize = Math.min(Math.max(fontSize, 1), 35);
+        fontSize = Math.min(Math.max(fontSize, 15), 80);
 
         span.style.fontSize = fontSize + 'px';
       }
@@ -660,7 +660,7 @@
                                     <!-- Save dataset -->
                                     <% if current_user %>
                                       <button id='buttonId-<%= index %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
-        onclick="SaveTitle('<%= result['title'] %>','buttonId-<%= index %>'); toggleStar('buttonId-<%= index %>')" data-star="<% if @list.include?(result["title"]) %>1<% else %>0<% end %>">
+        onclick="SaveTitle('<%= result['title'] %>','buttonId-<%= index %>', '<%= result['landingPage'] %>'); toggleStar('buttonId-<%= index %>')" data-star="<% if @list.include?(result["title"]) %>1<% else %>0<% end %>">
                                         <% if @list.include?(result["title"]) %><span style="color: var(--warning)">★</span><% else %>☆<% end %>
                                       </button>
                                     <%end%>
@@ -725,7 +725,7 @@
                                               });
                                           }
 
-                                          function SaveTitle(title, buttonId) {
+                                          function SaveTitle(title, buttonId, url) {
 
                                             fetch('/idra_create', {
                                               method: 'POST',
@@ -733,7 +733,7 @@
                                                 'Content-Type': 'application/json',
                                                 'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
                                               },
-                                              body: JSON.stringify({ selected_titles: title })
+                                              body: JSON.stringify({ selected_titles: title, selected_url: url })
                                             })
                                               .then(response => {
                                                 if (response.ok) {
@@ -818,26 +818,28 @@
                                             <strong>Media type</strong>: <%= obj["mediaType"] %>
                                             <hr style= "height: 1px; border: none;background-color: lightgray; width: 100%; padding: 0px;margin: 0px">
                                           </div>
-                                        <% end %>
+                                         <% end %>
                                       </div>
                                       <hr style= "height: 1px; border: none;background-color: lightgray; width: 100%; padding: 0px;margin: 0px">
                                       <div style="width: 100%" class="row">
                                         <p style="font-weight: bold">Additionl info</p>
                                         <div style="display: flex; flex-direction: column; margin-left: 30px">
-                                          <strong>Dataset page:</strong>
-                                          <strong>Publisher:</strong>
-                                          <strong>Licenses:</strong>
-                                          <strong>Update date:</strong>
-                                          <strong>Language:</strong>
-                                          <strong>Topic:</strong>
-                                          <strong>Identifier:</strong>
-                                          <strong>Other identifiers:</strong>
+                                          <span><strong>Dataset page: </strong> <a href="<%=result["landingPage"]%>"> <%=result["landingPage"]%> </a></span>
+                                          <span><strong>Licenses: </strong><a href="<%=result["distributions"][0]["license"]["uri"]%> "> <%=result["distributions"][0]["license"]["name"]%> </a></span></span>
+                                          <span><strong>Publisher: </strong> <%=result["publisher"]["name"]%></span>
+                                          <span><strong>Creator: </strong> <%=result["creator"]["name"]%></span>
+                                          <span><strong>Release date: </strong><%=result["releaseDate"]%></span>
+                                          <span><strong>Update date: </strong><%=result["updateDate"]%></span>
+                                          <span><strong>Language: </strong><%=result["language"][0]%></span>
+                                          <span><strong>Topic: </strong><%=result["theme"][0]["prefLabel"][0]["value"]%></span>
+                                          <span><strong>Identifier: </strong><%=result["identifier"]%></span>
+                                          <span><strong>Other identifiers: </strong><%=result["otherIdentifier"][0]%></span>
                                         </div>
                                       </div>
                                       <hr style= "height: 1px; border: none;background-color: lightgray; width: 100%; padding: 0px;margin: 0px">
                                     </div>
                                   </div>
-                                  <a href="#" class="expand-link" data-card-index="<%= index %>">Read More</a>
+                                  <a href="#" class="expand-link button small hollow card__button" style="margin-top: 2em" data-card-index="<%= index %>">Read More</a>
                                   <div class="format-container">
                                     <% displayed_formats = [] %>
                                     <% result["distributions"].each do |elem| %>

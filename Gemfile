@@ -13,6 +13,9 @@ gem "decidim", "0.27.2"
 
 gem "truncate_html", "~> 0.9.3"
 
+gem 'figaro'
+
+
 gem "bootsnap", "~> 1.3"
 
 gem "puma", ">= 5.0.0"

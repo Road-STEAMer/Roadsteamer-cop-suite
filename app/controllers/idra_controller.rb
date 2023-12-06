@@ -1,37 +1,38 @@
 class IdraController < Decidim::ApplicationController
   def index
 
-    # url = URI("https://idra.ecosystem-urbanage.eu/Idra/api/v1/client/search")
-    # https = Net::HTTP.new(url.host, url.port)
-    # https.use_ssl = true
-    # catalogues_info_url = URI("https://idra.ecosystem-urbanage.eu/Idra/api/v1/client/cataloguesInfo")
-    # catalogues_info_https = Net::HTTP.new(catalogues_info_url.host, catalogues_info_url.port)
-    # catalogues_info_https.use_ssl = true
-    # catalogues_info_request = Net::HTTP::Get.new(catalogues_info_url)
-    # catalogues_info_response = catalogues_info_https.request(catalogues_info_request)
-    # catalogues_info_data = JSON.parse(catalogues_info_response.body)
-    # request = Net::HTTP::Post.new(url)
-    # request["Content-Type"] = "application/json"
+    api_url = ENV['API_URL_URBANAGE']
+    url = URI(api_url)
 
-    require "net/http"
-    require "json"
+    api_catalogues_info_url = ENV['API_URL_CATALOGUES_INFO']
 
-    url = URI("http://91.109.58.79/Idra/api/v1/client/search")
-    http = Net::HTTP.new(url.host, url.port)
-    # No need to specify use_ssl = true as it's not an HTTPS URL
-
-    catalogues_info_url = URI("http://91.109.58.79/Idra/api/v1/client/cataloguesInfo")
-    catalogues_info_http = Net::HTTP.new(catalogues_info_url.host, catalogues_info_url.port)
-    # No need to specify use_ssl = true as it's not an HTTPS URL
-
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    catalogues_info_url = URI(api_catalogues_info_url)
+    catalogues_info_https = Net::HTTP.new(catalogues_info_url.host, catalogues_info_url.port)
+    catalogues_info_https.use_ssl = true
     catalogues_info_request = Net::HTTP::Get.new(catalogues_info_url)
-    catalogues_info_response = catalogues_info_http.request(catalogues_info_request)
+    catalogues_info_response = catalogues_info_https.request(catalogues_info_request)
     catalogues_info_data = JSON.parse(catalogues_info_response.body)
-
     request = Net::HTTP::Post.new(url)
     request["Content-Type"] = "application/json"
 
-    # ... rest of your code using the 'request' object
+    # require "net/http"
+    # require "json"
+
+    # url = URI("http://91.109.58.79/Idra/api/v1/client/search")
+    # http = Net::HTTP.new(url.host, url.port)
+
+    # catalogues_info_url = URI("http://91.109.58.79/Idra/api/v1/client/cataloguesInfo")
+    # catalogues_info_http = Net::HTTP.new(catalogues_info_url.host, catalogues_info_url.port)
+
+    # catalogues_info_request = Net::HTTP::Get.new(catalogues_info_url)
+    # catalogues_info_response = catalogues_info_http.request(catalogues_info_request)
+    # catalogues_info_data = JSON.parse(catalogues_info_response.body)
+
+    # request = Net::HTTP::Post.new(url)
+    # request["Content-Type"] = "application/json"
+
 
     #form
 
@@ -131,13 +132,12 @@ class IdraController < Decidim::ApplicationController
       },
     })
 
-    response = http.request(request)
+    response = https.request(request) #change https to http if use the other configuration
 
     @api_results = JSON.parse(response.read_body)
 
     @total_results = @api_results["count"]
 
-    #  metodi filtri:
 
     @selected_filters = []
 
@@ -198,11 +198,11 @@ class IdraController < Decidim::ApplicationController
   def create
     selected_title = params[:selected_titles]
     existing_dataset = SavedDataset.find_by(title: selected_title, decidim_user: current_user)
-
+    selected_url = params[:selected_url]
     if existing_dataset
       existing_dataset.destroy
     else
-      saved_dataset = SavedDataset.create(title: selected_title, decidim_user: current_user)
+      saved_dataset = SavedDataset.create(title: selected_title, decidim_user: current_user, url: selected_url)
 
       @datasets = SavedDataset.where(title: selected_title, decidim_user: current_user)
     end

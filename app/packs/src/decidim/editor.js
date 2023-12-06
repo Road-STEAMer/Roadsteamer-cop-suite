@@ -59,20 +59,21 @@ export default function createQuillEditor(container) {
           }
         })
         .then(data => {
-          // Parse the HTML response to extract the anchor text
           const parser = new DOMParser();
           const doc = parser.parseFromString(data, 'text/html');
-          const anchorElements = doc.querySelectorAll('#datasets-list a');
-
-          anchorElements.forEach(anchor => {
-            modalData.push(anchor.textContent);
+          const datasetElements = doc.querySelectorAll('#datasets-list a');
+          const urlElements = doc.querySelectorAll('#datasets-list #url');
+  
+          datasetElements.forEach((dataset, index) => {
+            const title = dataset.textContent;
+            const url = urlElements[index].textContent;
+            modalData.push({ title, url });
           });
-
         })
         .catch(error => {
           console.error('Error updating partial view:', error);
         });
-
+  
       hasFetched = true; // Set the flag to indicate that fetch has been performed
     }
   }
@@ -114,41 +115,35 @@ export default function createQuillEditor(container) {
     // Loop through modalData array and create links with click event listeners
     modalData.forEach(function (element) {
       var link = document.createElement('a');
-      link.href = 'javascript:void(0)'; // JavaScript void(0) to prevent navigation
-      link.textContent = element;
+      link.href = element.url; // URL as the href attribute of the link
+      link.textContent = element.title; // Title as the visible text of the link
       linksDiv.appendChild(link);
-
-      // Add click event listener to the link
-      link.addEventListener('click', function () {
-        copyAndPasteText(element);
+  
+      link.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default navigation behavior
+  
+        copyAndPasteText(element.title, element.url);
         modalContainer.style.display = 'none'; // Close the modal
       });
-
-      // Add a line break after each link, except the last one
+  
       if (element !== modalData[modalData.length - 1]) {
         linksDiv.appendChild(document.createElement('br'));
       }
     });
 
 
-
     // Function to copy and paste the text into the Quill editor
-    function copyAndPasteText(textToCopy) {
-      const range = quill.getSelection();
+     function copyAndPasteText(title, url) {
+    const range = quill.getSelection();
 
-      // Create a link format with the href attribute set to the textToCopy
-      const linkFormat = {
-        link: textToCopy,
-        target: '_blank'
-      };
+    const linkFormat = {
+      link: url,
+      target: '_blank',
+    };
 
-      // Insert the text and apply the link format
-      quill.insertText(range.index, textToCopy, linkFormat);
-
-      // Set the selection to the inserted link
-      quill.setSelection(range.index, textToCopy.length, 'user');
-    }
-
+    quill.insertText(range.index, title, linkFormat);
+    quill.setSelection(range.index, title.length, 'user');
+  }
     modalContent.appendChild(linksDiv);
     modal.appendChild(modalContent);
     modalContainer.appendChild(modal);
