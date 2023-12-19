@@ -1,3 +1,4 @@
+"use strict";
 (self["webpackChunkdecidim_app"] = self["webpackChunkdecidim_app"] || []).push([["app_packs_src_decidim_configuration_js-app_packs_src_decidim_confirm_js-app_packs_src_decidim-d4c813"],{
 
 /***/ "./app/packs/src/decidim/configuration.js":
@@ -6,7 +7,6 @@
   \************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ Configuration; }
@@ -124,7 +124,6 @@ var Configuration = /*#__PURE__*/function () {
   \******************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rails_ujs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @rails/ujs */ "./node_modules/@rails/ujs/lib/assets/compiled/rails-ujs-exposed.js");
 /* harmony import */ var _rails_ujs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_rails_ujs__WEBPACK_IMPORTED_MODULE_0__);
@@ -328,7 +327,6 @@ document.addEventListener("DOMContentLoaded", function () {
   \**************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_decidim_direct_uploads_upload_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/direct_uploads/upload_modal */ "./app/packs/src/decidim/direct_uploads/upload_modal.js");
 /* harmony import */ var src_decidim_direct_uploads_upload_utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/direct_uploads/upload_utility */ "./app/packs/src/decidim/direct_uploads/upload_utility.js");
@@ -450,7 +448,6 @@ document.addEventListener("DOMContentLoaded", function () {
   \**************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ UploadModal; }
@@ -764,7 +761,6 @@ var UploadModal = /*#__PURE__*/function () {
   \****************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "checkTitles": function() { return /* binding */ checkTitles; },
@@ -825,7 +821,6 @@ var createHiddenInput = function createHiddenInput(elClasses, elName, elValue) {
   \**********************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Uploader": function() { return /* binding */ Uploader; }
@@ -1029,9 +1024,257 @@ var Uploader = /*#__PURE__*/function () {
 /*!*****************************************!*\
   !*** ./app/packs/src/decidim/editor.js ***!
   \*****************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/daniele/decidim_idra/app/packs/src/decidim/editor.js: 'return' outside of function. (260:2)\n\n  258 |   quill.emitter.emit(\"editor-ready\");\n  259 |\n> 260 |   return quill;\n      |   ^\n  261 | }\n  262 |\n    at instantiate (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:653:32)\n    at constructor (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:947:12)\n    at JSXParserMixin.raise (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:3271:19)\n    at JSXParserMixin.parseReturnStatement (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:12935:12)\n    at JSXParserMixin.parseStatementContent (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:12590:21)\n    at JSXParserMixin.parseStatementLike (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:12557:17)\n    at JSXParserMixin.parseModuleItem (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:12534:17)\n    at JSXParserMixin.parseBlockOrModuleBlockBody (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:13129:36)\n    at JSXParserMixin.parseBlockBody (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:13122:10)\n    at JSXParserMixin.parseProgram (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:12445:10)\n    at JSXParserMixin.parseTopLevel (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:12435:25)\n    at JSXParserMixin.parse (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:14258:10)\n    at parse (/home/daniele/decidim_idra/node_modules/@babel/parser/lib/index.js:14299:38)\n    at parser (/home/daniele/decidim_idra/node_modules/@babel/core/lib/parser/index.js:41:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/home/daniele/decidim_idra/node_modules/@babel/core/lib/transformation/normalize-file.js:64:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/home/daniele/decidim_idra/node_modules/@babel/core/lib/transformation/index.js:21:50)\n    at run.next (<anonymous>)\n    at transform (/home/daniele/decidim_idra/node_modules/@babel/core/lib/transform.js:22:41)\n    at transform.next (<anonymous>)\n    at step (/home/daniele/decidim_idra/node_modules/gensync/index.js:261:32)\n    at /home/daniele/decidim_idra/node_modules/gensync/index.js:273:13\n    at async.call.result.err.err (/home/daniele/decidim_idra/node_modules/gensync/index.js:223:11)");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ createQuillEditor; }
+/* harmony export */ });
+/* harmony import */ var src_decidim_editor_linebreak_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/editor/linebreak_module */ "./app/packs/src/decidim/editor/linebreak_module.js");
+/* harmony import */ var src_decidim_editor_clipboard_override__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/editor/clipboard_override */ "./app/packs/src/decidim/editor/clipboard_override.js");
+/* harmony import */ var src_decidim_vendor_image_resize_min__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/vendor/image-resize.min */ "./app/packs/src/decidim/vendor/image-resize.min.js");
+/* harmony import */ var src_decidim_vendor_image_resize_min__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(src_decidim_vendor_image_resize_min__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_decidim_vendor_image_upload_min__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/vendor/image-upload.min */ "./app/packs/src/decidim/vendor/image-upload.min.js");
+/* harmony import */ var src_decidim_vendor_image_upload_min__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(src_decidim_vendor_image_upload_min__WEBPACK_IMPORTED_MODULE_3__);
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+/* eslint-disable require-jsdoc */
+
+
+
+
+
+var quillFormats = ["bold", "italic", "link", "underline", "header", "list", "video", "image", "alt", "break", "width", "style", "code", "blockquote", "indent"];
+function createQuillEditor(container) {
+  var toolbar = $(container).data("toolbar");
+  var disabled = $(container).data("disabled");
+  var allowedEmptyContentSelector = "iframe";
+  var quillToolbar = [["bold", "italic", "underline", "linebreak"], [{
+    list: "ordered"
+  }, {
+    list: "bullet"
+  }], ["link", "clean"], ["code", "blockquote"], [{
+    "indent": "-1"
+  }, {
+    "indent": "+1"
+  }], [{
+    'savedDataset': "openModal"
+  }]];
+  var addImage = $(container).data("editorImages");
+  if (toolbar === "full") {
+    quillToolbar = [[{
+      header: [2, 3, 4, 5, 6, false]
+    }]].concat(_toConsumableArray(quillToolbar), [["video"]]);
+  } else if (toolbar === "basic") {
+    quillToolbar = [].concat(_toConsumableArray(quillToolbar), [["video"]]);
+  }
+  var modalData = [];
+  var hasFetched = false; // Add this flag
+
+  // Function to fetch data
+  function fetchData() {
+    if (!hasFetched) {
+      // Check if fetch hasn't been performed yet
+      fetch('/idra_update', {
+        method: 'GET'
+      }).then(function (response) {
+        if (response.ok) {
+          return response.text(); // Assuming the response is HTML
+        } else {
+          throw new Error('Failed to fetch the updated content');
+        }
+      }).then(function (data) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(data, 'text/html');
+        var datasetElements = doc.querySelectorAll('#datasets-list a');
+        var urlElements = doc.querySelectorAll('#datasets-list #url');
+        datasetElements.forEach(function (dataset, index) {
+          var title = dataset.textContent;
+          var url = urlElements[index].textContent;
+          modalData.push({
+            title: title,
+            url: url
+          });
+        });
+      })["catch"](function (error) {
+        console.error('Error updating partial view:', error);
+      });
+      hasFetched = true; // Set the flag to indicate that fetch has been performed
+    }
+  }
+
+  // Call the fetchData function
+  fetchData();
+
+  // Function to create and display the modal
+  function openModal() {
+    // Create a modal container
+    var modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container');
+
+    // Create a modal element
+    var modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    // Modal content
+    var modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    modalContent.id = 'modalContent';
+
+    // Create an unordered list to display the elements as a list
+    // Create a div for the links
+    var linksDiv = document.createElement('div');
+    linksDiv.classList.add('links-column');
+    var titleElement = document.createElement('h1');
+    titleElement.textContent = "Saved Dataset";
+    linksDiv.appendChild(titleElement);
+    titleElement.className = "text-center";
+    var descriptionElement = document.createElement("h5");
+    descriptionElement.textContent = "Select a dataset to insert in text editor:";
+    descriptionElement.style.color = "gray";
+    linksDiv.appendChild(descriptionElement);
+
+    // Loop through modalData array and create links with click event listeners
+    modalData.forEach(function (element) {
+      var link = document.createElement('a');
+      link.href = element.url; // URL as the href attribute of the link
+      link.textContent = element.title; // Title as the visible text of the link
+      linksDiv.appendChild(link);
+      link.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default navigation behavior
+
+        copyAndPasteText(element.title, element.url);
+        modalContainer.style.display = 'none'; // Close the modal
+      });
+
+      if (element !== modalData[modalData.length - 1]) {
+        linksDiv.appendChild(document.createElement('br'));
+      }
+    });
+
+    // Function to copy and paste the text into the Quill editor
+    function copyAndPasteText(title, url) {
+      var range = quill.getSelection();
+      var linkFormat = {
+        link: url,
+        target: '_blank'
+      };
+      quill.insertText(range.index, title, linkFormat);
+      quill.setSelection(range.index, title.length, 'user');
+    }
+    modalContent.appendChild(linksDiv);
+    modal.appendChild(modalContent);
+    modalContainer.appendChild(modal);
+    document.body.appendChild(modalContainer);
+
+    // Open the modal
+    modalContainer.style.display = 'block';
+
+    // Close modal when clicking outside the modal
+    window.addEventListener('click', function (event) {
+      if (event.target == modalContainer) {
+        modalContainer.style.display = 'none';
+      }
+    });
+  }
+  var modules = {
+    linebreak: {},
+    toolbar: {
+      container: quillToolbar,
+      handlers: {
+        "linebreak": src_decidim_editor_linebreak_module__WEBPACK_IMPORTED_MODULE_0__["default"],
+        "savedDataset": openModal
+      }
+    }
+  };
+  var $input = $(container).siblings('input[type="hidden"]');
+  container.innerHTML = $input.val() || "";
+  var token = $('meta[name="csrf-token"]').attr("content");
+  if (addImage) {
+    modules.imageResize = {
+      modules: ["Resize", "DisplaySize"]
+    };
+    modules.imageUpload = {
+      url: $(container).data("uploadImagesPath"),
+      method: "POST",
+      name: "image",
+      withCredentials: false,
+      headers: {
+        "X-CSRF-Token": token
+      },
+      callbackOK: function callbackOK(serverResponse, next) {
+        $("div.ql-toolbar").last().removeClass("editor-loading");
+        next(serverResponse.url);
+      },
+      callbackKO: function callbackKO(serverError) {
+        $("div.ql-toolbar").last().removeClass("editor-loading");
+        console.log("Image upload error: ".concat(serverError.message));
+      },
+      checkBeforeSend: function checkBeforeSend(file, next) {
+        $("div.ql-toolbar").last().addClass("editor-loading");
+        next(file);
+      }
+    };
+  }
+  var quill = new Quill(container, {
+    modules: modules,
+    formats: quillFormats,
+    theme: "snow"
+  });
+  if (disabled) {
+    quill.disable();
+  }
+  quill.on("text-change", function () {
+    var text = quill.getText();
+
+    // Triggers CustomEvent with the cursor position
+    // It is required in input_mentions.js
+    var event = new CustomEvent("quill-position", {
+      detail: quill.getSelection()
+    });
+    container.dispatchEvent(event);
+    if ((text === "\n" || text === "\n\n") && quill.root.querySelectorAll(allowedEmptyContentSelector).length === 0) {
+      $input.val("");
+    } else {
+      var emptyParagraph = "<p><br></p>";
+      var cleanHTML = quill.root.innerHTML.replace(new RegExp("^".concat(emptyParagraph, "|").concat(emptyParagraph, "$"), "g"), "");
+      $input.val(cleanHTML);
+    }
+  });
+  // After editor is ready, linebreak_module deletes two extraneous new lines
+  quill.emitter.emit("editor-ready");
+  if (addImage) {
+    var text = $(container).data("dragAndDropHelpText");
+    $(container).after("<p class=\"help-text\" style=\"margin-top:-1.5rem;\">".concat(text, "</p>"));
+  }
+
+  // After editor is ready, linebreak_module deletes two extraneous new lines
+  quill.emitter.emit("editor-ready");
+  return quill;
+}
 
 /***/ }),
 
@@ -1041,7 +1284,6 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
   \*********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_tagsinput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap-tagsinput */ "./node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js");
 /* harmony import */ var bootstrap_tagsinput__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_tagsinput__WEBPACK_IMPORTED_MODULE_0__);

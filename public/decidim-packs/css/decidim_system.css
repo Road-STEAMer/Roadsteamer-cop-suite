@@ -703,16 +703,20 @@ textarea {
   .row.medium-unstack > .column, .row.medium-unstack > .columns {
     flex: 1 1 0px;
   }
+}
+
+@media print, screen and (min-width: 40em) {
   .medium-collapse > .column, .medium-collapse > .columns {
     padding-right: 0;
     padding-left: 0;
   }
+}
+@media print, screen and (min-width: 40em) {
   .medium-uncollapse > .column, .medium-uncollapse > .columns {
     padding-right: 0.9375rem;
     padding-left: 0.9375rem;
   }
 }
-
 @media print, screen and (min-width: 64em) {
   .large-1 {
     flex: 0 0 8.3333333333%;
@@ -867,16 +871,20 @@ textarea {
   .row.large-unstack > .column, .row.large-unstack > .columns {
     flex: 1 1 0px;
   }
+}
+
+@media print, screen and (min-width: 64em) {
   .large-collapse > .column, .large-collapse > .columns {
     padding-right: 0;
     padding-left: 0;
   }
+}
+@media print, screen and (min-width: 64em) {
   .large-uncollapse > .column, .large-uncollapse > .columns {
     padding-right: 0.9375rem;
     padding-left: 0.9375rem;
   }
 }
-
 .shrink {
   flex: 0 0 auto;
   max-width: 100%;
@@ -4900,9 +4908,13 @@ body.login .login-form-wrapper .login-form, body.login .login-form-wrapper .logi
     float: left;
     clear: none;
   }
+}
+@media print, screen and (min-width: 40em) {
   body.login .login-form-wrapper .login-form:last-child:not(:first-child) {
     float: right;
   }
+}
+@media print, screen and (min-width: 40em) {
   body.login .login-form-wrapper .login-form, body.login .login-form-wrapper .login-form:last-child:not(:first-child) {
     float: none;
     clear: both;
@@ -4929,9 +4941,13 @@ body.login .login-form-wrapper .login-form, body.login .login-form-wrapper .logi
     float: left;
     clear: none;
   }
+}
+@media print, screen and (min-width: 64em) {
   body.login .login-form-wrapper .login-form:last-child:not(:first-child) {
     float: right;
   }
+}
+@media print, screen and (min-width: 64em) {
   body.login .login-form-wrapper .login-form, body.login .login-form-wrapper .login-form:last-child:not(:first-child) {
     float: none;
     clear: both;

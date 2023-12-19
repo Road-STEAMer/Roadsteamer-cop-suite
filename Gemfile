@@ -15,6 +15,11 @@ gem "truncate_html", "~> 0.9.3"
 
 gem 'figaro'
 
+gem "decidim-decidim_awesome"
+
+gem 'dotenv-rails', groups: [:development, :test]
+
+
 
 gem "bootsnap", "~> 1.3"
 
