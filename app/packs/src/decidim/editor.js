@@ -1,6 +1,5 @@
 /* eslint-disable require-jsdoc */
 
-
 import lineBreakButtonHandler from "src/decidim/editor/linebreak_module"
 import "src/decidim/editor/clipboard_override"
 import "src/decidim/vendor/image-resize.min"
@@ -21,10 +20,6 @@ export default function createQuillEditor(container) {
     [{ "indent": "-1" }, { "indent": "+1" }],
     [{ 'savedDataset': "openModal" }]
   ]
-
-
-
-
 
   let addImage = $(container).data("editorImages");
 
@@ -171,6 +166,8 @@ export default function createQuillEditor(container) {
       }
     }
   };
+
+  
 
 
   const $input = $(container).siblings('input[type="hidden"]');

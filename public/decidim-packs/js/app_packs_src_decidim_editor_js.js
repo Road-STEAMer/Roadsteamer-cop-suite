@@ -1705,12 +1705,12 @@ var continueFormats = function continueFormats(quill, context, lineFormats) {
   });
 };
 var lineBreakHandler = function lineBreakHandler(quill, range, context) {
-  var _currentLeaf$next, _currentLeaf$next$dom, _nextLeaf$parent, _nextLeaf$parent$domN;
+  var _currentLeaf$next, _nextLeaf$parent;
   var currentLeaf = quill.getLeaf(range.index)[0];
   var nextLeaf = quill.getLeaf(range.index + 1)[0];
   var previousChar = quill.getText(range.index - 1, 1);
   var formats = quill.getFormat(range.index);
-  if ((currentLeaf === null || currentLeaf === void 0 ? void 0 : (_currentLeaf$next = currentLeaf.next) === null || _currentLeaf$next === void 0 ? void 0 : (_currentLeaf$next$dom = _currentLeaf$next.domNode) === null || _currentLeaf$next$dom === void 0 ? void 0 : _currentLeaf$next$dom.tagName) === "A" || (nextLeaf === null || nextLeaf === void 0 ? void 0 : (_nextLeaf$parent = nextLeaf.parent) === null || _nextLeaf$parent === void 0 ? void 0 : (_nextLeaf$parent$domN = _nextLeaf$parent.domNode) === null || _nextLeaf$parent$domN === void 0 ? void 0 : _nextLeaf$parent$domN.tagName) === "A") {
+  if ((currentLeaf === null || currentLeaf === void 0 || (_currentLeaf$next = currentLeaf.next) === null || _currentLeaf$next === void 0 || (_currentLeaf$next = _currentLeaf$next.domNode) === null || _currentLeaf$next === void 0 ? void 0 : _currentLeaf$next.tagName) === "A" || (nextLeaf === null || nextLeaf === void 0 || (_nextLeaf$parent = nextLeaf.parent) === null || _nextLeaf$parent === void 0 || (_nextLeaf$parent = _nextLeaf$parent.domNode) === null || _nextLeaf$parent === void 0 ? void 0 : _nextLeaf$parent.tagName) === "A") {
     quill.insertEmbed(range.index, "break", true, "user");
     quill.removeFormat(range.index, 1, Quill.sources.SILENT);
   } else {

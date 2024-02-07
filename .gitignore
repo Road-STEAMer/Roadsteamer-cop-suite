@@ -34,3 +34,4 @@
 
 # Ignore public uploads
 public/uploads
+/config/credentials/production.key

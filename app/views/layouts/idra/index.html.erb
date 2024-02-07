@@ -299,11 +299,11 @@
     <div class="dropdown-container">
       <div class="content-on-left">
         <div class="dropdown-pages">
-          <p>Results:</p>
+          <p style="color: black">Results:</p>
           <%= select_tag "rows", options_for_select({ "5" => 5, "15" => 15, "25" => 25, "50" => 50 }, @rows) %>
         </div>
         <div class="dropdown-sort-by">
-          <p>Sort by:</p>
+          <p style="color: black">Sort by:</p>
           <%= select_tag "field", options_for_select({ "Release date" => "releaseDate", "Updated" => "updateDate", "Catalogue" => "nodeID", "Title" => "title" }, @rows) %>
         </div>
       </div>
