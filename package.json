@@ -51,7 +51,8 @@
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-standard": "^3.1.0",
-    "sass-embedded": "~1.57.1"
+    "sass-embedded": "~1.57.1",
+    "webpack-dev-server": "^4.15.1"
   },
   "browserslist": [
     "extends @decidim/browserslist-config"

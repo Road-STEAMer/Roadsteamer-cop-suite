@@ -6,3 +6,46 @@
 //
 // By default this is empty.
 
+/*custom colors RoadSTEAMer*/
+
+
+@font-face {  
+    font-family: 'Liber'; 
+    src: url(/app/assets/fonts/LiberGrotesqueFamily-SemiBold.ttf) format('truetype');
+    font-weight: bold;  
+    font-style: normal;  
+ }
+
+ *{
+    font-family: 'Liber' !important;
+ }
+.title-bar{
+    background: white;
+  }
+  .main-nav__link a {
+    color: white;
+  }
+  .topbar__search input, .topbar__search input:focus{
+    border:2px solid #d04d9c;
+  }
+  .topbar__search svg{
+    color:#d04d9c;
+  }
+  
+  .topbar__dropmenu > ul > li > a {
+    color:black;
+  }
+  .topbar__edit__link a {
+    color:black;
+  }
+  
+  .topbar__notifications .icon, .topbar__conversations .icon{
+    fill:black;
+  }
+  .sign-up-link{
+    color:black;
+  }
+  .topbar__user__login a{
+    color:black;
+  }
+  
