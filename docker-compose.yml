@@ -8,10 +8,10 @@ services:
       - node_modules:/app/node_modules
     environment:
       - PORT=3000
-      - DATABASE_HOST=pg
+      - DATABASE_HOST=192.168.1.37
       - DATABASE_PORT=5432
       - DATABASE_USERNAME=postgres
-      - DATABASE_PASSWORD=ADMIN
+      - DATABASE_PASSWORD=D@niele991
     ports:
       - 3000:3000
     links:
