@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const manager = new ConsentManager({
     modal: modal,
     categories: categories,
-    cookieName: window.Decidim.config.get("consent_cookie_name"),
+    cookieName: window.Decidim.config.get("consent__name"),
     warningElement: document.querySelector(".dataconsent-warning")
   });
 

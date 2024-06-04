@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   
   get '/idra_update', to: 'idra#update'
 
-
   mount Decidim::Core::Engine => '/'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

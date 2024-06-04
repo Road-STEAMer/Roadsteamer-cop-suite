@@ -205,32 +205,7 @@
    }
 
 
-   /* Styles for the overlay */
-  .modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  z-index: 1000; /* Adjust the z-index as needed to ensure it's above other content */
-  }
-
-  /* Styles for the modal */
-  .modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  z-index: 1001; /* Make it appear on top of the overlay */
-  width: 60%;
-  height: 60%;
-  border-radius: 15px;
-  }
+   
 
   /* Styles for the close button */
   .close {
@@ -659,8 +634,8 @@
                                     <h4><a><%= result["title"] %></a></h4>
                                     <!-- Save dataset -->
                                     <% if current_user %>
-                                      <button id='buttonId-<%= index %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
-        onclick="SaveTitle('<%= result['title'] %>','buttonId-<%= index %>', '<%= result['landingPage'] %>'); toggleStar('buttonId-<%= index %>')" data-star="<% if @list.include?(result["title"]) %>1<% else %>0<% end %>">
+                                      <button id='<%= result["id"] %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
+        onclick="SaveDataset('<%= result['title'] %>','<%= result["id"] %>', '<%= result['landingPage'] %>'); toggleStar('<%= result["id"]%>')" data-star="<% if @list.include?(result["title"]) %>1<% else %>0<% end %>">
                                         <% if @list.include?(result["title"]) %><span style="color: var(--warning)">★</span><% else %>☆<% end %>
                                       </button>
                                     <%end%>
@@ -669,15 +644,10 @@
                                     var counter = '<%= @element_count %>';
                                     var counterText = document.getElementById("count");
                                     counterText.innerHTML = counter;
-                                    var starCounterButton = document.getElementById("openModalButton")
-
-                                    var counterModalText = document.getElementById("countModal")
-                                    counterModalText.innerHTML = counter;
-
 
                                     if(counter === '0') {
-                                      starCounterButton.disabled = true
-                                    }else{starCounterButton.disabled= false;}
+                                          openModalButton.disabled = true
+                                        }else{openModalButton.disabled = false}
 
 
                                     function toggleStar(buttonId) {
@@ -690,17 +660,21 @@
                                         button.innerHTML = "☆"; // Set the button content to "☆"
                                         button.style.color = ""; // Reset button text color
                                         counter--;
-                                        if (counter === 0){
-                                          starCounterButton.disabled = true;
-                                        }
                                         counterText.innerHTML = counter;
+                                        if (counter === 0){
+                                          openModalButton.disabled = true;
+                                        }
+                                        
                                       } else {
                                         button.setAttribute('data-star', '1');
                                         button.innerHTML = "<span style='color: var(--warning)'>★</span>"; // Set the button content to "★"
                                         counter++;
                                         counterText.innerHTML = counter;
-                                        starCounterButton.disabled = false;
+                                        openModalButton.disabled = false
+                                        
                                     }
+                                    
+                                    
                                     }
 
 
@@ -725,7 +699,7 @@
                                               });
                                           }
 
-                                          function SaveTitle(title, buttonId, url) {
+                                          function SaveDataset(title, buttonId, url) {
 
                                             fetch('/idra_create', {
                                               method: 'POST',
@@ -733,7 +707,7 @@
                                                 'Content-Type': 'application/json',
                                                 'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
                                               },
-                                              body: JSON.stringify({ selected_titles: title, selected_url: url })
+                                              body: JSON.stringify({ selected_titles: title, selected_url: url, selected_dataset_id: buttonId })
                                             })
                                               .then(response => {
                                                 if (response.ok) {
@@ -747,20 +721,20 @@
                                                 // Handle errors if needed
                                               });
 
-                                                function updateFromModal(title) {
+                                                function updateFromModal(id) {
                                         fetch('/idra_create', {
                                           method: 'POST',
                                           headers: {
                                             'Content-Type': 'application/json',
                                             'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
                                           },
-                                          body: JSON.stringify({ selected_titles: title })
+                                          body: JSON.stringify({ selected_dataset_id: id })
                                         })
                                         .then(response => {
                                           if (response.ok) {
                                             updatePartialView();
                                             counter--;
-                                            closeModalIfEmpty()
+                                            closeModalIfEmpty();
                                           } else {
                                             // Handle errors if needed
                                           }

@@ -197,14 +197,15 @@ class IdraController < Decidim::ApplicationController
 
   def create
     selected_title = params[:selected_titles]
-    existing_dataset = SavedDataset.find_by(title: selected_title, decidim_user: current_user)
+    selected_dataset_id = params[:selected_dataset_id]
+    existing_dataset = SavedDataset.find_by(dataset_id: selected_dataset_id, decidim_user: current_user)
     selected_url = params[:selected_url]
     if existing_dataset
       existing_dataset.destroy
     else
-      saved_dataset = SavedDataset.create(title: selected_title, decidim_user: current_user, url: selected_url)
+      saved_dataset = SavedDataset.create(title: selected_title, decidim_user: current_user, url: selected_url, dataset_id:selected_dataset_id)
 
-      @datasets = SavedDataset.where(title: selected_title, decidim_user: current_user)
+      @datasets = SavedDataset.where(title: selected_title, decidim_user: current_user,dataset_id: selected_dataset_id)
     end
   end
 

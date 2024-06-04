@@ -102,10 +102,12 @@ export default function createQuillEditor(container) {
     linksDiv.appendChild(titleElement);
     titleElement.className = "text-center"
 
+
     var descriptionElement = document.createElement("h5")
     descriptionElement.textContent = "Select a dataset to insert in text editor:"
     descriptionElement.style.color = "gray"
     linksDiv.appendChild(descriptionElement)
+
 
     // Loop through modalData array and create links with click event listeners
     modalData.forEach(function (element) {
@@ -113,6 +115,7 @@ export default function createQuillEditor(container) {
       link.href = element.url; // URL as the href attribute of the link
       link.textContent = element.title; // Title as the visible text of the link
       linksDiv.appendChild(link);
+      
   
       link.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent default navigation behavior
@@ -120,6 +123,7 @@ export default function createQuillEditor(container) {
         copyAndPasteText(element.title, element.url);
         modalContainer.style.display = 'none'; // Close the modal
       });
+    
   
       if (element !== modalData[modalData.length - 1]) {
         linksDiv.appendChild(document.createElement('br'));

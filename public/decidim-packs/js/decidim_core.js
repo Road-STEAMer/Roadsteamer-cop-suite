@@ -1447,7 +1447,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var manager = new src_decidim_data_consent_consent_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
     modal: modal,
     categories: categories,
-    cookieName: window.Decidim.config.get("consent_cookie_name"),
+    cookieName: window.Decidim.config.get("consent__name"),
     warningElement: document.querySelector(".dataconsent-warning")
   });
   initDisabledIframes(manager);
