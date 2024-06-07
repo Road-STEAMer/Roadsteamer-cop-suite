@@ -189,31 +189,51 @@ class IdraController < Decidim::ApplicationController
     @list = []
 
     @datasets.each do |data|
-      @list << data.title
+      @list << data.dataset_id
     end
 
     render "layouts/idra/index.html.erb"
   end
 
-  def create
-    selected_title = params[:selected_titles]
-    selected_dataset_id = params[:selected_dataset_id]
-    existing_dataset = SavedDataset.find_by(dataset_id: selected_dataset_id, decidim_user: current_user)
-    selected_url = params[:selected_url]
-    if existing_dataset
-      existing_dataset.destroy
-    else
-      saved_dataset = SavedDataset.create(title: selected_title, decidim_user: current_user, url: selected_url, dataset_id:selected_dataset_id)
-
-      @datasets = SavedDataset.where(title: selected_title, decidim_user: current_user,dataset_id: selected_dataset_id)
+    def create
+      selected_title = params[:selected_titles]
+      selected_dataset_id = params[:selected_dataset_id]
+      @selected_dataset_id = selected_dataset_id
+      selected_url = params[:selected_url]
+  
+      unless SavedDataset.exists?(dataset_id: selected_dataset_id, decidim_user: current_user)
+        saved_dataset = SavedDataset.create(title: selected_title, decidim_user: current_user, url: selected_url, dataset_id: selected_dataset_id)
+        @datasets = SavedDataset.where(decidim_user: current_user)
+      end
+  
+      render partial: "shared/datasets_list"
     end
-  end
+    
+  
+def delete
+  dataset_id = params[:selected_dataset_id]
+  dataset = SavedDataset.find_by(dataset_id: dataset_id, decidim_user: current_user)
 
+  if dataset.present? && dataset.destroy
+    # Dataset successfully deleted
+    render partial: "shared/datasets_list"
+  else
+    # Handle error if dataset not found or couldn't be deleted
+    render json: { error: 'Could not delete dataset' }, status: :unprocessable_entity
+  end
+end
+
+  
   def update
     @datasets = SavedDataset.where(decidim_user: current_user)
+    
+      render partial: "shared/datasets_list"
+  end
 
-    respond_to do |format|
-      format.html { render partial: "layouts/idra/datasets_list", layout: false }
-    end
+
+  def modal_editor
+    @datasets = SavedDataset.where(decidim_user: current_user)
+
+    render partial: 'modal_editor'
   end
 end

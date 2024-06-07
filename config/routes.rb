@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   
   get '/idra_update', to: 'idra#update'
 
+  post '/idra_delete', to: 'idra#delete'
+
+  get '/idra_modal_editor', to: 'idra#modal_editor'
+
   mount Decidim::Core::Engine => '/'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

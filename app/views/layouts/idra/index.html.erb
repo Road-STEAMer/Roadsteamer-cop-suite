@@ -237,7 +237,7 @@
   <div class="modal-overlay">
     <div class="modal">
       <div id="partial-view-container">
-        <%= render partial: "layouts/idra/datasets_list" %>
+        <%= render partial: "shared/datasets_list" %>
       </div>
       <span class="close" id="closeModal">&times;</span>
     </div>
@@ -253,9 +253,8 @@
     function closeModal() {
     var modalOverlay = document.querySelector(".modal-overlay");
     modalOverlay.style.display = "none";
-    if (deleted > 0){
     refreshPage()
-    }
+   
     }
 
     var openModalButton = document.getElementById("openModalButton");
@@ -627,6 +626,7 @@
                               </div>
                             </div>
                             <!-- Column on Right (Results) -->
+                             
                             <% @api_results["results"].each_with_index do |result, index| %>
                               <div class="results-card">
                                 <div class="results-card-title">
@@ -634,116 +634,115 @@
                                     <h4><a><%= result["title"] %></a></h4>
                                     <!-- Save dataset -->
                                     <% if current_user %>
-                                      <button id='<%= result["id"] %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
-        onclick="SaveDataset('<%= result['title'] %>','<%= result["id"] %>', '<%= result['landingPage'] %>'); toggleStar('<%= result["id"]%>')" data-star="<% if @list.include?(result["title"]) %>1<% else %>0<% end %>">
-                                        <% if @list.include?(result["title"]) %><span style="color: var(--warning)">★</span><% else %>☆<% end %>
-                                      </button>
-                                    <%end%>
-                                  </div>
-                                  <script type="text/javascript">
-                                    var counter = '<%= @element_count %>';
-                                    var counterText = document.getElementById("count");
-                                    counterText.innerHTML = counter;
+<button id='buttonId-<%= result["id"] %>' class="bg-transparent" style="cursor: pointer; transform: scale(1.5,1.5)" 
+  onclick="toggleStarAndSaveTitle('<%= result['title'] %>', '<%= result["id"] %>', '<%= result['landingPage'] %>');
+  " data-star="<% if @list.include?(result["id"]) %>1<% else %>0<% end %>">
+  <% if @list.include?(result["id"]) %>
+  <span style="color: var(--warning)">★</span>
+  <% else %>☆<% end %>
+</button>
+<% end %>
+</div>
+<script type="text/javascript">
+  var counter = '<%= @element_count %>';
+  var counterText = document.getElementById("count");
+  counterText.innerHTML = counter;
+  var starCounterButton = document.getElementById("openModalButton");
 
-                                    if(counter === '0') {
-                                          openModalButton.disabled = true
-                                        }else{openModalButton.disabled = false}
+  var counterModalText = document.getElementById("countModal");
+  counterModalText.innerHTML = counter;
+
+  function toggleStarAndSaveTitle(title, buttonId, url) {
+    var button = document.getElementById('buttonId-' + buttonId);
+    var isStar = button.getAttribute('data-star');
+    var counterText = document.getElementById("count");
+
+    if (isStar === '1') {
+      button.setAttribute('data-star', '0');
+      button.innerHTML = "☆"; // Set the button content to "☆"
+      button.style.color = ""; // Reset button text color
+      counter--;
+      counterText.innerHTML = counter;
+      deleteTitle(buttonId); // Call delete function
+    } else {
+      button.setAttribute('data-star', '1');
+      button.innerHTML = "<span style='color: var(--warning)'>★</span>"; // Set the button content to "★"
+      counter++;
+      counterText.innerHTML = counter;
+      saveTitle(title, buttonId, url); // Call save function
+    }
+  }
+
+  function updatePartialView() {
+  // Assuming your modal content is loaded from a URL like '/partial_view'
+  fetch('/idra_update')
+    .then(response => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error('Failed to fetch partial view');
+      }
+    })
+    .then(html => {
+      // Assuming your modal content is inside a div with id 'partial-view-container'
+      document.getElementById('partial-view-container').innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error fetching partial view:', error);
+    });
+}
 
 
-                                    function toggleStar(buttonId) {
-                                      var button = document.getElementById(buttonId);
-                                      var isStar = button.getAttribute('data-star');
-                                      var counterText = document.getElementById("count");
+   
 
-                                      if (isStar === '1') {
-                                        button.setAttribute('data-star', '0');
-                                        button.innerHTML = "☆"; // Set the button content to "☆"
-                                        button.style.color = ""; // Reset button text color
-                                        counter--;
-                                        counterText.innerHTML = counter;
-                                        if (counter === 0){
-                                          openModalButton.disabled = true;
-                                        }
-                                        
-                                      } else {
-                                        button.setAttribute('data-star', '1');
-                                        button.innerHTML = "<span style='color: var(--warning)'>★</span>"; // Set the button content to "★"
-                                        counter++;
-                                        counterText.innerHTML = counter;
-                                        openModalButton.disabled = false
-                                        
-                                    }
-                                    
-                                    
-                                    }
+  function saveTitle(title, buttonId, url) {
+    fetch('/idra_create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+      },
+      body: JSON.stringify({ selected_titles: title, selected_url: url, selected_dataset_id: buttonId })
+    })
+    .then(response => {
+      if (response.ok) {
+        updatePartialView()
+      } else {
+        // Handle errors if needed
+      }
+    })
+    .catch(error => {
+      // Handle errors if needed
+    });
+  }
+
+  function deleteTitle(buttonId) {
+    fetch('/idra_delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+      },
+      body: JSON.stringify({ selected_dataset_id: buttonId })
+    })
+    .then(response => {
+      if (response.ok) {
+        updatePartialView()
+      } else {
+        // Handle errors if needed
+      }
+    })
+    .catch(error => {
+      // Handle errors if needed
+    });
+  }
 
 
-                                    function updatePartialView() {
-                                            // Fetch the updated content from the server
-                                            fetch('/idra_update', {
-                                              method: 'GET'
-                                            })
-                                              .then(response => {
-                                                if (response.ok) {
-                                                  return response.text(); // Assuming the response is HTML
-                                                } else {
-                                                  throw new Error('Failed to fetch the updated content');
-                                                }
-                                              })
-                                              .then(data => {
-                                                // Update the partial view container with the fetched HTML
-                                                document.getElementById('partial-view-container').innerHTML = data;
-                                              })
-                                              .catch(error => {
-                                                console.error('Error updating partial view:', error);
-                                              });
-                                          }
+                                  
 
-                                          function SaveDataset(title, buttonId, url) {
 
-                                            fetch('/idra_create', {
-                                              method: 'POST',
-                                              headers: {
-                                                'Content-Type': 'application/json',
-                                                'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
-                                              },
-                                              body: JSON.stringify({ selected_titles: title, selected_url: url, selected_dataset_id: buttonId })
-                                            })
-                                              .then(response => {
-                                                if (response.ok) {
-                                                  updatePartialView();
-
-                                                } else {
-                                                  // Handle errors if needed
-                                                }
-                                              })
-                                              .catch(error => {
-                                                // Handle errors if needed
-                                              });
-
-                                                function updateFromModal(id) {
-                                        fetch('/idra_create', {
-                                          method: 'POST',
-                                          headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
-                                          },
-                                          body: JSON.stringify({ selected_dataset_id: id })
-                                        })
-                                        .then(response => {
-                                          if (response.ok) {
-                                            updatePartialView();
-                                            counter--;
-                                            closeModalIfEmpty();
-                                          } else {
-                                            // Handle errors if needed
-                                          }
-                                        })
-                                        .catch(error => {
-                                          // Handle errors if needed
-                                        });
-                                      }
-                                          }
+                              
+                                          
                                   </script>
                                 </div>
                                 <div class="results-card-body">

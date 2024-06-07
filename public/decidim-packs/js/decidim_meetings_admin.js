@@ -591,115 +591,137 @@ function createQuillEditor(container) {
   } else if (toolbar === "basic") {
     quillToolbar = [].concat(_toConsumableArray(quillToolbar), [["video"]]);
   }
-  var modalData = [];
-  var hasFetched = false; // Add this flag
 
-  // Function to fetch data
-  function fetchData() {
-    if (!hasFetched) {
-      // Check if fetch hasn't been performed yet
-      fetch('/idra_update', {
-        method: 'GET'
-      }).then(function (response) {
-        if (response.ok) {
-          return response.text(); // Assuming the response is HTML
-        } else {
-          throw new Error('Failed to fetch the updated content');
-        }
-      }).then(function (data) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(data, 'text/html');
-        var datasetElements = doc.querySelectorAll('#datasets-list a');
-        var urlElements = doc.querySelectorAll('#datasets-list #url');
-        datasetElements.forEach(function (dataset, index) {
-          var title = dataset.textContent;
-          var url = urlElements[index].textContent;
-          modalData.push({
-            title: title,
-            url: url
-          });
-        });
-      })["catch"](function (error) {
-        console.error('Error updating partial view:', error);
-      });
-      hasFetched = true; // Set the flag to indicate that fetch has been performed
-    }
-  }
+  // let modalData = [];
+  // let hasFetched = false; // Add this flag
 
-  // Call the fetchData function
-  fetchData();
+  // // Function to fetch data
+  // function fetchData() {
+  //   if (!hasFetched) { // Check if fetch hasn't been performed yet
+  //     fetch('/idra_modal_editor', {
+  //       method: 'GET'
+  //     })
+  //       .then(response => {
+  //         if (response.ok) {
+  //           return response.text(); // Assuming the response is HTML
+  //         } else {
+  //           throw new Error('Failed to fetch the updated content');
+  //         }
+  //       })
+  //       .then(data => {
+  //         const parser = new DOMParser();
+  //         const doc = parser.parseFromString(data, 'text/html');
+  //         const datasetElements = doc.querySelectorAll('#datasets-list a');
+  //         const urlElements = doc.querySelectorAll('#datasets-list #url');
+
+  //         datasetElements.forEach((dataset, index) => {
+  //           const title = dataset.textContent;
+  //           const url = urlElements[index].textContent;
+  //           modalData.push({ title, url });
+  //         });
+  //       })
+  //       .catch(error => {
+  //         console.error('Error updating partial view:', error);
+  //       });
+
+  //     hasFetched = true; // Set the flag to indicate that fetch has been performed
+  //   }
+  // }
 
   // Function to create and display the modal
   function openModal() {
-    // Create a modal container
-    var modalContainer = document.createElement('div');
-    modalContainer.classList.add('modal-container');
+    // Fetch the partial view content using AJAX
+    fetch('/idra_modal_editor').then(function (response) {
+      return response.text();
+    }).then(function (html) {
+      // Create the modal container
+      var modalContainer = document.createElement('div');
+      modalContainer.classList.add('modal-container');
+      modalContainer.innerHTML = html; // Insert the partial view's HTML
 
-    // Create a modal element
-    var modal = document.createElement('div');
-    modal.classList.add('modal');
-
-    // Modal content
-    var modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
-    modalContent.id = 'modalContent';
-
-    // Create an unordered list to display the elements as a list
-    // Create a div for the links
-    var linksDiv = document.createElement('div');
-    linksDiv.classList.add('links-column');
-    var titleElement = document.createElement('h1');
-    titleElement.textContent = "Saved Dataset";
-    linksDiv.appendChild(titleElement);
-    titleElement.className = "text-center";
-    var descriptionElement = document.createElement("h5");
-    descriptionElement.textContent = "Select a dataset to insert in text suca:";
-    descriptionElement.style.color = "gray";
-    linksDiv.appendChild(descriptionElement);
-
-    // Loop through modalData array and create links with click event listeners
-    modalData.forEach(function (element) {
-      var link = document.createElement('a');
-      link.href = element.url; // URL as the href attribute of the link
-      link.textContent = element.title; // Title as the visible text of the link
-      linksDiv.appendChild(link);
-      link.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default navigation behavior
-
-        copyAndPasteText(element.title, element.url);
-        modalContainer.style.display = 'none'; // Close the modal
-      });
-
-      if (element !== modalData[modalData.length - 1]) {
-        linksDiv.appendChild(document.createElement('br'));
-      }
+      // ... (rest of your modal logic, including appending to body, 
+      //     adding event listeners, etc. remains the same)
+    })["catch"](function (error) {
+      console.error('Error fetching partial view:', error);
+      // Handle the error appropriately
     });
 
-    // Function to copy and paste the text into the Quill editor
-    function copyAndPasteText(title, url) {
-      var range = quill.getSelection();
-      var linkFormat = {
-        link: url,
-        target: '_blank'
-      };
-      quill.insertText(range.index, title, linkFormat);
-      quill.setSelection(range.index, title.length, 'user');
-    }
-    modalContent.appendChild(linksDiv);
-    modal.appendChild(modalContent);
-    modalContainer.appendChild(modal);
-    document.body.appendChild(modalContainer);
+    // Call the fetchData function
+    //   // Create a modal container
+    //   var modalContainer = document.createElement('div');
+    //   modalContainer.classList.add('modal-container');
 
-    // Open the modal
-    modalContainer.style.display = 'block';
+    //   // Create a modal element
+    //   var modal = document.createElement('div');
+    //   modal.classList.add('modal');
 
-    // Close modal when clicking outside the modal
-    window.addEventListener('click', function (event) {
-      if (event.target == modalContainer) {
-        modalContainer.style.display = 'none';
-      }
-    });
+    //   // Modal content
+    //   var modalContent = document.createElement('div');
+    //   modalContent.classList.add('modal-content');
+    //   modalContent.id = 'modalContent';
+
+    //   // Create an unordered list to display the elements as a list
+    //   // Create a div for the links
+    //   var linksDiv = document.createElement('div');
+    //   linksDiv.classList.add('links-column');
+
+    //   var titleElement = document.createElement('h1');
+    //   titleElement.textContent = "Saved Dataset";
+    //   linksDiv.appendChild(titleElement);
+    //   titleElement.className = "text-center"
+
+    //   var descriptionElement = document.createElement("h5")
+    //   descriptionElement.textContent = "Select a dataset to insert in text editor:"
+    //   descriptionElement.style.color = "gray"
+    //   linksDiv.appendChild(descriptionElement)
+
+    //   // Loop through modalData array and create links with click event listeners
+    //   modalData.forEach(function (element) {
+    //     var link = document.createElement('a');
+    //     link.href = element.url; // URL as the href attribute of the link
+    //     link.textContent = element.title; // Title as the visible text of the link
+    //     linksDiv.appendChild(link);
+
+    //     link.addEventListener('click', function (event) {
+    //       event.preventDefault(); // Prevent default navigation behavior
+
+    //       copyAndPasteText(element.title, element.url);
+    //       modalContainer.style.display = 'none'; // Close the modal
+    //     });
+
+    //     if (element !== modalData[modalData.length - 1]) {
+    //       linksDiv.appendChild(document.createElement('br'));
+    //     }
+    //   });
+
+    //   // Function to copy and paste the text into the Quill editor
+    //    function copyAndPasteText(title, url) {
+    //   const range = quill.getSelection();
+
+    //   const linkFormat = {
+    //     link: url,
+    //     target: '_blank',
+    //   };
+
+    //   quill.insertText(range.index, title, linkFormat);
+    //   quill.setSelection(range.index, title.length, 'user');
+    // }
+    //   modalContent.appendChild(linksDiv);
+    //   modal.appendChild(modalContent);
+    //   modalContainer.appendChild(modal);
+    //   document.body.appendChild(modalContainer);
+
+    //   // Open the modal
+    //   modalContainer.style.display = 'block';
+
+    //   // Close modal when clicking outside the modal
+    //   window.addEventListener('click', function (event) {
+    //     if (event.target == modalContainer) {
+    //       modalContainer.style.display = 'none';
+    //     }
+    //   });
   }
+
   var modules = {
     linebreak: {},
     toolbar: {
