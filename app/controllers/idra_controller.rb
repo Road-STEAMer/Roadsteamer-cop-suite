@@ -226,14 +226,12 @@ end
   
   def update
     @datasets = SavedDataset.where(decidim_user: current_user)
-    
-      render partial: "shared/datasets_list"
+    render partial: "shared/datasets_list"
   end
 
 
   def modal_editor
     @datasets = SavedDataset.where(decidim_user: current_user)
-
-    render partial: 'modal_editor'
+    render partial: "shared/modal_editor"
   end
 end

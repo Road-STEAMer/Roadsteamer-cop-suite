@@ -74,7 +74,7 @@ export function createQuillEditor(container) {
     // Function to fetch data
     function fetchData() {
       if (!hasFetched) { // Check if fetch hasn't been performed yet
-        fetch('/idra_update', {
+        fetch('/idra_modal_editor', {
           method: 'GET'
         })
           .then(response => {
@@ -122,6 +122,7 @@ export function createQuillEditor(container) {
       var modalContent = document.createElement('div');
       modalContent.classList.add('modal-content');
       modalContent.id = 'modalContent';
+      
   
       // Create an unordered list to display the elements as a list
       // Create a div for the links
@@ -134,24 +135,34 @@ export function createQuillEditor(container) {
       titleElement.className = "text-center"
   
       var descriptionElement = document.createElement("h5")
-      descriptionElement.textContent = "Select a dataset to insert in text editor:"
       descriptionElement.style.color = "gray"
       linksDiv.appendChild(descriptionElement)
   
       // Loop through modalData array and create links with click event listeners
       modalData.forEach(function (element) {
+        var linkContainer = document.createElement('div'); // Container for link and button
+        linkContainer.classList.add('link-container');
+    
         var link = document.createElement('a');
-        link.href = element.url; // URL as the href attribute of the link
-        link.textContent = element.title; // Title as the visible text of the link
-        linksDiv.appendChild(link);
+        link.href = element.url;
+        link.textContent = element.title + ' ' + ' ';
+        link.target = "_blank"; // Open in a new tab/window
+        linkContainer.appendChild(link);
     
-        link.addEventListener('click', function (event) {
-          event.preventDefault(); // Prevent default navigation behavior
-    
-          copyAndPasteText(element.title, element.url);
-          modalContainer.style.display = 'none'; // Close the modal
+        var copyButton = document.createElement('button');
+        copyButton.textContent = 'Paste';
+        copyButton.style.border = '1px solid red'
+        copyButton.style.borderRadius = '5px'
+        copyButton.style.marginLeft='2em'
+        copyButton.style.padding = '2px'
+        copyButton.style.color = 'red'
+        
+        copyButton.addEventListener('click', function () {
+          copyAndPasteText(element.title, element.url); // Reuse the existing function
         });
+        linkContainer.appendChild(copyButton);
     
+        linksDiv.appendChild(linkContainer); // Append container to the linksDiv
         if (element !== modalData[modalData.length - 1]) {
           linksDiv.appendChild(document.createElement('br'));
         }
