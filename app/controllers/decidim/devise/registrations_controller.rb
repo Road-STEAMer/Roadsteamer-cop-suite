@@ -14,13 +14,13 @@ module Decidim
 
       invisible_captcha
 
-      def new
-        redirect_to root_path, alert: "Registration is currently disabled."
-      end
+      # def new
+      #   redirect_to root_path, alert: "Registration is currently disabled."
+      # end
 
-      def create
-        redirect_to root_path, alert: "Registration is currently disabled."
-      end
+      # def create
+      #   redirect_to root_path, alert: "Registration is currently disabled."
+      # end
 
       protected
 

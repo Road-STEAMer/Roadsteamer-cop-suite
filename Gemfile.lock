@@ -827,6 +827,7 @@ DEPENDENCIES
   decidim (= 0.27.2)
   decidim-decidim_awesome
   decidim-dev (= 0.27.2)
+  devise
   dotenv-rails
   erb-formatter
   faker (~> 2.14)
@@ -837,6 +838,7 @@ DEPENDENCIES
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
   truncate_html (~> 0.9.3)
+  warden
   web-console (~> 4.2)
   wicked_pdf (~> 2.1)
 

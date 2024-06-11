@@ -19,7 +19,7 @@ gem "decidim-decidim_awesome"
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-
+gem 'devise'
 
 gem "bootsnap", "~> 1.3"
 
