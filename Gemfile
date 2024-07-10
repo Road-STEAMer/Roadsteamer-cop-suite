@@ -19,7 +19,7 @@ gem "decidim-decidim_awesome"
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'devise'
+gem 'decidim-core'
 
 gem "bootsnap", "~> 1.3"
 
@@ -30,6 +30,15 @@ gem "faker", "~> 2.14"
 gem "wicked_pdf", "~> 2.1"
 
 gem 'erb-formatter'
+
+gem "decidim-keycloak", git: "https://github.com/Platoniq/decidim-module-keycloak", branch: "main"
+
+gem 'devise'
+
+gem "invisible_captcha", "~> 0.13.0"
+
+
+
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri

@@ -53,7 +53,7 @@
             <% @datasets.each do |dataset| %>
               <div class="dataset-item ">
                   <span style="color: var(--warning)">★</span>
-                  <a href='<%= dataset.url %>' target="_blank"><%= dataset.title %></a>
+                  <a href='<%= dataset.url %>' target="_blank" rel="nofollow"><%= dataset.title %></a>
                   <button class="delete-btn" 
                           onclick="deleteDataset('<%= dataset.dataset_id %>')" style="margin-left:1em; cursor:pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" height="0.75em" viewBox="0 0 448 512">
