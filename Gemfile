@@ -37,6 +37,7 @@ gem 'devise'
 
 gem "invisible_captcha", "~> 0.13.0"
 
+gem "decidim-system", "0.27.2"
 
 
 
