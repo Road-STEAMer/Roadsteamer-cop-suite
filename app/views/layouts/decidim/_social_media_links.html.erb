@@ -2,13 +2,12 @@
   <ul class="footer-social">
     <% if current_organization.twitter_handler.present? %>
       <li>
-        <a class="footer-social__icon" target="_blank" rel="noopener" href="https://twitter.com/STEAM_Europe<%= current_organization.twitter_handler %>">
+        <a class="footer-social__icon" target="_blank" rel="noopener" href="https://x.com/STEAM_Europe<%= current_organization.twitter_handler %>">
           <span class="show-for-sr"><%= t("layouts.decidim.social_media_links.twitter", organization: translated_attribute(current_organization.name)) %></span>
             <%= icon "twitter", role: "img", aria_label: "Twitter" %>
         </a>
       </li>
     <% end %>
-  
     <% if current_organization.youtube_handler.present? %>
       <li>
         <a class="footer-social__icon" target="_blank" rel="noopener" href="https://www.youtube.com/@STEAMeducationEurope">
@@ -25,5 +24,13 @@
         </a>
       </li>
     <% end %>
+    <li>
+    <%= link_to "https://www.linkedin.com/groups/9239698/", rel: "noopener noreferrer" do %>
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M22.23 0H1.77C.792 0 0 .774 0 1.73v20.54C0 23.226.792 24 1.77 24h20.46C23.208 24 24 23.226 24 22.27V1.73C24 .774 23.208 0 22.23 0zM7.12 20.452H3.55V9.036h3.57v11.416zM5.34 7.512a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm14.75 12.94h-3.57v-5.603c0-1.336-.024-3.054-1.86-3.054-1.862 0-2.147 1.453-2.147 2.957v5.7h-3.57V9.036h3.43v1.554h.05c.478-.906 1.645-1.86 3.385-1.86 3.618 0 4.288 2.38 4.288 5.47v6.252z"/>
+  </svg>
+  </li>
+<% end %>
+
   </ul>
 </div>
