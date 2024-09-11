@@ -1,36 +1,87 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activemodel:
+    models:
+      decidim/access_requests/access_request_confirmed_event: Access request confirmed
   decidim:
+    authorization_handlers:
+      your_requests:
+        name: Your access request
+        explanation: Send a request to the admin
+    verifications:
+      authorizations:
+        first_login:  
+          actions:
+            your_requests: Send request
     menu:
       idra: Idra
+    access_requests:
+      verification:
+        admin:
+          granted_authorizations:
+            destroy:
+              error: There was an error deleting the verification.
+              success: Verification was deleted successfully.
+            index:
+              deleted_user: Deleted user
+              name: Name
+              new: New
+              nickname: Nickname
+              pending_authorizations: Pending requests
+              remove_access: Remove access
+              title: Granted requests
+              username: Username
+              email: Email
+            new:
+              actions: Actions
+              created_at: Created at
+              grant_access: Grant access
+              name: Name
+              nickname: Nickname
+              email: Email
+              search: Search
+              users: Users
+          pending_authorizations:
+            destroy:
+              error: There was an error rejecting the access request.
+              success: Access request was rejected successfully.
+            index:
+              approve_request: Grant access
+              deleted_user: Deleted user
+              granted_authorizations: Granted requests
+              name: Name
+              nickname: Nickname
+              reject_request: Reject access
+              title: Pending requests
+              email: Email
+            update:
+              error: There was an error verifying access for the user.
+              success: Access successfully granted for the user.
+        authorizations:
+          create:
+            error: There was an error creating the access request.
+            success: Access request successfully created.
+          edit:
+            title: Your request is pending
+          new:
+            title: Request access
+            send: Send request
+          steps:
+            step1:
+              title: Step 1
+              description: Send access request.
+            step2:
+              title: Step 2
+              description: Wait for review of the request.
+            step3:
+              title: Step 3
+              description: >
+                You will get notified once the request review has been
+                completed.
+    events:
+      access_requests:
+        confirmed:
+          email_intro: Congratulations! You have been granted access to %{verification_name}.
+          email_outro: You have received this notification because your access request has been approved.
+          email_subject: You have been granted access to %{verification_name}!
+          notification_title: You have been granted access to %{verification_name}.
+

@@ -1,0 +1,85 @@
+de:
+  activemodel:
+    models:
+      decidim/access_requests/access_request_confirmed_event: Zugriffsanforderung bestätigt
+  decidim:
+    authorization_handlers:
+      your_requests:
+        name: Ihre Zugriffsanforderung
+        explanation: Senden Sie eine Zugriffsanforderung an den Administrator
+    verifications:
+      authorizations:
+        first_login:  
+          actions:
+            your_requests: Anfrage senden
+    menu:
+      idra: Idra
+    access_requests:
+      verification:
+        admin:
+          granted_authorizations:
+            destroy:
+              error: Beim Löschen der Überprüfung ist ein Fehler aufgetreten.
+              success: Überprüfung erfolgreich gelöscht.
+            index:
+              deleted_user: Gelöschter Benutzer
+              name: Name
+              new: Neu
+              nickname: Spitzname
+              pending_authorizations: Ausstehende Anfragen
+              remove_access: Zugriff entfernen
+              title: Genehmigte Anfragen
+              username: Benutzername
+              email: E-Mail
+            new:
+              actions: Aktionen
+              created_at: Erstellt am
+              grant_access: Zugriff gewähren
+              name: Name
+              nickname: Spitzname
+              email: E-Mail
+              search: Suchen
+              users: Benutzer
+          pending_authorizations:
+            destroy:
+              error: Beim Ablehnen der Zugriffsanforderung ist ein Fehler aufgetreten.
+              success: Zugriffsanforderung erfolgreich abgelehnt.
+            index:
+              approve_request: Zugriff gewähren
+              deleted_user: Gelöschter Benutzer
+              granted_authorizations: Genehmigte Anfragen
+              name: Name
+              nickname: Spitzname
+              reject_request: Zugriff ablehnen
+              title: Ausstehende Anfragen
+              email: E-Mail
+            update:
+              error: Beim Überprüfen des Zugriffs für den Benutzer ist ein Fehler aufgetreten.
+              success: Zugriff erfolgreich für den Benutzer gewährt.
+        authorizations:
+          create:
+            error: Beim Erstellen der Zugriffsanforderung ist ein Fehler aufgetreten.
+            success: Zugriffsanforderung erfolgreich erstellt.
+          edit:
+            title: Ihre Anfrage ist ausstehend
+          new:
+            title: Zugriff anfordern
+            send: Anfrage senden
+          steps:
+            step1:
+              title: Schritt 1
+              description: Zugriffsanforderung senden.
+            step2:
+              title: Schritt 2
+              description: Warten Sie auf die Überprüfung der Anfrage.
+            step3:
+              title: Schritt 3
+              description: >
+                Sie werden benachrichtigt, sobald die Überprüfung der Anfrage abgeschlossen ist.
+    events:
+      access_requests:
+        confirmed:
+          email_intro: Herzlichen Glückwunsch! Sie haben Zugriff auf %{verification_name} erhalten.
+          email_outro: Sie haben diese Benachrichtigung erhalten, weil Ihre Zugriffsanforderung genehmigt wurde.
+          email_subject: Ihnen wurde der Zugriff auf %{verification_name} gewährt!
+          notification_title: Ihnen wurde der Zugriff auf %{verification_name} gewährt.

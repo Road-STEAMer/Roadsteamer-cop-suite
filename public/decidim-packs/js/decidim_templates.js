@@ -73,7 +73,6 @@ $(function () {
       console.error(error); // eslint-disable-line no-console
     });
   };
-
   (0,src_decidim_datalist_select__WEBPACK_IMPORTED_MODULE_0__.datalistSelect)(wrapper, preview);
 });
 
@@ -88,7 +87,7 @@ $(function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "datalistSelect": function() { return /* binding */ datalistSelect; }
+/* harmony export */   datalistSelect: function() { return /* binding */ datalistSelect; }
 /* harmony export */ });
 /**
 // Function adds feature to datalist that you can have different id and label.

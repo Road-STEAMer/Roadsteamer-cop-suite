@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'test/show'
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
@@ -12,6 +13,10 @@ Rails.application.routes.draw do
   post '/idra_delete', to: 'idra#delete'
 
   get '/idra_modal_editor', to: 'idra#modal_editor'
+
+  get 'idra/datasets', to: 'idra#datasets'
+
+  mount Decidim::FileAuthorizationHandler::AdminEngine => '/admin'
 
   
 

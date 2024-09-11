@@ -51,8 +51,8 @@ leaflet__WEBPACK_IMPORTED_MODULE_0__.DivIcon.SVGIcon.DecidimIcon = leaflet__WEBP
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SVGIcon": function() { return /* binding */ SVGIcon; },
-/* harmony export */   "SVGMarker": function() { return /* binding */ SVGMarker; }
+/* harmony export */   SVGIcon: function() { return /* binding */ SVGIcon; },
+/* harmony export */   SVGMarker: function() { return /* binding */ SVGMarker; }
 /* harmony export */ });
 /* eslint prefer-reflect: 0 */
 

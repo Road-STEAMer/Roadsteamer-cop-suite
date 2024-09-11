@@ -1,4 +1,85 @@
 it:
+  activemodel:
+    models:
+      decidim/access_requests/access_request_confirmed_event: Access request confirmed
   decidim:
+    authorization_handlers:
+      your_requests:
+        name: La tua richiesta di accesso
+        explanation: Invia una richiesta di accesso all'admin
+    verifications:
+      authorizations:
+        first_login:  
+          actions:
+            your_requests: Send request
     menu:
       idra: Idra
+    access_requests:
+      verification:
+        admin:
+          granted_authorizations:
+            destroy:
+              error: Si è verificato un errore durante l'eliminazione della verifica.
+              success: Verifica eliminata con successo.
+            index:
+              deleted_user: Utente eliminato
+              name: Nome
+              new: Nuovo
+              nickname: Soprannome
+              pending_authorizations: Richieste in sospeso
+              remove_access: Rimuovi accesso
+              title: Richieste approvate
+              username: Nome utente
+              email: Email
+            new:
+              actions: Azioni
+              created_at: Creato il
+              grant_access: Concedi accesso
+              name: Nome
+              nickname: Soprannome
+              email: Email
+              search: Cerca
+              users: Utenti
+          pending_authorizations:
+            destroy:
+              error: Si è verificato un errore durante il rifiuto della richiesta di accesso.
+              success: Richiesta di accesso rifiutata con successo.
+            index:
+              approve_request: Concedi accesso
+              deleted_user: Utente eliminato
+              granted_authorizations: Richieste approvate
+              name: Nome
+              nickname: Soprannome
+              reject_request: Rifiuta accesso
+              title: Richieste in sospeso
+              email: Email
+            update:
+              error: Si è verificato un errore durante la verifica dell'accesso per l'utente.
+              success: Accesso concesso con successo all'utente.
+        authorizations:
+          create:
+            error: Si è verificato un errore durante la creazione della richiesta di accesso.
+            success: Richiesta di accesso creata con successo.
+          edit:
+            title: La tua richiesta è in sospeso
+          new:
+            title: Richiedi accesso
+            send: Invia richiesta
+          steps:
+            step1:
+              title: Passo 1
+              description: Invia richiesta di accesso.
+            step2:
+              title: Passo 2
+              description: Attendi la revisione della richiesta.
+            step3:
+              title: Passo 3
+              description: >
+                Verrai notificato una volta completata la revisione della richiesta.
+    events:
+      access_requests:
+        confirmed:
+          email_intro: Congratulazioni! Ti è stato concesso l'accesso a %{verification_name}.
+          email_outro: Hai ricevuto questa notifica perché la tua richiesta di accesso è stata approvata.
+          email_subject: Ti è stato concesso l'accesso a %{verification_name}!
+          notification_title: Ti è stato concesso l'accesso a %{verification_name}.

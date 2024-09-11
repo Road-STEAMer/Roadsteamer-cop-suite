@@ -232,6 +232,13 @@ end
 
   def modal_editor
     @datasets = SavedDataset.where(decidim_user: current_user)
-    render partial: "shared/modal_editor"
+    render partial: "shared/datasets_list"
+  end
+
+  def datasets
+    @datasets = SavedDataset.where(decidim_user: current_user)
+    respond_to do |format|
+      format.json { render json: @datasets }
+    end
   end
 end

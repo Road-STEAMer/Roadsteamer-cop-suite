@@ -54,8 +54,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-!function() {
 /*!*********************************************************************************************************************************!*\
   !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/entrypoints/decidim_conference_diploma.js ***!
   \*********************************************************************************************************************************/
@@ -63,7 +61,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var entrypoints_decidim_conference_diploma_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_conference_diploma.scss */ "./app/packs/entrypoints/decidim_conference_diploma.scss");
 // CSS
 
-}();
 /******/ })()
 ;
 //# sourceMappingURL=decidim_conference_diploma.js.map

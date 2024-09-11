@@ -31,19 +31,25 @@ gem "wicked_pdf", "~> 2.1"
 
 gem 'erb-formatter'
 
-gem "decidim-keycloak", git: "https://github.com/Platoniq/decidim-module-keycloak", branch: "main"
+#gem "decidim-keycloak", git: "https://github.com/Platoniq/decidim-module-keycloak", branch: "main"
 
 gem 'devise'
 
 gem "invisible_captcha", "~> 0.13.0"
 
-gem "decidim-system", "0.27.2"
+
+gem 'decidim-file_authorization_handler'
+
+gem 'decidim-access_requests', git: 'https://github.com/DanieleNoto/decidim-module-access_requests.git', branch: 'main'
+
+gem 'decidim-system'
+
+gem 'decidim-verifications'
 
 
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-
   gem "brakeman"
   gem "decidim-dev", "0.27.2"
 end

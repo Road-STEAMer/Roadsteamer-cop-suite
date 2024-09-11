@@ -54,15 +54,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-!function() {
 /*!**********************************************************************************************************************!*\
   !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.js ***!
   \**********************************************************************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var entrypoints_decidim_api_docs_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_api_docs.scss */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.scss");
 
-}();
 /******/ })()
 ;
 //# sourceMappingURL=decidim_api_docs.js.map

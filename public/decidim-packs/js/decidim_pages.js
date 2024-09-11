@@ -83,14 +83,11 @@ module.exports = __webpack_require__.p + "media/images/decidim_pages-ad2a544f331
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-!function() {
 /*!*********************************************************************************************************************!*\
   !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-pages-0.27.2/app/packs/entrypoints/decidim_pages.js ***!
   \*********************************************************************************************************************/
 // Images
 __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-pages-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
-}();
 /******/ })()
 ;
 //# sourceMappingURL=decidim_pages.js.map

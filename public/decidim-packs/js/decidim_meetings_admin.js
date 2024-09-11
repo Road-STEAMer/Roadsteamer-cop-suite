@@ -12,50 +12,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ createFieldDependentInputs; }
 /* harmony export */ });
-function _typeof(obj) {
+function _typeof(o) {
   "@babel/helpers - typeof";
 
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, _typeof(obj);
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
 }
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+function _classCallCheck(a, n) {
+  if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
+}
+function _defineProperties(e, r) {
+  for (var t = 0; t < r.length; t++) {
+    var o = r[t];
+    o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o);
   }
 }
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
-  }
+function _createClass(e, r, t) {
+  return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
+    writable: !1
+  }), e;
 }
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, "prototype", {
-    writable: false
-  });
-  return Constructor;
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : i + "";
 }
-function _toPropertyKey(arg) {
-  var key = _toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
-}
-function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
+function _toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (hint === "string" ? String : Number)(input);
+  return ("string" === r ? String : Number)(t);
 }
 /* eslint-disable require-jsdoc */
 var FieldDependentInputsComponent = /*#__PURE__*/function () {
@@ -519,287 +511,6 @@ $(function () {
 
 /***/ }),
 
-/***/ "./app/packs/src/decidim/editor.js":
-/*!*****************************************!*\
-  !*** ./app/packs/src/decidim/editor.js ***!
-  \*****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ createQuillEditor; }
-/* harmony export */ });
-/* harmony import */ var src_decidim_editor_linebreak_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/editor/linebreak_module */ "./app/packs/src/decidim/editor/linebreak_module.js");
-/* harmony import */ var src_decidim_editor_clipboard_override__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/editor/clipboard_override */ "./app/packs/src/decidim/editor/clipboard_override.js");
-/* harmony import */ var src_decidim_vendor_image_resize_min__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/vendor/image-resize.min */ "./app/packs/src/decidim/vendor/image-resize.min.js");
-/* harmony import */ var src_decidim_vendor_image_resize_min__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(src_decidim_vendor_image_resize_min__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var src_decidim_vendor_image_upload_min__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/vendor/image-upload.min */ "./app/packs/src/decidim/vendor/image-upload.min.js");
-/* harmony import */ var src_decidim_vendor_image_upload_min__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(src_decidim_vendor_image_upload_min__WEBPACK_IMPORTED_MODULE_3__);
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-}
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-}
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-  return arr2;
-}
-/* eslint-disable require-jsdoc */
-
-
-
-
-
-var quillFormats = ["bold", "italic", "link", "underline", "header", "list", "video", "image", "alt", "break", "width", "style", "code", "blockquote", "indent"];
-function createQuillEditor(container) {
-  var toolbar = $(container).data("toolbar");
-  var disabled = $(container).data("disabled");
-  var allowedEmptyContentSelector = "iframe";
-  var quillToolbar = [["bold", "italic", "underline", "linebreak"], [{
-    list: "ordered"
-  }, {
-    list: "bullet"
-  }], ["link", "clean"], ["code", "blockquote"], [{
-    "indent": "-1"
-  }, {
-    "indent": "+1"
-  }], [{
-    'savedDataset': "openModal"
-  }]];
-  var addImage = $(container).data("editorImages");
-  if (toolbar === "full") {
-    quillToolbar = [[{
-      header: [2, 3, 4, 5, 6, false]
-    }]].concat(_toConsumableArray(quillToolbar), [["video"]]);
-  } else if (toolbar === "basic") {
-    quillToolbar = [].concat(_toConsumableArray(quillToolbar), [["video"]]);
-  }
-
-  // let modalData = [];
-  // let hasFetched = false; // Add this flag
-
-  // // Function to fetch data
-  // function fetchData() {
-  //   if (!hasFetched) { // Check if fetch hasn't been performed yet
-  //     fetch('/idra_modal_editor', {
-  //       method: 'GET'
-  //     })
-  //       .then(response => {
-  //         if (response.ok) {
-  //           return response.text(); // Assuming the response is HTML
-  //         } else {
-  //           throw new Error('Failed to fetch the updated content');
-  //         }
-  //       })
-  //       .then(data => {
-  //         const parser = new DOMParser();
-  //         const doc = parser.parseFromString(data, 'text/html');
-  //         const datasetElements = doc.querySelectorAll('#datasets-list a');
-  //         const urlElements = doc.querySelectorAll('#datasets-list #url');
-
-  //         datasetElements.forEach((dataset, index) => {
-  //           const title = dataset.textContent;
-  //           const url = urlElements[index].textContent;
-  //           modalData.push({ title, url });
-  //         });
-  //       })
-  //       .catch(error => {
-  //         console.error('Error updating partial view:', error);
-  //       });
-
-  //     hasFetched = true; // Set the flag to indicate that fetch has been performed
-  //   }
-  // }
-
-  // Function to create and display the modal
-  function openModal() {
-    // Fetch the partial view content using AJAX
-    fetch('/idra_modal_editor').then(function (response) {
-      return response.text();
-    }).then(function (html) {
-      // Create the modal container
-      var modalContainer = document.createElement('div');
-      modalContainer.classList.add('modal-container');
-      modalContainer.innerHTML = html; // Insert the partial view's HTML
-
-      // ... (rest of your modal logic, including appending to body, 
-      //     adding event listeners, etc. remains the same)
-    })["catch"](function (error) {
-      console.error('Error fetching partial view:', error);
-      // Handle the error appropriately
-    });
-
-    // Call the fetchData function
-    //   // Create a modal container
-    //   var modalContainer = document.createElement('div');
-    //   modalContainer.classList.add('modal-container');
-
-    //   // Create a modal element
-    //   var modal = document.createElement('div');
-    //   modal.classList.add('modal');
-
-    //   // Modal content
-    //   var modalContent = document.createElement('div');
-    //   modalContent.classList.add('modal-content');
-    //   modalContent.id = 'modalContent';
-
-    //   // Create an unordered list to display the elements as a list
-    //   // Create a div for the links
-    //   var linksDiv = document.createElement('div');
-    //   linksDiv.classList.add('links-column');
-
-    //   var titleElement = document.createElement('h1');
-    //   titleElement.textContent = "Saved Dataset";
-    //   linksDiv.appendChild(titleElement);
-    //   titleElement.className = "text-center"
-
-    //   var descriptionElement = document.createElement("h5")
-    //   descriptionElement.textContent = "Select a dataset to insert in text editor:"
-    //   descriptionElement.style.color = "gray"
-    //   linksDiv.appendChild(descriptionElement)
-
-    //   // Loop through modalData array and create links with click event listeners
-    //   modalData.forEach(function (element) {
-    //     var link = document.createElement('a');
-    //     link.href = element.url; // URL as the href attribute of the link
-    //     link.textContent = element.title; // Title as the visible text of the link
-    //     linksDiv.appendChild(link);
-
-    //     link.addEventListener('click', function (event) {
-    //       event.preventDefault(); // Prevent default navigation behavior
-
-    //       copyAndPasteText(element.title, element.url);
-    //       modalContainer.style.display = 'none'; // Close the modal
-    //     });
-
-    //     if (element !== modalData[modalData.length - 1]) {
-    //       linksDiv.appendChild(document.createElement('br'));
-    //     }
-    //   });
-
-    //   // Function to copy and paste the text into the Quill editor
-    //    function copyAndPasteText(title, url) {
-    //   const range = quill.getSelection();
-
-    //   const linkFormat = {
-    //     link: url,
-    //     target: '_blank',
-    //   };
-
-    //   quill.insertText(range.index, title, linkFormat);
-    //   quill.setSelection(range.index, title.length, 'user');
-    // }
-    //   modalContent.appendChild(linksDiv);
-    //   modal.appendChild(modalContent);
-    //   modalContainer.appendChild(modal);
-    //   document.body.appendChild(modalContainer);
-
-    //   // Open the modal
-    //   modalContainer.style.display = 'block';
-
-    //   // Close modal when clicking outside the modal
-    //   window.addEventListener('click', function (event) {
-    //     if (event.target == modalContainer) {
-    //       modalContainer.style.display = 'none';
-    //     }
-    //   });
-  }
-
-  var modules = {
-    linebreak: {},
-    toolbar: {
-      container: quillToolbar,
-      handlers: {
-        "linebreak": src_decidim_editor_linebreak_module__WEBPACK_IMPORTED_MODULE_0__["default"],
-        "savedDataset": openModal
-      }
-    }
-  };
-  var $input = $(container).siblings('input[type="hidden"]');
-  container.innerHTML = $input.val() || "";
-  var token = $('meta[name="csrf-token"]').attr("content");
-  if (addImage) {
-    modules.imageResize = {
-      modules: ["Resize", "DisplaySize"]
-    };
-    modules.imageUpload = {
-      url: $(container).data("uploadImagesPath"),
-      method: "POST",
-      name: "image",
-      withCredentials: false,
-      headers: {
-        "X-CSRF-Token": token
-      },
-      callbackOK: function callbackOK(serverResponse, next) {
-        $("div.ql-toolbar").last().removeClass("editor-loading");
-        next(serverResponse.url);
-      },
-      callbackKO: function callbackKO(serverError) {
-        $("div.ql-toolbar").last().removeClass("editor-loading");
-        console.log("Image upload error: ".concat(serverError.message));
-      },
-      checkBeforeSend: function checkBeforeSend(file, next) {
-        $("div.ql-toolbar").last().addClass("editor-loading");
-        next(file);
-      }
-    };
-  }
-  var quill = new Quill(container, {
-    modules: modules,
-    formats: quillFormats,
-    theme: "snow"
-  });
-  if (disabled) {
-    quill.disable();
-  }
-  quill.on("text-change", function () {
-    var text = quill.getText();
-
-    // Triggers CustomEvent with the cursor position
-    // It is required in input_mentions.js
-    var event = new CustomEvent("quill-position", {
-      detail: quill.getSelection()
-    });
-    container.dispatchEvent(event);
-    if ((text === "\n" || text === "\n\n") && quill.root.querySelectorAll(allowedEmptyContentSelector).length === 0) {
-      $input.val("");
-    } else {
-      var emptyParagraph = "<p><br></p>";
-      var cleanHTML = quill.root.innerHTML.replace(new RegExp("^".concat(emptyParagraph, "|").concat(emptyParagraph, "$"), "g"), "");
-      $input.val(cleanHTML);
-    }
-  });
-  // After editor is ready, linebreak_module deletes two extraneous new lines
-  quill.emitter.emit("editor-ready");
-  if (addImage) {
-    var text = $(container).data("dragAndDropHelpText");
-    $(container).after("<p class=\"help-text\" style=\"margin-top:-1.5rem;\">".concat(text, "</p>"));
-  }
-
-  // After editor is ready, linebreak_module deletes two extraneous new lines
-  quill.emitter.emit("editor-ready");
-  return quill;
-}
-
-/***/ }),
-
 /***/ "./app/packs/src/decidim/geocoding/attach_input.js":
 /*!*********************************************************!*\
   !*** ./app/packs/src/decidim/geocoding/attach_input.js ***!
@@ -1152,7 +863,7 @@ function getCoordinateInputName(coordinate, $input, options) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_quill_formats_code_js","vendors-node_modules_html5sortable_dist_html5sortable_es_js","app_packs_src_decidim_editor_clipboard_override_js-app_packs_src_decidim_editor_linebreak_mod-c679aa","_rbenv_versions_3_0_2_lib_ruby_gems_3_0_0_gems_decidim-admin-0_27_2_app_packs_src_decidim_adm-ee1f76"], function() { return __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_europa_dist_europa_js-node_modules_inline-attachment_src_codemirror-4_in-b79f33","vendors-node_modules_html5sortable_dist_html5sortable_es_js","app_packs_src_decidim_editor_clipboard_override_js-app_packs_src_decidim_editor_linebreak_mod-c679aa","app_packs_src_decidim_editor_js","_rbenv_versions_3_0_2_lib_ruby_gems_3_0_0_gems_decidim-admin-0_27_2_app_packs_src_decidim_adm-ee1f76"], function() { return __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
