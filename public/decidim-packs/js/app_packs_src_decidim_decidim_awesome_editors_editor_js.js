@@ -473,10 +473,10 @@ function createQuillEditor(container) {
           var doc = parser.parseFromString(data, 'text/html');
           var datasetElements = doc.querySelectorAll('#datasets-list a');
           var urlElements = doc.querySelectorAll('#datasets-list #url');
-          modalData = Array.from(datasetElements).map(function (dataset, index) {
+          modalData = Array.from(datasetElements).map(function (dataset) {
             return {
               title: dataset.textContent,
-              url: urlElements[index].textContent
+              url: dataset.getAttribute('href') // Use href if the URLs are in <a> tags
             };
           });
           hasFetched = true; // Set the flag to indicate that fetch has been performed

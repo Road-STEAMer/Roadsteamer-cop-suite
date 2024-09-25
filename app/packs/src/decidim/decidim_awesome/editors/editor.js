@@ -81,13 +81,15 @@ export function createQuillEditor(container) {
             const doc = parser.parseFromString(data, 'text/html');
             const datasetElements = doc.querySelectorAll('#datasets-list a');
             const urlElements = doc.querySelectorAll('#datasets-list #url');
+		
+	  modalData = Array.from(datasetElements).map((dataset) => {
+  return {
+    title: dataset.textContent,
+    url: dataset.getAttribute('href') // Use href if the URLs are in <a> tags
+  };
+});
 
-            modalData = Array.from(datasetElements).map((dataset, index) => {
-              return {
-                title: dataset.textContent,
-                url: urlElements[index].textContent
-              };
-            });
+
 
             hasFetched = true; // Set the flag to indicate that fetch has been performed
             resolve();
