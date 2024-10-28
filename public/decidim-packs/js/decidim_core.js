@@ -613,7 +613,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_decidim_gallery__WEBPACK_IMPORTED_MODULE_51___default = /*#__PURE__*/__webpack_require__.n(src_decidim_gallery__WEBPACK_IMPORTED_MODULE_51__);
 /* harmony import */ var src_decidim_direct_uploads_upload_field__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! src/decidim/direct_uploads/upload_field */ "./app/packs/src/decidim/direct_uploads/upload_field.js");
 /* harmony import */ var src_decidim_back_to_list__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! src/decidim/back_to_list */ "./app/packs/src/decidim/back_to_list.js");
-/* harmony import */ var src_decidim_data_consent__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! src/decidim/data_consent */ "./app/packs/src/decidim/data_consent/index.js");
+/* harmony import */ var src_decidim_data_consent__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! src/decidim/data_consent */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/src/decidim/data_consent/index.js");
 /* harmony import */ var entrypoints_decidim_core_scss__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! entrypoints/decidim_core.scss */ "./app/packs/entrypoints/decidim_core.scss");
 /* harmony import */ var src_decidim_decidim_application__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! src/decidim/decidim_application */ "./app/packs/src/decidim/decidim_application.js");
 /* harmony import */ var src_decidim_decidim_application__WEBPACK_IMPORTED_MODULE_56___default = /*#__PURE__*/__webpack_require__.n(src_decidim_decidim_application__WEBPACK_IMPORTED_MODULE_56__);
@@ -689,6 +689,332 @@ __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-c
 
 // This needs to be loaded after confirm dialog to bind properly
 _rails_ujs__WEBPACK_IMPORTED_MODULE_4___default().start();
+
+/***/ }),
+
+/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/src/decidim/data_consent/consent_manager.js":
+/*!***********************************************************************************************************************************!*\
+  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/src/decidim/data_consent/consent_manager.js ***!
+  \***********************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+function _classCallCheck(a, n) {
+  if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
+}
+function _defineProperties(e, r) {
+  for (var t = 0; t < r.length; t++) {
+    var o = r[t];
+    o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o);
+  }
+}
+function _createClass(e, r, t) {
+  return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
+    writable: !1
+  }), e;
+}
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : i + "";
+}
+function _toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+
+var ConsentManager = /*#__PURE__*/function () {
+  // Options should contain the following keys:
+  // - modal - HTML element of the data consent modal (e.g. "<div id="dc-modal">Foo bar</div>")
+  // - categories - Available data consent categories (e.g. ["essential", "preferences", "analytics", "marketing"])
+  // - cookieName - Name of the cookie saved in the browser (e.g. "decidim-consent")
+  // - warningElement - HTML element to be shown when user has not given the necessary data consent to display the content.
+  function ConsentManager(options) {
+    _classCallCheck(this, ConsentManager);
+    this.modal = options.modal;
+    this.categories = options.categories;
+    this.cookieName = options.cookieName;
+    this.cookie = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.cookieName);
+    this.warningElement = options.warningElement;
+    if (this.cookie) {
+      this.updateState(JSON.parse(this.cookie));
+    } else {
+      this.updateState({});
+    }
+  }
+  _createClass(ConsentManager, [{
+    key: "updateState",
+    value: function updateState(newState) {
+      this.state = newState;
+      js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(this.cookieName, JSON.stringify(this.state), {
+        domain: document.location.host.split(":")[0],
+        sameSite: "Lax",
+        expires: 365,
+        secure: window.location.protocol === "https:"
+      });
+      this.updateModalSelections();
+      this.triggerState();
+    }
+  }, {
+    key: "triggerJavaScripts",
+    value: function triggerJavaScripts() {
+      var _this = this;
+      document.querySelectorAll("script[type='text/plain'][data-consent]").forEach(function (script) {
+        if (_this.state[script.dataset.consent]) {
+          var activeScript = document.createElement("script");
+          if (script.src.length > 0) {
+            activeScript.src = script.src;
+          } else {
+            activeScript.innerHTML = script.innerHTML;
+          }
+          script.parentNode.replaceChild(activeScript, script);
+        }
+      });
+      var event = new CustomEvent("dataconsent", {
+        detail: this.state
+      });
+      document.dispatchEvent(event);
+    }
+  }, {
+    key: "triggerIframes",
+    value: function triggerIframes() {
+      if (this.allAccepted()) {
+        document.querySelectorAll(".disabled-iframe").forEach(function (original) {
+          if (original.childNodes && original.childNodes.length) {
+            var content = Array.from(original.childNodes).find(function (childNode) {
+              return childNode.nodeType === Node.COMMENT_NODE;
+            });
+            if (!content) {
+              return;
+            }
+            var newElement = document.createElement("div");
+            newElement.innerHTML = content.nodeValue;
+            original.parentNode.replaceChild(newElement.firstElementChild, original);
+          }
+        });
+      } else {
+        document.querySelectorAll("iframe").forEach(function (original) {
+          var newElement = document.createElement("div");
+          newElement.className = "disabled-iframe";
+          newElement.appendChild(document.createComment("".concat(original.outerHTML)));
+          original.parentNode.replaceChild(newElement, original);
+        });
+      }
+    }
+  }, {
+    key: "triggerWarnings",
+    value: function triggerWarnings() {
+      var _this2 = this;
+      document.querySelectorAll(".disabled-iframe").forEach(function (original) {
+        if (original.querySelector(".dataconsent-warning")) {
+          return;
+        }
+        var cloned = _this2.warningElement.cloneNode(true);
+        cloned.classList.remove("hide");
+        original.appendChild(cloned);
+      });
+    }
+  }, {
+    key: "triggerState",
+    value: function triggerState() {
+      this.triggerJavaScripts();
+      this.triggerIframes();
+      this.triggerWarnings();
+    }
+  }, {
+    key: "allAccepted",
+    value: function allAccepted() {
+      var _this3 = this;
+      return this.categories.every(function (category) {
+        return _this3.state[category] === true;
+      });
+    }
+  }, {
+    key: "updateModalSelections",
+    value: function updateModalSelections() {
+      var _this4 = this;
+      var categoryElements = this.modal.querySelectorAll(".category-wrapper");
+      categoryElements.forEach(function (categoryEl) {
+        var categoryInput = categoryEl.querySelector("input");
+        if (_this4.state && _this4.state[categoryInput.name]) {
+          categoryInput.checked = true;
+        } else if (!categoryInput.disabled) {
+          categoryInput.checked = false;
+        }
+      });
+    }
+  }, {
+    key: "saveSettings",
+    value: function saveSettings(newState) {
+      this.updateState(newState);
+    }
+  }, {
+    key: "acceptAll",
+    value: function acceptAll() {
+      var newState = {};
+      this.categories.forEach(function (category) {
+        newState[category] = true;
+      });
+      this.updateState(newState);
+    }
+  }, {
+    key: "rejectAll",
+    value: function rejectAll() {
+      this.updateState({
+        essential: true
+      });
+    }
+  }, {
+    key: "getState",
+    value: function getState() {
+      return this.state;
+    }
+  }]);
+  return ConsentManager;
+}();
+/* harmony default export */ __webpack_exports__["default"] = (ConsentManager);
+
+/***/ }),
+
+/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/src/decidim/data_consent/index.js":
+/*!*************************************************************************************************************************!*\
+  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/src/decidim/data_consent/index.js ***!
+  \*************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_decidim_data_consent_consent_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/data_consent/consent_manager */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/src/decidim/data_consent/consent_manager.js");
+function _toConsumableArray(r) {
+  return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
+}
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _iterableToArray(r) {
+  if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
+}
+function _arrayWithoutHoles(r) {
+  if (Array.isArray(r)) return _arrayLikeToArray(r);
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+
+var initDialog = function initDialog(manager) {
+  if (Object.keys(manager.state).length > 0) {
+    return;
+  }
+  var dialogWrapper = document.querySelector("#dc-dialog-wrapper");
+  dialogWrapper.classList.remove("hide");
+  var acceptAllButton = dialogWrapper.querySelector("#dc-dialog-accept");
+  var rejectAllButton = dialogWrapper.querySelector("#dc-dialog-reject");
+  var settingsButton = dialogWrapper.querySelector("#dc-dialog-settings");
+  acceptAllButton.addEventListener("click", function () {
+    manager.acceptAll();
+    dialogWrapper.style.display = "none";
+  });
+  rejectAllButton.addEventListener("click", function () {
+    manager.rejectAll();
+    dialogWrapper.style.display = "none";
+  });
+  settingsButton.addEventListener("click", function () {
+    dialogWrapper.style.display = "none";
+  });
+};
+var initModal = function initModal(manager) {
+  var categoryElements = manager.modal.querySelectorAll(".category-wrapper");
+  categoryElements.forEach(function (categoryEl) {
+    var categoryButton = categoryEl.querySelector(".dc-title");
+    var categoryDescription = categoryEl.querySelector(".dc-description");
+    categoryButton.addEventListener("click", function () {
+      var hidden = categoryDescription.classList.contains("hide");
+      if (hidden) {
+        categoryButton.classList.add("open");
+        categoryDescription.classList.remove("hide");
+      } else {
+        categoryButton.classList.remove("open");
+        categoryDescription.classList.add("hide");
+      }
+    });
+  });
+  var acceptAllButton = manager.modal.querySelector("#dc-modal-accept");
+  var rejectAllButton = manager.modal.querySelector("#dc-modal-reject");
+  var saveSettingsButton = manager.modal.querySelector("#dc-modal-save");
+  acceptAllButton.addEventListener("click", function () {
+    manager.acceptAll();
+  });
+  rejectAllButton.addEventListener("click", function () {
+    manager.rejectAll();
+  });
+  saveSettingsButton.addEventListener("click", function () {
+    var newState = {};
+    manager.categories.forEach(function (category) {
+      var accepted = manager.modal.querySelector("input[name='".concat(category, "']")).checked;
+      if (accepted) {
+        newState[category] = true;
+      }
+    });
+    manager.saveSettings(newState);
+  });
+};
+var initDisabledIframes = function initDisabledIframes(manager) {
+  var disabledIframes = document.querySelectorAll(".disabled-iframe");
+  if (manager.allAccepted()) {
+    disabledIframes.forEach(function (elem) {
+      var iframe = document.createElement("iframe");
+      iframe.setAttribute("src", elem.getAttribute("src"));
+      iframe.className = elem.classList.toString();
+      iframe.setAttribute("allowfullscreen", elem.getAttribute("allowfullscreen"));
+      iframe.setAttribute("frameborder", elem.getAttribute("frameborder"));
+      elem.parentElement.appendChild(iframe);
+      elem.remove();
+    });
+  }
+};
+document.addEventListener("DOMContentLoaded", function () {
+  var modal = document.querySelector("#dc-modal");
+  if (!modal) {
+    return;
+  }
+  var categories = _toConsumableArray(modal.querySelectorAll(".category-wrapper")).map(function (el) {
+    return el.dataset.id;
+  });
+  var manager = new src_decidim_data_consent_consent_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    modal: modal,
+    categories: categories,
+    cookieName: window.Decidim.config.get("consent_cookie_name"),
+    warningElement: document.querySelector(".dataconsent-warning")
+  });
+  initDisabledIframes(manager);
+  initModal(manager, categories);
+  initDialog(manager);
+});
 
 /***/ }),
 
@@ -1103,332 +1429,6 @@ var scrollToLastMessage = function scrollToLastMessage() {
 };
 $(document).ready(function () {
   scrollToLastMessage();
-});
-
-/***/ }),
-
-/***/ "./app/packs/src/decidim/data_consent/consent_manager.js":
-/*!***************************************************************!*\
-  !*** ./app/packs/src/decidim/data_consent/consent_manager.js ***!
-  \***************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
-function _typeof(o) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-    return typeof o;
-  } : function (o) {
-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, _typeof(o);
-}
-function _classCallCheck(a, n) {
-  if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
-}
-function _defineProperties(e, r) {
-  for (var t = 0; t < r.length; t++) {
-    var o = r[t];
-    o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o);
-  }
-}
-function _createClass(e, r, t) {
-  return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
-    writable: !1
-  }), e;
-}
-function _toPropertyKey(t) {
-  var i = _toPrimitive(t, "string");
-  return "symbol" == _typeof(i) ? i : i + "";
-}
-function _toPrimitive(t, r) {
-  if ("object" != _typeof(t) || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (void 0 !== e) {
-    var i = e.call(t, r || "default");
-    if ("object" != _typeof(i)) return i;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return ("string" === r ? String : Number)(t);
-}
-
-var ConsentManager = /*#__PURE__*/function () {
-  // Options should contain the following keys:
-  // - modal - HTML element of the data consent modal (e.g. "<div id="dc-modal">Foo bar</div>")
-  // - categories - Available data consent categories (e.g. ["essential", "preferences", "analytics", "marketing"])
-  // - cookieName - Name of the cookie saved in the browser (e.g. "decidim-consent")
-  // - warningElement - HTML element to be shown when user has not given the necessary data consent to display the content.
-  function ConsentManager(options) {
-    _classCallCheck(this, ConsentManager);
-    this.modal = options.modal;
-    this.categories = options.categories;
-    this.cookieName = options.cookieName;
-    this.cookie = js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.cookieName);
-    this.warningElement = options.warningElement;
-    if (this.cookie) {
-      this.updateState(JSON.parse(this.cookie));
-    } else {
-      this.updateState({});
-    }
-  }
-  _createClass(ConsentManager, [{
-    key: "updateState",
-    value: function updateState(newState) {
-      this.state = newState;
-      js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].set(this.cookieName, JSON.stringify(this.state), {
-        domain: document.location.host.split(":")[0],
-        sameSite: "Lax",
-        expires: 365,
-        secure: window.location.protocol === "https:"
-      });
-      this.updateModalSelections();
-      this.triggerState();
-    }
-  }, {
-    key: "triggerJavaScripts",
-    value: function triggerJavaScripts() {
-      var _this = this;
-      document.querySelectorAll("script[type='text/plain'][data-consent]").forEach(function (script) {
-        if (_this.state[script.dataset.consent]) {
-          var activeScript = document.createElement("script");
-          if (script.src.length > 0) {
-            activeScript.src = script.src;
-          } else {
-            activeScript.innerHTML = script.innerHTML;
-          }
-          script.parentNode.replaceChild(activeScript, script);
-        }
-      });
-      var event = new CustomEvent("dataconsent", {
-        detail: this.state
-      });
-      document.dispatchEvent(event);
-    }
-  }, {
-    key: "triggerIframes",
-    value: function triggerIframes() {
-      if (this.allAccepted()) {
-        document.querySelectorAll(".disabled-iframe").forEach(function (original) {
-          if (original.childNodes && original.childNodes.length) {
-            var content = Array.from(original.childNodes).find(function (childNode) {
-              return childNode.nodeType === Node.COMMENT_NODE;
-            });
-            if (!content) {
-              return;
-            }
-            var newElement = document.createElement("div");
-            newElement.innerHTML = content.nodeValue;
-            original.parentNode.replaceChild(newElement.firstElementChild, original);
-          }
-        });
-      } else {
-        document.querySelectorAll("iframe").forEach(function (original) {
-          var newElement = document.createElement("div");
-          newElement.className = "disabled-iframe";
-          newElement.appendChild(document.createComment("".concat(original.outerHTML)));
-          original.parentNode.replaceChild(newElement, original);
-        });
-      }
-    }
-  }, {
-    key: "triggerWarnings",
-    value: function triggerWarnings() {
-      var _this2 = this;
-      document.querySelectorAll(".disabled-iframe").forEach(function (original) {
-        if (original.querySelector(".dataconsent-warning")) {
-          return;
-        }
-        var cloned = _this2.warningElement.cloneNode(true);
-        cloned.classList.remove("hide");
-        original.appendChild(cloned);
-      });
-    }
-  }, {
-    key: "triggerState",
-    value: function triggerState() {
-      this.triggerJavaScripts();
-      this.triggerIframes();
-      this.triggerWarnings();
-    }
-  }, {
-    key: "allAccepted",
-    value: function allAccepted() {
-      var _this3 = this;
-      return this.categories.every(function (category) {
-        return _this3.state[category] === true;
-      });
-    }
-  }, {
-    key: "updateModalSelections",
-    value: function updateModalSelections() {
-      var _this4 = this;
-      var categoryElements = this.modal.querySelectorAll(".category-wrapper");
-      categoryElements.forEach(function (categoryEl) {
-        var categoryInput = categoryEl.querySelector("input");
-        if (_this4.state && _this4.state[categoryInput.name]) {
-          categoryInput.checked = true;
-        } else if (!categoryInput.disabled) {
-          categoryInput.checked = false;
-        }
-      });
-    }
-  }, {
-    key: "saveSettings",
-    value: function saveSettings(newState) {
-      this.updateState(newState);
-    }
-  }, {
-    key: "acceptAll",
-    value: function acceptAll() {
-      var newState = {};
-      this.categories.forEach(function (category) {
-        newState[category] = true;
-      });
-      this.updateState(newState);
-    }
-  }, {
-    key: "rejectAll",
-    value: function rejectAll() {
-      this.updateState({
-        essential: true
-      });
-    }
-  }, {
-    key: "getState",
-    value: function getState() {
-      return this.state;
-    }
-  }]);
-  return ConsentManager;
-}();
-/* harmony default export */ __webpack_exports__["default"] = (ConsentManager);
-
-/***/ }),
-
-/***/ "./app/packs/src/decidim/data_consent/index.js":
-/*!*****************************************************!*\
-  !*** ./app/packs/src/decidim/data_consent/index.js ***!
-  \*****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_data_consent_consent_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/data_consent/consent_manager */ "./app/packs/src/decidim/data_consent/consent_manager.js");
-function _toConsumableArray(r) {
-  return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
-}
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-function _iterableToArray(r) {
-  if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
-}
-function _arrayWithoutHoles(r) {
-  if (Array.isArray(r)) return _arrayLikeToArray(r);
-}
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-}
-
-var initDialog = function initDialog(manager) {
-  if (Object.keys(manager.state).length > 0) {
-    return;
-  }
-  var dialogWrapper = document.querySelector("#dc-dialog-wrapper");
-  dialogWrapper.classList.remove("hide");
-  var acceptAllButton = dialogWrapper.querySelector("#dc-dialog-accept");
-  var rejectAllButton = dialogWrapper.querySelector("#dc-dialog-reject");
-  var settingsButton = dialogWrapper.querySelector("#dc-dialog-settings");
-  acceptAllButton.addEventListener("click", function () {
-    manager.acceptAll();
-    dialogWrapper.style.display = "none";
-  });
-  rejectAllButton.addEventListener("click", function () {
-    manager.rejectAll();
-    dialogWrapper.style.display = "none";
-  });
-  settingsButton.addEventListener("click", function () {
-    dialogWrapper.style.display = "none";
-  });
-};
-var initModal = function initModal(manager) {
-  var categoryElements = manager.modal.querySelectorAll(".category-wrapper");
-  categoryElements.forEach(function (categoryEl) {
-    var categoryButton = categoryEl.querySelector(".dc-title");
-    var categoryDescription = categoryEl.querySelector(".dc-description");
-    categoryButton.addEventListener("click", function () {
-      var hidden = categoryDescription.classList.contains("hide");
-      if (hidden) {
-        categoryButton.classList.add("open");
-        categoryDescription.classList.remove("hide");
-      } else {
-        categoryButton.classList.remove("open");
-        categoryDescription.classList.add("hide");
-      }
-    });
-  });
-  var acceptAllButton = manager.modal.querySelector("#dc-modal-accept");
-  var rejectAllButton = manager.modal.querySelector("#dc-modal-reject");
-  var saveSettingsButton = manager.modal.querySelector("#dc-modal-save");
-  acceptAllButton.addEventListener("click", function () {
-    manager.acceptAll();
-  });
-  rejectAllButton.addEventListener("click", function () {
-    manager.rejectAll();
-  });
-  saveSettingsButton.addEventListener("click", function () {
-    var newState = {};
-    manager.categories.forEach(function (category) {
-      var accepted = manager.modal.querySelector("input[name='".concat(category, "']")).checked;
-      if (accepted) {
-        newState[category] = true;
-      }
-    });
-    manager.saveSettings(newState);
-  });
-};
-var initDisabledIframes = function initDisabledIframes(manager) {
-  var disabledIframes = document.querySelectorAll(".disabled-iframe");
-  if (manager.allAccepted()) {
-    disabledIframes.forEach(function (elem) {
-      var iframe = document.createElement("iframe");
-      iframe.setAttribute("src", elem.getAttribute("src"));
-      iframe.className = elem.classList.toString();
-      iframe.setAttribute("allowfullscreen", elem.getAttribute("allowfullscreen"));
-      iframe.setAttribute("frameborder", elem.getAttribute("frameborder"));
-      elem.parentElement.appendChild(iframe);
-      elem.remove();
-    });
-  }
-};
-document.addEventListener("DOMContentLoaded", function () {
-  var modal = document.querySelector("#dc-modal");
-  if (!modal) {
-    return;
-  }
-  var categories = _toConsumableArray(modal.querySelectorAll(".category-wrapper")).map(function (el) {
-    return el.dataset.id;
-  });
-  var manager = new src_decidim_data_consent_consent_manager__WEBPACK_IMPORTED_MODULE_0__["default"]({
-    modal: modal,
-    categories: categories,
-    cookieName: window.Decidim.config.get("consent__name"),
-    warningElement: document.querySelector(".dataconsent-warning")
-  });
-  initDisabledIframes(manager);
-  initModal(manager, categories);
-  initDialog(manager);
 });
 
 /***/ }),
