@@ -2,4 +2,6 @@ cat << EOF > .rbenv-vars
 DATABASE_HOST=localhost
 DATABASE_USERNAME=decidim_app
 DATABASE_PASSWORD=newpassword
+MAPS_PROVIDER=here
+MAPS_API_KEY=YCLc71QVvgJqkkyEucMaSz0s6RqEFa9g1Ei6SlWFxB0
 EOF
