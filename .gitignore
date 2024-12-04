@@ -35,3 +35,12 @@
 # Ignore public uploads
 public/uploads
 /config/credentials/production.key
+
+# Ignore node_modules
+/node_modules/*
+
+# Ignore vscode
+/.vscode/*
+
+# Ignore secrets
+/config/secrets.yml
