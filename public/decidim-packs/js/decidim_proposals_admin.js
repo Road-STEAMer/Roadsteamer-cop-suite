@@ -1,235 +1,6 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals.js":
-/*!*************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals.js ***!
-  \*************************************************************************************************************************************/
-/***/ (function() {
-
-/* eslint-disable no-invalid-this */
-/* eslint no-unused-vars: 0 */
-/* eslint id-length: ["error", { "exceptions": ["e"] }] */
-
-$(function () {
-  var selectedProposalsCount = function selectedProposalsCount() {
-    return $(".table-list .js-check-all-proposal:checked").length;
-  };
-  var selectedProposalsNotPublishedAnswerCount = function selectedProposalsNotPublishedAnswerCount() {
-    return $(".table-list [data-published-state=false] .js-check-all-proposal:checked").length;
-  };
-  var selectedProposalsCountUpdate = function selectedProposalsCountUpdate() {
-    var selectedProposals = selectedProposalsCount();
-    var selectedProposalsNotPublishedAnswer = selectedProposalsNotPublishedAnswerCount();
-    if (selectedProposals === 0) {
-      $("#js-selected-proposals-count").text("");
-    } else {
-      $("#js-selected-proposals-count").text(selectedProposals);
-    }
-    if (selectedProposals >= 2) {
-      $('button[data-action="merge-proposals"]').parent().show();
-    } else {
-      $('button[data-action="merge-proposals"]').parent().hide();
-    }
-    if (selectedProposalsNotPublishedAnswer > 0) {
-      $('button[data-action="publish-answers"]').parent().show();
-      $("#js-form-publish-answers-number").text(selectedProposalsNotPublishedAnswer);
-    } else {
-      $('button[data-action="publish-answers"]').parent().hide();
-    }
-  };
-  var showBulkActionsButton = function showBulkActionsButton() {
-    if (selectedProposalsCount() > 0) {
-      $("#js-bulk-actions-button").removeClass("hide");
-    }
-  };
-  var hideBulkActionsButton = function hideBulkActionsButton() {
-    var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    if (selectedProposalsCount() === 0 || force === true) {
-      $("#js-bulk-actions-button").addClass("hide");
-      $("#js-bulk-actions-dropdown").removeClass("is-open");
-    }
-  };
-  var showOtherActionsButtons = function showOtherActionsButtons() {
-    $("#js-other-actions-wrapper").removeClass("hide");
-  };
-  var hideOtherActionsButtons = function hideOtherActionsButtons() {
-    $("#js-other-actions-wrapper").addClass("hide");
-  };
-  var hideBulkActionForms = function hideBulkActionForms() {
-    $(".js-bulk-action-form").addClass("hide");
-  };
-
-  // Expose functions to make them avaialble in .js.erb templates
-  window.selectedProposalsCount = selectedProposalsCount;
-  window.selectedProposalsNotPublishedAnswerCount = selectedProposalsNotPublishedAnswerCount;
-  window.selectedProposalsCountUpdate = selectedProposalsCountUpdate;
-  window.showBulkActionsButton = showBulkActionsButton;
-  window.hideBulkActionsButton = hideBulkActionsButton;
-  window.showOtherActionsButtons = showOtherActionsButtons;
-  window.hideOtherActionsButtons = hideOtherActionsButtons;
-  window.hideBulkActionForms = hideBulkActionForms;
-  if ($(".js-bulk-action-form").length) {
-    hideBulkActionForms();
-    $("#js-bulk-actions-button").addClass("hide");
-    $("#js-bulk-actions-dropdown ul li button").click(function (e) {
-      e.preventDefault();
-      var action = $(e.target).data("action");
-      if (action) {
-        $("#js-form-".concat(action)).submit(function () {
-          $(".layout-content > .callout-wrapper").html("");
-        });
-        $("#js-".concat(action, "-actions")).removeClass("hide");
-        hideBulkActionsButton(true);
-        hideOtherActionsButtons();
-      }
-    });
-
-    // select all checkboxes
-    $(".js-check-all").change(function () {
-      $(".js-check-all-proposal").prop("checked", $(this).prop("checked"));
-      if ($(this).prop("checked")) {
-        $(".js-check-all-proposal").closest("tr").addClass("selected");
-        showBulkActionsButton();
-      } else {
-        $(".js-check-all-proposal").closest("tr").removeClass("selected");
-        hideBulkActionsButton();
-      }
-      selectedProposalsCountUpdate();
-    });
-
-    // proposal checkbox change
-    $(".table-list").on("change", ".js-check-all-proposal", function (e) {
-      var proposalId = $(this).val();
-      var checked = $(this).prop("checked");
-
-      // uncheck "select all", if one of the listed checkbox item is unchecked
-      if ($(this).prop("checked") === false) {
-        $(".js-check-all").prop("checked", false);
-      }
-      // check "select all" if all checkbox proposals are checked
-      if ($(".js-check-all-proposal:checked").length === $(".js-check-all-proposal").length) {
-        $(".js-check-all").prop("checked", true);
-        showBulkActionsButton();
-      }
-      if ($(this).prop("checked")) {
-        showBulkActionsButton();
-        $(this).closest("tr").addClass("selected");
-      } else {
-        hideBulkActionsButton();
-        $(this).closest("tr").removeClass("selected");
-      }
-      if ($(".js-check-all-proposal:checked").length === 0) {
-        hideBulkActionsButton();
-      }
-      $(".js-bulk-action-form").find(".js-proposal-id-".concat(proposalId)).prop("checked", checked);
-      selectedProposalsCountUpdate();
-    });
-    $(".js-cancel-bulk-action").on("click", function (e) {
-      hideBulkActionForms();
-      showBulkActionsButton();
-      showOtherActionsButtons();
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_form.js":
-/*!******************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_form.js ***!
-  \******************************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/geocoding/attach_input */ "./app/packs/src/decidim/geocoding/attach_input.js");
-
-$(function () {
-  var $form = $(".proposal_form_admin");
-  if ($form.length > 0) {
-    var $proposalCreatedInMeeting = $form.find("#proposal_created_in_meeting");
-    var $proposalMeeting = $form.find("#proposal_meeting");
-    var toggleDisabledHiddenFields = function toggleDisabledHiddenFields() {
-      var enabledMeeting = $proposalCreatedInMeeting.prop("checked");
-      $proposalMeeting.find("select").attr("disabled", "disabled");
-      $proposalMeeting.hide();
-      if (enabledMeeting) {
-        $proposalMeeting.find("select").attr("disabled", !enabledMeeting);
-        $proposalMeeting.show();
-      }
-    };
-    $proposalCreatedInMeeting.on("change", toggleDisabledHiddenFields);
-    toggleDisabledHiddenFields();
-    var $proposalAddress = $form.find("#proposal_address");
-    if ($proposalAddress.length !== 0) {
-      (0,src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_0__["default"])($proposalAddress);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_picker.js":
-/*!********************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_picker.js ***!
-  \********************************************************************************************************************************************/
-/***/ (function() {
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, _typeof(obj);
-}
-$(function () {
-  var $content = $(".picker-content"),
-    pickerMore = $content.data("picker-more"),
-    pickerPath = $content.data("picker-path"),
-    toggleNoProposals = function toggleNoProposals() {
-      var showNoProposals = $("#proposals_list li:visible").length === 0;
-      $("#no_proposals").toggle(showNoProposals);
-    };
-  var jqxhr = null;
-  var filterBuffer = "";
-  toggleNoProposals();
-  $(".data_picker-modal-content").on("change keyup", "#proposals_filter", function (event) {
-    var filter = event.target.value.toLowerCase();
-    if (pickerMore) {
-      if (filter.length < 3) {
-        return;
-      }
-      if (filter === filterBuffer) {
-        return;
-      }
-      if (jqxhr !== null) {
-        jqxhr.abort();
-      }
-      $content.html("<div class='loading-spinner'></div>");
-      jqxhr = $.get("".concat(pickerPath, "?q=").concat(filter), function (data) {
-        filterBuffer = filter;
-        $content.html(data);
-        jqxhr = null;
-        toggleNoProposals();
-        if (_typeof(window.theDataPicker) === "object" && window.theDataPicker.current !== null) {
-          window.theDataPicker._handleCheckboxes($content);
-          window.theDataPicker._handleLinks($content);
-        }
-      });
-    } else {
-      $("#proposals_list li").each(function (index, li) {
-        $(li).toggle(li.textContent.toLowerCase().indexOf(filter) > -1);
-      });
-      toggleNoProposals();
-    }
-  });
-});
-
-/***/ }),
-
 /***/ "./app/packs/src/decidim/geocoding/attach_input.js":
 /*!*********************************************************!*\
   !*** ./app/packs/src/decidim/geocoding/attach_input.js ***!
@@ -404,6 +175,235 @@ function getCoordinateInputName(coordinate, $input, options) {
   return coordinate;
 }
 
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals.js":
+/*!************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals.js ***!
+  \************************************************************************************************************/
+/***/ (function() {
+
+/* eslint-disable no-invalid-this */
+/* eslint no-unused-vars: 0 */
+/* eslint id-length: ["error", { "exceptions": ["e"] }] */
+
+$(function () {
+  var selectedProposalsCount = function selectedProposalsCount() {
+    return $(".table-list .js-check-all-proposal:checked").length;
+  };
+  var selectedProposalsNotPublishedAnswerCount = function selectedProposalsNotPublishedAnswerCount() {
+    return $(".table-list [data-published-state=false] .js-check-all-proposal:checked").length;
+  };
+  var selectedProposalsCountUpdate = function selectedProposalsCountUpdate() {
+    var selectedProposals = selectedProposalsCount();
+    var selectedProposalsNotPublishedAnswer = selectedProposalsNotPublishedAnswerCount();
+    if (selectedProposals === 0) {
+      $("#js-selected-proposals-count").text("");
+    } else {
+      $("#js-selected-proposals-count").text(selectedProposals);
+    }
+    if (selectedProposals >= 2) {
+      $('button[data-action="merge-proposals"]').parent().show();
+    } else {
+      $('button[data-action="merge-proposals"]').parent().hide();
+    }
+    if (selectedProposalsNotPublishedAnswer > 0) {
+      $('button[data-action="publish-answers"]').parent().show();
+      $("#js-form-publish-answers-number").text(selectedProposalsNotPublishedAnswer);
+    } else {
+      $('button[data-action="publish-answers"]').parent().hide();
+    }
+  };
+  var showBulkActionsButton = function showBulkActionsButton() {
+    if (selectedProposalsCount() > 0) {
+      $("#js-bulk-actions-button").removeClass("hide");
+    }
+  };
+  var hideBulkActionsButton = function hideBulkActionsButton() {
+    var force = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    if (selectedProposalsCount() === 0 || force === true) {
+      $("#js-bulk-actions-button").addClass("hide");
+      $("#js-bulk-actions-dropdown").removeClass("is-open");
+    }
+  };
+  var showOtherActionsButtons = function showOtherActionsButtons() {
+    $("#js-other-actions-wrapper").removeClass("hide");
+  };
+  var hideOtherActionsButtons = function hideOtherActionsButtons() {
+    $("#js-other-actions-wrapper").addClass("hide");
+  };
+  var hideBulkActionForms = function hideBulkActionForms() {
+    $(".js-bulk-action-form").addClass("hide");
+  };
+
+  // Expose functions to make them avaialble in .js.erb templates
+  window.selectedProposalsCount = selectedProposalsCount;
+  window.selectedProposalsNotPublishedAnswerCount = selectedProposalsNotPublishedAnswerCount;
+  window.selectedProposalsCountUpdate = selectedProposalsCountUpdate;
+  window.showBulkActionsButton = showBulkActionsButton;
+  window.hideBulkActionsButton = hideBulkActionsButton;
+  window.showOtherActionsButtons = showOtherActionsButtons;
+  window.hideOtherActionsButtons = hideOtherActionsButtons;
+  window.hideBulkActionForms = hideBulkActionForms;
+  if ($(".js-bulk-action-form").length) {
+    hideBulkActionForms();
+    $("#js-bulk-actions-button").addClass("hide");
+    $("#js-bulk-actions-dropdown ul li button").click(function (e) {
+      e.preventDefault();
+      var action = $(e.target).data("action");
+      if (action) {
+        $("#js-form-".concat(action)).submit(function () {
+          $(".layout-content > .callout-wrapper").html("");
+        });
+        $("#js-".concat(action, "-actions")).removeClass("hide");
+        hideBulkActionsButton(true);
+        hideOtherActionsButtons();
+      }
+    });
+
+    // select all checkboxes
+    $(".js-check-all").change(function () {
+      $(".js-check-all-proposal").prop("checked", $(this).prop("checked"));
+      if ($(this).prop("checked")) {
+        $(".js-check-all-proposal").closest("tr").addClass("selected");
+        showBulkActionsButton();
+      } else {
+        $(".js-check-all-proposal").closest("tr").removeClass("selected");
+        hideBulkActionsButton();
+      }
+      selectedProposalsCountUpdate();
+    });
+
+    // proposal checkbox change
+    $(".table-list").on("change", ".js-check-all-proposal", function (e) {
+      var proposalId = $(this).val();
+      var checked = $(this).prop("checked");
+
+      // uncheck "select all", if one of the listed checkbox item is unchecked
+      if ($(this).prop("checked") === false) {
+        $(".js-check-all").prop("checked", false);
+      }
+      // check "select all" if all checkbox proposals are checked
+      if ($(".js-check-all-proposal:checked").length === $(".js-check-all-proposal").length) {
+        $(".js-check-all").prop("checked", true);
+        showBulkActionsButton();
+      }
+      if ($(this).prop("checked")) {
+        showBulkActionsButton();
+        $(this).closest("tr").addClass("selected");
+      } else {
+        hideBulkActionsButton();
+        $(this).closest("tr").removeClass("selected");
+      }
+      if ($(".js-check-all-proposal:checked").length === 0) {
+        hideBulkActionsButton();
+      }
+      $(".js-bulk-action-form").find(".js-proposal-id-".concat(proposalId)).prop("checked", checked);
+      selectedProposalsCountUpdate();
+    });
+    $(".js-cancel-bulk-action").on("click", function (e) {
+      hideBulkActionForms();
+      showBulkActionsButton();
+      showOtherActionsButtons();
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_form.js":
+/*!*****************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_form.js ***!
+  \*****************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/geocoding/attach_input */ "./app/packs/src/decidim/geocoding/attach_input.js");
+
+$(function () {
+  var $form = $(".proposal_form_admin");
+  if ($form.length > 0) {
+    var $proposalCreatedInMeeting = $form.find("#proposal_created_in_meeting");
+    var $proposalMeeting = $form.find("#proposal_meeting");
+    var toggleDisabledHiddenFields = function toggleDisabledHiddenFields() {
+      var enabledMeeting = $proposalCreatedInMeeting.prop("checked");
+      $proposalMeeting.find("select").attr("disabled", "disabled");
+      $proposalMeeting.hide();
+      if (enabledMeeting) {
+        $proposalMeeting.find("select").attr("disabled", !enabledMeeting);
+        $proposalMeeting.show();
+      }
+    };
+    $proposalCreatedInMeeting.on("change", toggleDisabledHiddenFields);
+    toggleDisabledHiddenFields();
+    var $proposalAddress = $form.find("#proposal_address");
+    if ($proposalAddress.length !== 0) {
+      (0,src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_0__["default"])($proposalAddress);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_picker.js":
+/*!*******************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_picker.js ***!
+  \*******************************************************************************************************************/
+/***/ (function() {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, _typeof(obj);
+}
+$(function () {
+  var $content = $(".picker-content"),
+    pickerMore = $content.data("picker-more"),
+    pickerPath = $content.data("picker-path"),
+    toggleNoProposals = function toggleNoProposals() {
+      var showNoProposals = $("#proposals_list li:visible").length === 0;
+      $("#no_proposals").toggle(showNoProposals);
+    };
+  var jqxhr = null;
+  var filterBuffer = "";
+  toggleNoProposals();
+  $(".data_picker-modal-content").on("change keyup", "#proposals_filter", function (event) {
+    var filter = event.target.value.toLowerCase();
+    if (pickerMore) {
+      if (filter.length < 3) {
+        return;
+      }
+      if (filter === filterBuffer) {
+        return;
+      }
+      if (jqxhr !== null) {
+        jqxhr.abort();
+      }
+      $content.html("<div class='loading-spinner'></div>");
+      jqxhr = $.get("".concat(pickerPath, "?q=").concat(filter), function (data) {
+        filterBuffer = filter;
+        $content.html(data);
+        jqxhr = null;
+        toggleNoProposals();
+        if (_typeof(window.theDataPicker) === "object" && window.theDataPicker.current !== null) {
+          window.theDataPicker._handleCheckboxes($content);
+          window.theDataPicker._handleLinks($content);
+        }
+      });
+    } else {
+      $("#proposals_list li").each(function (index, li) {
+        $(li).toggle(li.textContent.toLowerCase().indexOf(filter) > -1);
+      });
+      toggleNoProposals();
+    }
+  });
+});
+
 /***/ })
 
 /******/ 	});
@@ -478,14 +478,14 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
 "use strict";
-/*!***********************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/entrypoints/decidim_proposals_admin.js ***!
-  \***********************************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/entrypoints/decidim_proposals_admin.js ***!
+  \**********************************************************************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_proposals_admin_proposals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/proposals/admin/proposals */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals.js");
+/* harmony import */ var src_decidim_proposals_admin_proposals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/proposals/admin/proposals */ "../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals.js");
 /* harmony import */ var src_decidim_proposals_admin_proposals__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(src_decidim_proposals_admin_proposals__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var src_decidim_proposals_admin_proposals_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/proposals/admin/proposals_form */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_form.js");
-/* harmony import */ var src_decidim_proposals_admin_proposals_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/proposals/admin/proposals_picker */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_picker.js");
+/* harmony import */ var src_decidim_proposals_admin_proposals_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/proposals/admin/proposals_form */ "../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_form.js");
+/* harmony import */ var src_decidim_proposals_admin_proposals_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/proposals/admin/proposals_picker */ "../usr/local/bundle/gems/decidim-proposals-0.27.2/app/packs/src/decidim/proposals/admin/proposals_picker.js");
 /* harmony import */ var src_decidim_proposals_admin_proposals_picker__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(src_decidim_proposals_admin_proposals_picker__WEBPACK_IMPORTED_MODULE_2__);
 
 

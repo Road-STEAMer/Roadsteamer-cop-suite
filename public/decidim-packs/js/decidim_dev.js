@@ -1,51 +1,78 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
-/*!************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
-  \************************************************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var map = {
-	"./decidim/decidim_dev_dummy.svg": "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images/decidim/decidim_dev_dummy.svg",
-	"./decidim/gamification/badges/decidim_gamification_badges_test.svg": "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images/decidim/gamification/badges/decidim_gamification_badges_test.svg"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.js":
-/*!*****************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.js ***!
-  \*****************************************************************************************************************/
+/***/ "./app/packs/src/decidim/icon.js":
+/*!***************************************!*\
+  !*** ./app/packs/src/decidim/icon.js ***!
+  \***************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var entrypoints_decidim_dev_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_dev.scss */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.scss");
-/* harmony import */ var src_decidim_dev_accessibility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/dev/accessibility */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/src/decidim/dev/accessibility.js");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ icon; }
+/* harmony export */ });
+var DEFAULT_ATTRIBUTES = {
+  role: "img",
+  "aria-hidden": "true"
+};
+
+/**
+ * Generates a Decidim icon element and returns it as a string.
+ * @param {String} iconKey - the key of the icon to be generated
+ * @param {Object} attributes - extra attributes to define for the icon SVG
+ * @param {int} wait - number of milliseconds to wait before executing the function.
+ * @private
+ * @returns {Void} - Returns nothing.
+ */
+function icon(iconKey) {
+  var attributes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var iconAttributes = $.extend(DEFAULT_ATTRIBUTES, attributes);
+  var title = iconAttributes.title || iconAttributes.ariaLabel;
+  Reflect.deleteProperty(iconAttributes, "title");
+  var htmlAttributes = {
+    "class": "icon icon--".concat(iconKey)
+  };
+  Object.keys(iconAttributes).forEach(function (key) {
+    // Convert the key to dash-format.
+    var newKey = key.replace(/([A-Z])/g, function (ucw) {
+      return "-".concat(ucw[0].toLowerCase());
+    });
+    if (typeof htmlAttributes[key] === "undefined") {
+      htmlAttributes[newKey] = iconAttributes[key];
+    } else {
+      htmlAttributes[newKey] = "".concat(htmlAttributes[newKey], " ").concat(iconAttributes[key]);
+    }
+  });
+  var iconsPath = window.Decidim.config.get("icons_path");
+  var elHtml = "<svg><use href=\"".concat(iconsPath, "#icon-").concat(iconKey, "\"></use></svg>");
+  var $el = $(elHtml);
+  if (title) {
+    $el.prepend("<title>".concat(title, "</title>"));
+  } else {
+    // This keeps accessibility audit tools happy
+    $el.prepend("<title>".concat(iconKey, "</title>"));
+    // Force hidden if title is not defined
+    htmlAttributes["aria-hidden"] = "true";
+  }
+  $el.attr(htmlAttributes);
+  return $("<div />").append($el).html();
+}
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.js":
+/*!****************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.js ***!
+  \****************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var entrypoints_decidim_dev_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_dev.scss */ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.scss");
+/* harmony import */ var src_decidim_dev_accessibility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/dev/accessibility */ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/src/decidim/dev/accessibility.js");
 // Images
-__webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
+__webpack_require__("../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
 
 // CSS
 
@@ -53,10 +80,10 @@ __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-d
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/src/decidim/dev/accessibility.js":
-/*!***********************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/src/decidim/dev/accessibility.js ***!
-  \***********************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/src/decidim/dev/accessibility.js":
+/*!**********************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/src/decidim/dev/accessibility.js ***!
+  \**********************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -183,70 +210,10 @@ $(function () {
 
 /***/ }),
 
-/***/ "./app/packs/src/decidim/icon.js":
-/*!***************************************!*\
-  !*** ./app/packs/src/decidim/icon.js ***!
-  \***************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ icon; }
-/* harmony export */ });
-var DEFAULT_ATTRIBUTES = {
-  role: "img",
-  "aria-hidden": "true"
-};
-
-/**
- * Generates a Decidim icon element and returns it as a string.
- * @param {String} iconKey - the key of the icon to be generated
- * @param {Object} attributes - extra attributes to define for the icon SVG
- * @param {int} wait - number of milliseconds to wait before executing the function.
- * @private
- * @returns {Void} - Returns nothing.
- */
-function icon(iconKey) {
-  var attributes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var iconAttributes = $.extend(DEFAULT_ATTRIBUTES, attributes);
-  var title = iconAttributes.title || iconAttributes.ariaLabel;
-  Reflect.deleteProperty(iconAttributes, "title");
-  var htmlAttributes = {
-    "class": "icon icon--".concat(iconKey)
-  };
-  Object.keys(iconAttributes).forEach(function (key) {
-    // Convert the key to dash-format.
-    var newKey = key.replace(/([A-Z])/g, function (ucw) {
-      return "-".concat(ucw[0].toLowerCase());
-    });
-    if (typeof htmlAttributes[key] === "undefined") {
-      htmlAttributes[newKey] = iconAttributes[key];
-    } else {
-      htmlAttributes[newKey] = "".concat(htmlAttributes[newKey], " ").concat(iconAttributes[key]);
-    }
-  });
-  var iconsPath = window.Decidim.config.get("icons_path");
-  var elHtml = "<svg><use href=\"".concat(iconsPath, "#icon-").concat(iconKey, "\"></use></svg>");
-  var $el = $(elHtml);
-  if (title) {
-    $el.prepend("<title>".concat(title, "</title>"));
-  } else {
-    // This keeps accessibility audit tools happy
-    $el.prepend("<title>".concat(iconKey, "</title>"));
-    // Force hidden if title is not defined
-    htmlAttributes["aria-hidden"] = "true";
-  }
-  $el.attr(htmlAttributes);
-  return $("<div />").append($el).html();
-}
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.scss":
-/*!*******************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.scss ***!
-  \*******************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.scss":
+/*!******************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.scss ***!
+  \******************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -256,10 +223,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images/decidim/decidim_dev_dummy.svg":
-/*!***************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images/decidim/decidim_dev_dummy.svg ***!
-  \***************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
+/*!***********************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
+  \***********************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var map = {
+	"./decidim/decidim_dev_dummy.svg": "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images/decidim/decidim_dev_dummy.svg",
+	"./decidim/gamification/badges/decidim_gamification_badges_test.svg": "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images/decidim/gamification/badges/decidim_gamification_badges_test.svg"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images/decidim/decidim_dev_dummy.svg":
+/*!**************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images/decidim/decidim_dev_dummy.svg ***!
+  \**************************************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -267,10 +267,10 @@ module.exports = __webpack_require__.p + "media/images/decidim_dev_dummy-7c65732
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images/decidim/gamification/badges/decidim_gamification_badges_test.svg":
-/*!**************************************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/images/decidim/gamification/badges/decidim_gamification_badges_test.svg ***!
-  \**************************************************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images/decidim/gamification/badges/decidim_gamification_badges_test.svg":
+/*!*************************************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/images/decidim/gamification/badges/decidim_gamification_badges_test.svg ***!
+  \*************************************************************************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -459,7 +459,7 @@ module.exports = __webpack_require__.p + "media/images/decidim_gamification_badg
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_axe-core_axe_js"], function() { return __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.js"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_axe-core_axe_js"], function() { return __webpack_require__("../usr/local/bundle/gems/decidim-dev-0.27.2/app/packs/entrypoints/decidim_dev.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

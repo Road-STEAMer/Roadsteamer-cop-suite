@@ -171,6 +171,40 @@ function _toPrimitive(input, hint) {
   }
   return (hint === "string" ? String : Number)(input);
 }
+function _callSuper(_this, derived, args) {
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+      return !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    } catch (e) {
+      return false;
+    }
+  }
+  derived = _getPrototypeOf(derived);
+  return _possibleConstructorReturn(_this, isNativeReflectConstruct() ? Reflect.construct(derived, args || [], _getPrototypeOf(_this).constructor) : derived.apply(_this, args));
+}
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -193,51 +227,6 @@ function _setPrototypeOf(o, p) {
     return o;
   };
   return _setPrototypeOf(o, p);
-}
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return _possibleConstructorReturn(this, result);
-  };
-}
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
 }
 /* eslint max-lines: ["error", 350] */
 
@@ -267,24 +256,23 @@ var Clipboard = Quill["import"]("modules/clipboard");
  * at GitHub and defining the `<strong>` tags as bold tags.
  */
 var ClipboardOverride = /*#__PURE__*/function (_Clipboard) {
-  _inherits(ClipboardOverride, _Clipboard);
-  var _super = _createSuper(ClipboardOverride);
   function ClipboardOverride(quill, options) {
-    var _this;
+    var _this2;
     _classCallCheck(this, ClipboardOverride);
-    _this = _super.call(this, quill, options);
-    _this.overrideMatcher("b", "b, strong");
-    _this.overrideMatcher("br", "br", src_decidim_editor_clipboard_utilities__WEBPACK_IMPORTED_MODULE_1__.matchBreak);
+    _this2 = _callSuper(this, ClipboardOverride, [quill, options]);
+    _this2.overrideMatcher("b", "b, strong");
+    _this2.overrideMatcher("br", "br", src_decidim_editor_clipboard_utilities__WEBPACK_IMPORTED_MODULE_1__.matchBreak);
 
     // Change the matchNewLine matchers to the newer version
-    _this.matchers[1][1] = src_decidim_editor_clipboard_utilities__WEBPACK_IMPORTED_MODULE_1__.matchNewline;
-    _this.matchers[3][1] = src_decidim_editor_clipboard_utilities__WEBPACK_IMPORTED_MODULE_1__.matchNewline;
+    _this2.matchers[1][1] = src_decidim_editor_clipboard_utilities__WEBPACK_IMPORTED_MODULE_1__.matchNewline;
+    _this2.matchers[3][1] = src_decidim_editor_clipboard_utilities__WEBPACK_IMPORTED_MODULE_1__.matchNewline;
 
     // Remove `matchSpacing` as that is also removed in the newer versions.
-    _this.removeMatcher(Node.ELEMENT_NODE, "matchSpacing");
-    return _this;
+    _this2.removeMatcher(Node.ELEMENT_NODE, "matchSpacing");
+    return _this2;
   }
-  _createClass(ClipboardOverride, [{
+  _inherits(ClipboardOverride, _Clipboard);
+  return _createClass(ClipboardOverride, [{
     key: "overrideMatcher",
     value: function overrideMatcher(originalSelector, newSelector) {
       var newMatcher = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -387,7 +375,6 @@ var ClipboardOverride = /*#__PURE__*/function (_Clipboard) {
       return (0,src_decidim_editor_clipboard_utilities__WEBPACK_IMPORTED_MODULE_1__.traverse)(this.quill.scroll, container, elementMatchers, textMatchers, nodeMatches);
     }
   }]);
-  return ClipboardOverride;
 }(Clipboard); // Disable warning messages from overwritting modules
 
 Quill.debug("error");
@@ -568,6 +555,40 @@ function _toPrimitive(input, hint) {
   }
   return (hint === "string" ? String : Number)(input);
 }
+function _callSuper(_this, derived, args) {
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+      return !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    } catch (e) {
+      return false;
+    }
+  }
+  derived = _getPrototypeOf(derived);
+  return _possibleConstructorReturn(_this, isNativeReflectConstruct() ? Reflect.construct(derived, args || [], _getPrototypeOf(_this).constructor) : derived.apply(_this, args));
+}
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -591,51 +612,6 @@ function _setPrototypeOf(o, p) {
   };
   return _setPrototypeOf(o, p);
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return _possibleConstructorReturn(this, result);
-  };
-}
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
 /* eslint-disable require-jsdoc */
 
 var History = Quill["import"]("modules/history");
@@ -651,58 +627,57 @@ History.DEFAULTS = {
  * instead of deltas.
  */
 var HistoryOverride = /*#__PURE__*/function (_History) {
-  _inherits(HistoryOverride, _History);
-  var _super = _createSuper(HistoryOverride);
   function HistoryOverride(quill, options) {
-    var _this;
+    var _this2;
     _classCallCheck(this, HistoryOverride);
-    _this = _super.call(this, quill, options);
-    _this.lastRecorded = 0;
-    _this.ignoreChange = false;
-    _this.init = false;
-    _this.quill.emitter.on("editor-ready", function () {
-      _this.clear();
-      var $input = $(_this.quill.container).siblings('input[type="hidden"]');
-      _this.stack.undo.push({
+    _this2 = _callSuper(this, HistoryOverride, [quill, options]);
+    _this2.lastRecorded = 0;
+    _this2.ignoreChange = false;
+    _this2.init = false;
+    _this2.quill.emitter.on("editor-ready", function () {
+      _this2.clear();
+      var $input = $(_this2.quill.container).siblings('input[type="hidden"]');
+      _this2.stack.undo.push({
         content: $input.val() || "",
-        index: _this.quill.getLength() - 2
+        index: _this2.quill.getLength() - 2
       });
-      _this.lastLength = _this.quill.getLength();
+      _this2.lastLength = _this2.quill.getLength();
     });
     /* eslint-disable max-params */
-    _this.quill.on(Quill.events.EDITOR_CHANGE, function (eventName, delta, oldDelta, source) {
+    _this2.quill.on(Quill.events.EDITOR_CHANGE, function (eventName, delta, oldDelta, source) {
       if (!delta) {
         return;
       }
-      if (!_this.init && eventName === "selection-change") {
-        _this.stack.undo[0].index = delta.index;
+      if (!_this2.init && eventName === "selection-change") {
+        _this2.stack.undo[0].index = delta.index;
       }
-      if (eventName !== Quill.events.TEXT_CHANGE || _this.ignoreChange) {
+      if (eventName !== Quill.events.TEXT_CHANGE || _this2.ignoreChange) {
         return;
       }
-      if (!_this.options.userOnly || source === Quill.sources.USER) {
-        _this.record(delta, oldDelta);
+      if (!_this2.options.userOnly || source === Quill.sources.USER) {
+        _this2.record(delta, oldDelta);
       }
     });
-    _this.quill.keyboard.addBinding({
+    _this2.quill.keyboard.addBinding({
       key: "Z",
       shortKey: true
-    }, _this.undo.bind(_assertThisInitialized(_this)));
-    _this.quill.keyboard.addBinding({
+    }, _this2.undo.bind(_this2));
+    _this2.quill.keyboard.addBinding({
       key: "Z",
       shortKey: true,
       shiftKey: true
-    }, _this.redo.bind(_assertThisInitialized(_this)));
+    }, _this2.redo.bind(_this2));
     if (/Win/i.test(navigator.platform)) {
-      _this.quill.keyboard.addBinding({
+      _this2.quill.keyboard.addBinding({
         key: "Y",
         shortKey: true
-      }, _this.redo.bind(_assertThisInitialized(_this)));
+      }, _this2.redo.bind(_this2));
     }
-    return _this;
+    return _this2;
   }
   /* eslint-enable max-params */
-  _createClass(HistoryOverride, [{
+  _inherits(HistoryOverride, _History);
+  return _createClass(HistoryOverride, [{
     key: "change",
     value: function change(source, dest) {
       if (this.stack[source].length === 0) {
@@ -770,7 +745,6 @@ var HistoryOverride = /*#__PURE__*/function (_History) {
       return;
     }
   }]);
-  return HistoryOverride;
 }(History);
 
 
@@ -861,6 +835,40 @@ function _toPrimitive(input, hint) {
   }
   return (hint === "string" ? String : Number)(input);
 }
+function _callSuper(_this, derived, args) {
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+      return !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    } catch (e) {
+      return false;
+    }
+  }
+  derived = _getPrototypeOf(derived);
+  return _possibleConstructorReturn(_this, isNativeReflectConstruct() ? Reflect.construct(derived, args || [], _getPrototypeOf(_this).constructor) : derived.apply(_this, args));
+}
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -884,51 +892,6 @@ function _setPrototypeOf(o, p) {
   };
   return _setPrototypeOf(o, p);
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return _possibleConstructorReturn(this, result);
-  };
-}
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
 /* eslint-disable require-jsdoc */
 
 
@@ -951,13 +914,12 @@ Quill.register({
 var icons = Quill["import"]("ui/icons");
 icons.linebreak = "⏎";
 var SmartBreak = /*#__PURE__*/function (_Break) {
-  _inherits(SmartBreak, _Break);
-  var _super = _createSuper(SmartBreak);
   function SmartBreak() {
     _classCallCheck(this, SmartBreak);
-    return _super.apply(this, arguments);
+    return _callSuper(this, SmartBreak, arguments);
   }
-  _createClass(SmartBreak, [{
+  _inherits(SmartBreak, _Break);
+  return _createClass(SmartBreak, [{
     key: "length",
     value: function length() {
       return 1;
@@ -974,19 +936,17 @@ var SmartBreak = /*#__PURE__*/function (_Break) {
       Reflect.apply(Embed.prototype.insertInto, this, [parent, ref]);
     }
   }]);
-  return SmartBreak;
 }(Break);
 Quill.register(SmartBreak);
 
 // Override quill/blots/scroll.js
 var ScrollOvderride = /*#__PURE__*/function (_Scroll) {
-  _inherits(ScrollOvderride, _Scroll);
-  var _super2 = _createSuper(ScrollOvderride);
   function ScrollOvderride() {
     _classCallCheck(this, ScrollOvderride);
-    return _super2.apply(this, arguments);
+    return _callSuper(this, ScrollOvderride, arguments);
   }
-  _createClass(ScrollOvderride, [{
+  _inherits(ScrollOvderride, _Scroll);
+  return _createClass(ScrollOvderride, [{
     key: "optimize",
     value: function optimize() {
       var mutations = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -1005,7 +965,7 @@ var ScrollOvderride = /*#__PURE__*/function (_Scroll) {
   }, {
     key: "parchmentOptimize",
     value: function parchmentOptimize() {
-      var _this = this;
+      var _this2 = this;
       var mutations = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       // super.optimize(context);
@@ -1020,7 +980,7 @@ var ScrollOvderride = /*#__PURE__*/function (_Scroll) {
         mutations.push(records.pop());
       }
       var mark = function mark(blot, markParent) {
-        if (!blot || blot === _this) {
+        if (!blot || blot === _this2) {
           return;
         }
         if (!blot.domNode.parentNode) {
@@ -1081,7 +1041,6 @@ var ScrollOvderride = /*#__PURE__*/function (_Scroll) {
       }
     }
   }]);
-  return ScrollOvderride;
 }(Scroll);
 ;
 Quill.register("blots/scroll", ScrollOvderride, true);

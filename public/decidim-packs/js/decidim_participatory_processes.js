@@ -1,42 +1,10 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
+/***/ "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/filters.js":
 /*!********************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
+  !*** ../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/filters.js ***!
   \********************************************************************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var map = {
-	"./decidim/participatory_processes/decidim_participatory_processes.svg": "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/images/decidim/participatory_processes/decidim_participatory_processes.svg"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/filters.js":
-/*!*********************************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/filters.js ***!
-  \*********************************************************************************************************************************************************/
 /***/ (function() {
 
 $(function () {
@@ -65,10 +33,42 @@ $(function () {
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/images/decidim/participatory_processes/decidim_participatory_processes.svg":
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/images/decidim/participatory_processes/decidim_participatory_processes.svg ***!
-  \*************************************************************************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
+/*!*******************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
+  \*******************************************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var map = {
+	"./decidim/participatory_processes/decidim_participatory_processes.svg": "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/images/decidim/participatory_processes/decidim_participatory_processes.svg"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/images/decidim/participatory_processes/decidim_participatory_processes.svg":
+/*!************************************************************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/images/decidim/participatory_processes/decidim_participatory_processes.svg ***!
+  \************************************************************************************************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -153,16 +153,16 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
 "use strict";
-/*!*********************************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/entrypoints/decidim_participatory_processes.js ***!
-  \*********************************************************************************************************************************************************/
+/*!********************************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/entrypoints/decidim_participatory_processes.js ***!
+  \********************************************************************************************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_participatory_processes_filters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/participatory_processes/filters */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/filters.js");
+/* harmony import */ var src_decidim_participatory_processes_filters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/participatory_processes/filters */ "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/filters.js");
 /* harmony import */ var src_decidim_participatory_processes_filters__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(src_decidim_participatory_processes_filters__WEBPACK_IMPORTED_MODULE_0__);
 
 
 // Images
-__webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
+__webpack_require__("../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
 }();
 /******/ })()
 ;

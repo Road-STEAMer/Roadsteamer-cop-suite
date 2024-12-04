@@ -1,61 +1,29 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
-/*!*******************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
-  \*******************************************************************************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var map = {
-	"./decidim/assemblies/decidim_assemblies.svg": "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/images/decidim/assemblies/decidim_assemblies.svg"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/entrypoints/decidim_assemblies.js":
-/*!*******************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/entrypoints/decidim_assemblies.js ***!
-  \*******************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/entrypoints/decidim_assemblies.js":
+/*!******************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/entrypoints/decidim_assemblies.js ***!
+  \******************************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_assemblies_assemblies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/assemblies/assemblies */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/assemblies.js");
+/* harmony import */ var src_decidim_assemblies_assemblies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/assemblies/assemblies */ "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/assemblies.js");
 /* harmony import */ var src_decidim_assemblies_assemblies__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(src_decidim_assemblies_assemblies__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var src_decidim_assemblies_orgchart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/assemblies/orgchart */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/orgchart.js");
+/* harmony import */ var src_decidim_assemblies_orgchart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/assemblies/orgchart */ "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/orgchart.js");
 
 
 
 // Images
-__webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
+__webpack_require__("../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/assemblies.js":
-/*!**********************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/assemblies.js ***!
-  \**********************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/assemblies.js":
+/*!*********************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/assemblies.js ***!
+  \*********************************************************************************************************/
 /***/ (function() {
 
 $(function () {
@@ -74,10 +42,10 @@ $(function () {
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/orgchart.js":
-/*!********************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/orgchart.js ***!
-  \********************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/orgchart.js":
+/*!*******************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/src/decidim/assemblies/orgchart.js ***!
+  \*******************************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -772,10 +740,42 @@ $(function () {
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/images/decidim/assemblies/decidim_assemblies.svg":
-/*!**********************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/images/decidim/assemblies/decidim_assemblies.svg ***!
-  \**********************************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
+/*!******************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
+  \******************************************************************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var map = {
+	"./decidim/assemblies/decidim_assemblies.svg": "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/images/decidim/assemblies/decidim_assemblies.svg"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/images/decidim/assemblies/decidim_assemblies.svg":
+/*!*********************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/images/decidim/assemblies/decidim_assemblies.svg ***!
+  \*********************************************************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -952,7 +952,7 @@ module.exports = __webpack_require__.p + "media/images/decidim_assemblies-d9571d
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_d3-array_src_index_js-node_modules_d3-collection_src_index_js-node_modul-f618e0","vendors-node_modules_d3-drag_src_drag_js-node_modules_d3-fetch_src_json_js-node_modules_d3-fo-5cde09"], function() { return __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-assemblies-0.27.2/app/packs/entrypoints/decidim_assemblies.js"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_d3-array_src_index_js-node_modules_d3-collection_src_index_js-node_modul-f618e0","vendors-node_modules_d3-drag_src_drag_js-node_modules_d3-fetch_src_json_js-node_modules_d3-fo-5cde09"], function() { return __webpack_require__("../usr/local/bundle/gems/decidim-assemblies-0.27.2/app/packs/entrypoints/decidim_assemblies.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

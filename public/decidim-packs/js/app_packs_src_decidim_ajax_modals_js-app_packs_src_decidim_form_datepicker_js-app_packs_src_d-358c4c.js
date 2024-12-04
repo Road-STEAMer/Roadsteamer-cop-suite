@@ -129,7 +129,7 @@ var CheckBoxesTree = /*#__PURE__*/function () {
    * @param {Array} values - values of checkboxes that should be checked
    * @returns {Void} - Returns nothing.
    */
-  _createClass(CheckBoxesTree, [{
+  return _createClass(CheckBoxesTree, [{
     key: "updateChecked",
     value: function updateChecked(checkboxes, values) {
       var _this2 = this;
@@ -274,7 +274,6 @@ var CheckBoxesTree = /*#__PURE__*/function () {
       this.checkTheCheckParent(parentCheck);
     }
   }]);
-  return CheckBoxesTree;
 }();
 
 
@@ -347,7 +346,7 @@ var DataPicker = /*#__PURE__*/function () {
       _this.activate(picker);
     });
   }
-  _createClass(DataPicker, [{
+  return _createClass(DataPicker, [{
     key: "activate",
     value: function activate(picker) {
       var _this2 = this;
@@ -628,7 +627,6 @@ var DataPicker = /*#__PURE__*/function () {
       return $("[data-picker-value=".concat(value, "]"), this.current.picker).parent()[0] || null;
     }
   }]);
-  return DataPicker;
 }();
 
 
@@ -869,7 +867,7 @@ var FormFilterComponent = /*#__PURE__*/function () {
    * @public
    * @returns {Void} - Returns nothing
    */
-  _createClass(FormFilterComponent, [{
+  return _createClass(FormFilterComponent, [{
     key: "unmountComponent",
     value: function unmountComponent() {
       if (this.mounted) {
@@ -1202,7 +1200,6 @@ var FormFilterComponent = /*#__PURE__*/function () {
       sessionStorage.setItem("filteredParams", JSON.stringify(_defineProperty({}, pathName, pathWithQueryStrings)));
     }
   }]);
-  return FormFilterComponent;
 }();
 
 
@@ -1663,7 +1660,7 @@ var InputCharacterCounter = /*#__PURE__*/function () {
       }
     }
   }
-  _createClass(InputCharacterCounter, [{
+  return _createClass(InputCharacterCounter, [{
     key: "initialize",
     value: function initialize() {
       this.updateInputLength();
@@ -1864,7 +1861,6 @@ var InputCharacterCounter = /*#__PURE__*/function () {
       MESSAGES = $.extend(DEFAULT_MESSAGES, messages);
     }
   }]);
-  return InputCharacterCounter;
 }();
 
 var createCharacterCounter = function createCharacterCounter($input) {

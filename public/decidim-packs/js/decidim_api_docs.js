@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.scss":
-/*!************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.scss ***!
-  \************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.scss":
+/*!***********************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.scss ***!
+  \***********************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -56,11 +56,11 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 !function() {
-/*!**********************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.js ***!
-  \**********************************************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.js ***!
+  \*********************************************************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var entrypoints_decidim_api_docs_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_api_docs.scss */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.scss");
+/* harmony import */ var entrypoints_decidim_api_docs_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_api_docs.scss */ "../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_docs.scss");
 
 }();
 /******/ })()

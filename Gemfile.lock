@@ -834,8 +834,9 @@ DEPENDENCIES
   letter_opener_web (~> 2.0)
   listen (~> 3.1)
   puma (>= 5.0.0)
-  spring (~> 2.0)
+  spring (= 2.1.1)
   spring-watcher-listen (~> 2.0)
+  sprockets-rails
   truncate_html (~> 0.9.3)
   web-console (~> 4.2)
   wicked_pdf (~> 2.1)
@@ -844,4 +845,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.4.12
+   2.4.22

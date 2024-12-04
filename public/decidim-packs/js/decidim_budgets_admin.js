@@ -1,10 +1,10 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-budgets-0.27.2/app/packs/src/decidim/budgets/admin/projects.js":
-/*!********************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-budgets-0.27.2/app/packs/src/decidim/budgets/admin/projects.js ***!
-  \********************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-budgets-0.27.2/app/packs/src/decidim/budgets/admin/projects.js":
+/*!*******************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-budgets-0.27.2/app/packs/src/decidim/budgets/admin/projects.js ***!
+  \*******************************************************************************************************/
 /***/ (function() {
 
 /* eslint-disable no-invalid-this */
@@ -204,11 +204,11 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
 "use strict";
-/*!*******************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-budgets-0.27.2/app/packs/entrypoints/decidim_budgets_admin.js ***!
-  \*******************************************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-budgets-0.27.2/app/packs/entrypoints/decidim_budgets_admin.js ***!
+  \******************************************************************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_budgets_admin_projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/budgets/admin/projects */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-budgets-0.27.2/app/packs/src/decidim/budgets/admin/projects.js");
+/* harmony import */ var src_decidim_budgets_admin_projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/budgets/admin/projects */ "../usr/local/bundle/gems/decidim-budgets-0.27.2/app/packs/src/decidim/budgets/admin/projects.js");
 /* harmony import */ var src_decidim_budgets_admin_projects__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(src_decidim_budgets_admin_projects__WEBPACK_IMPORTED_MODULE_0__);
 
 }();

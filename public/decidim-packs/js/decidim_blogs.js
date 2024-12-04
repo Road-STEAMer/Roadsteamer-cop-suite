@@ -1,14 +1,14 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
-/*!**************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
-  \**************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/images sync recursive ^\\.\\/.*$":
+/*!*************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/images/ sync ^\.\/.*$ ***!
+  \*************************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 var map = {
-	"./decidim/blogs/decidim_blogs.svg": "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/images/decidim/blogs/decidim_blogs.svg"
+	"./decidim/blogs/decidim_blogs.svg": "../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/images/decidim/blogs/decidim_blogs.svg"
 };
 
 
@@ -29,14 +29,14 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
+webpackContext.id = "../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/images sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/images/decidim/blogs/decidim_blogs.svg":
-/*!*******************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/images/decidim/blogs/decidim_blogs.svg ***!
-  \*******************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/images/decidim/blogs/decidim_blogs.svg":
+/*!******************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/images/decidim/blogs/decidim_blogs.svg ***!
+  \******************************************************************************************************/
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
@@ -85,11 +85,11 @@ module.exports = __webpack_require__.p + "media/images/decidim_blogs-5c0bd36dad8
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 !function() {
-/*!*********************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/entrypoints/decidim_blogs.js ***!
-  \*********************************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/entrypoints/decidim_blogs.js ***!
+  \********************************************************************************************/
 // Images
-__webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-blogs-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
+__webpack_require__("../usr/local/bundle/gems/decidim-blogs-0.27.2/app/packs/images sync recursive ^\\.\\/.*$");
 }();
 /******/ })()
 ;

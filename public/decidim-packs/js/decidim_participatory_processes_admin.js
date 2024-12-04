@@ -1,10 +1,10 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/admin/participatory_processes.js":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/admin/participatory_processes.js ***!
-  \*******************************************************************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/admin/participatory_processes.js":
+/*!******************************************************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/admin/participatory_processes.js ***!
+  \******************************************************************************************************************************************************/
 /***/ (function() {
 
 $(function () {
@@ -99,11 +99,11 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
 "use strict";
-/*!***************************************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/entrypoints/decidim_participatory_processes_admin.js ***!
-  \***************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/entrypoints/decidim_participatory_processes_admin.js ***!
+  \**************************************************************************************************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_participatory_processes_admin_participatory_processes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/participatory_processes/admin/participatory_processes */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/admin/participatory_processes.js");
+/* harmony import */ var src_decidim_participatory_processes_admin_participatory_processes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/participatory_processes/admin/participatory_processes */ "../usr/local/bundle/gems/decidim-participatory_processes-0.27.2/app/packs/src/decidim/participatory_processes/admin/participatory_processes.js");
 /* harmony import */ var src_decidim_participatory_processes_admin_participatory_processes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(src_decidim_participatory_processes_admin_participatory_processes__WEBPACK_IMPORTED_MODULE_0__);
 
 }();

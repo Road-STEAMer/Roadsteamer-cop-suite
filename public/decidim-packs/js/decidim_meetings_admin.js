@@ -1,524 +1,6 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js":
-/*!**********************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js ***!
-  \**********************************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ createFieldDependentInputs; }
-/* harmony export */ });
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, _typeof(obj);
-}
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
-  }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, "prototype", {
-    writable: false
-  });
-  return Constructor;
-}
-function _toPropertyKey(arg) {
-  var key = _toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
-}
-function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return (hint === "string" ? String : Number)(input);
-}
-/* eslint-disable require-jsdoc */
-var FieldDependentInputsComponent = /*#__PURE__*/function () {
-  function FieldDependentInputsComponent() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    _classCallCheck(this, FieldDependentInputsComponent);
-    this.controllerField = options.controllerField;
-    this.wrapperSelector = options.wrapperSelector;
-    this.dependentFieldsSelector = options.dependentFieldsSelector;
-    this.dependentInputSelector = options.dependentInputSelector;
-    this.enablingCondition = options.enablingCondition;
-    this._bindEvent();
-    this._run();
-  }
-  _createClass(FieldDependentInputsComponent, [{
-    key: "_run",
-    value: function _run() {
-      var $controllerField = this.controllerField;
-      var $dependentFields = $controllerField.parents(this.wrapperSelector).find(this.dependentFieldsSelector);
-      var $dependentInputs = $dependentFields.find(this.dependentInputSelector);
-      if (this.enablingCondition($controllerField)) {
-        $dependentInputs.prop("disabled", false);
-        $dependentFields.show();
-      } else {
-        $dependentInputs.prop("disabled", true);
-        $dependentFields.hide();
-      }
-    }
-  }, {
-    key: "_bindEvent",
-    value: function _bindEvent() {
-      var _this = this;
-      this.controllerField.on("change", function () {
-        _this._run();
-      });
-    }
-  }]);
-  return FieldDependentInputsComponent;
-}();
-function createFieldDependentInputs(options) {
-  return new FieldDependentInputsComponent(options);
-}
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js":
-/*!*********************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js ***!
-  \*********************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_meetings_admin_agendas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/meetings/admin/agendas */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/agendas.js");
-/* harmony import */ var src_decidim_meetings_admin_destroy_meeting_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/meetings/admin/destroy_meeting_alert */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/destroy_meeting_alert.js");
-/* harmony import */ var src_decidim_meetings_admin_destroy_meeting_alert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(src_decidim_meetings_admin_destroy_meeting_alert__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var src_decidim_meetings_admin_meetings_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/meetings/admin/meetings_form */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/meetings_form.js");
-/* harmony import */ var src_decidim_meetings_admin_registrations_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/meetings/admin/registrations_form */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_form.js");
-/* harmony import */ var src_decidim_meetings_admin_registrations_form__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(src_decidim_meetings_admin_registrations_form__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var src_decidim_meetings_admin_registrations_invite_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/meetings/admin/registrations_invite_form */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_invite_form.js");
-
-
-
-
-
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/agendas.js":
-/*!*********************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/agendas.js ***!
-  \*********************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/admin/auto_buttons_by_position.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_buttons_by_position.component.js");
-/* harmony import */ var src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/admin/auto_label_by_position.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_label_by_position.component.js");
-/* harmony import */ var src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/admin/sort_list.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/sort_list.component.js");
-/* harmony import */ var src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/admin/dynamic_fields.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/dynamic_fields.component.js");
-/* harmony import */ var src_decidim_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/editor */ "./app/packs/src/decidim/editor.js");
-
-
-
-
-
-var wrapperSelector = ".meeting-agenda-items";
-var fieldSelector = ".meeting-agenda-item";
-var childsWrapperSelector = ".meeting-agenda-item-childs";
-var childFieldSelector = ".meeting-agenda-item-child";
-var autoLabelByPosition = new src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  listSelector: ".meeting-agenda-item:not(.hidden)",
-  labelSelector: ".card-title span:first",
-  onPositionComputed: function onPositionComputed(el, idx) {
-    $(el).find("input[name$=\\[position\\]]").val(idx);
-  }
-});
-var autoButtonsByPosition = new src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  listSelector: ".meeting-agenda-item:not(.hidden)",
-  hideOnFirstSelector: ".move-up-agenda-item",
-  hideOnLastSelector: ".move-down-agenda-item"
-});
-var createSortableList = function createSortableList() {
-  (0,src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__["default"])(".meeting-agenda-items-list:not(.published)", {
-    handle: ".agenda-item-divider",
-    placeholder: '<div style="border-style: dashed; border-color: #000"></div>',
-    forcePlaceholderSize: true,
-    onSortUpdate: function onSortUpdate() {
-      autoLabelByPosition.run();
-    }
-  });
-};
-var createSortableListChild = function createSortableListChild() {
-  (0,src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__["default"])(".meeting-agenda-item-childs-list:not(.published)", {
-    handle: ".agenda-item-child-divider",
-    placeholder: '<div style="border-style: dashed; border-color: #000"></div>',
-    forcePlaceholderSize: true,
-    onSortUpdate: function onSortUpdate() {
-      autoLabelByPosition.run();
-    }
-  });
-};
-var autoLabelByPositionChild = new src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  listSelector: ".meeting-agenda-item-child:not(.hidden)",
-  labelSelector: ".card-title span:first",
-  onPositionComputed: function onPositionComputed(el, idx) {
-    $(el).find("input[name$=\\[position\\]]").val(idx);
-  }
-});
-var autoButtonsByPositionChild = new src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  listSelector: ".meeting-agenda-item-child:not(.hidden)",
-  hideOnFirstSelector: ".move-up-agenda-item-child",
-  hideOnLastSelector: ".move-down-agenda-item-child"
-});
-var createDynamicFieldsForAgendaItemChilds = function createDynamicFieldsForAgendaItemChilds(fieldId) {
-  return (0,src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__["default"])({
-    placeholderId: "meeting-agenda-item-child-id",
-    wrapperSelector: "#".concat(fieldId, " ").concat(childsWrapperSelector),
-    containerSelector: ".meeting-agenda-item-childs-list",
-    fieldSelector: childFieldSelector,
-    addFieldButtonSelector: ".add-agenda-item-child",
-    removeFieldButtonSelector: ".remove-agenda-item-child",
-    moveUpFieldButtonSelector: ".move-up-agenda-item-child",
-    moveDownFieldButtonSelector: ".move-down-agenda-item-child",
-    onAddField: function onAddField($field) {
-      createSortableListChild();
-      $field.find(".editor-container").each(function (idx, el) {
-        (0,src_decidim_editor__WEBPACK_IMPORTED_MODULE_4__["default"])(el);
-      });
-      autoLabelByPositionChild.run();
-      autoButtonsByPositionChild.run();
-    },
-    onRemoveField: function onRemoveField() {
-      autoLabelByPositionChild.run();
-      autoButtonsByPositionChild.run();
-    },
-    onMoveUpField: function onMoveUpField() {
-      autoLabelByPositionChild.run();
-      autoButtonsByPositionChild.run();
-    },
-    onMoveDownField: function onMoveDownField() {
-      autoLabelByPositionChild.run();
-      autoButtonsByPositionChild.run();
-    }
-  });
-};
-var dynamicFieldsForAgendaItemChilds = {};
-var setupInitialAgendaItemChildAttributes = function setupInitialAgendaItemChildAttributes($target) {
-  var fieldId = $target.attr("id");
-  dynamicFieldsForAgendaItemChilds[fieldId] = createDynamicFieldsForAgendaItemChilds(fieldId);
-};
-var hideDeletedAgendaItem = function hideDeletedAgendaItem($target) {
-  var inputDeleted = $target.find("input[name$=\\[deleted\\]]").val();
-  if (inputDeleted === "true") {
-    $target.addClass("hidden");
-    $target.hide();
-  }
-};
-(0,src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__["default"])({
-  placeholderId: "meeting-agenda-item-id",
-  wrapperSelector: wrapperSelector,
-  containerSelector: ".meeting-agenda-items-list",
-  fieldSelector: fieldSelector,
-  addFieldButtonSelector: ".add-agenda-item",
-  removeFieldButtonSelector: ".remove-agenda-item",
-  moveUpFieldButtonSelector: ".move-up-agenda-item",
-  moveDownFieldButtonSelector: ".move-down-agenda-item",
-  onAddField: function onAddField($field) {
-    // createDynamicFieldsForAgendaItemChilds($field);
-    setupInitialAgendaItemChildAttributes($field);
-    createSortableList();
-    $field.find(".editor-container").each(function (idx, el) {
-      (0,src_decidim_editor__WEBPACK_IMPORTED_MODULE_4__["default"])(el);
-    });
-    autoLabelByPosition.run();
-    autoButtonsByPosition.run();
-  },
-  onRemoveField: function onRemoveField() {
-    autoLabelByPosition.run();
-    autoButtonsByPosition.run();
-  },
-  onMoveUpField: function onMoveUpField() {
-    autoLabelByPosition.run();
-    autoButtonsByPosition.run();
-  },
-  onMoveDownField: function onMoveDownField() {
-    autoLabelByPosition.run();
-    autoButtonsByPosition.run();
-  }
-});
-createSortableList();
-$(fieldSelector).each(function (idx, el) {
-  var $target = $(el);
-  hideDeletedAgendaItem($target);
-  setupInitialAgendaItemChildAttributes($target);
-});
-autoLabelByPosition.run();
-autoButtonsByPosition.run();
-autoLabelByPositionChild.run();
-autoButtonsByPositionChild.run();
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/destroy_meeting_alert.js":
-/*!***********************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/destroy_meeting_alert.js ***!
-  \***********************************************************************************************************************************************/
-/***/ (function() {
-
-var removeNewlineAdjacentSpaces = function removeNewlineAdjacentSpaces(text) {
-  return text.replace(/\n\s/g, "\n");
-};
-$(function () {
-  var $confirmButton = $(".destroy-meeting-alert");
-  if ($confirmButton.length > 0) {
-    $confirmButton.on("click", function () {
-      var alertText = "".concat($confirmButton.data("invalid-destroy-message"), " \n\n");
-      alertText += removeNewlineAdjacentSpaces($confirmButton.data("proposal-titles"));
-      alert(alertText); // eslint-disable-line no-alert
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/meetings_form.js":
-/*!***************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/meetings_form.js ***!
-  \***************************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/admin/auto_buttons_by_position.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_buttons_by_position.component.js");
-/* harmony import */ var src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/admin/auto_label_by_position.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_label_by_position.component.js");
-/* harmony import */ var src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/admin/sort_list.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/sort_list.component.js");
-/* harmony import */ var src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/admin/dynamic_fields.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/dynamic_fields.component.js");
-/* harmony import */ var src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/admin/field_dependent_inputs.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js");
-/* harmony import */ var src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/decidim/geocoding/attach_input */ "./app/packs/src/decidim/geocoding/attach_input.js");
-
-
-
-
-
-
-$(function () {
-  var wrapperSelector = ".meeting-services";
-  var fieldSelector = ".meeting-service";
-  var autoLabelByPosition = new src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__["default"]({
-    listSelector: ".meeting-service:not(.hidden)",
-    labelSelector: ".card-title span:first",
-    onPositionComputed: function onPositionComputed(el, idx) {
-      $(el).find("input[name$=\\[position\\]]").val(idx);
-    }
-  });
-  var autoButtonsByPosition = new src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__["default"]({
-    listSelector: ".meeting-service:not(.hidden)",
-    hideOnFirstSelector: ".move-up-service",
-    hideOnLastSelector: ".move-down-service"
-  });
-  var createSortableList = function createSortableList() {
-    (0,src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__["default"])(".meeting-services-list:not(.published)", {
-      handle: ".service-divider",
-      placeholder: '<div style="border-style: dashed; border-color: #000"></div>',
-      forcePlaceholderSize: true,
-      onSortUpdate: function onSortUpdate() {
-        autoLabelByPosition.run();
-      }
-    });
-  };
-  var hideDeletedService = function hideDeletedService($target) {
-    var inputDeleted = $target.find("input[name$=\\[deleted\\]]").val();
-    if (inputDeleted === "true") {
-      $target.addClass("hidden");
-      $target.hide();
-    }
-  };
-  (0,src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__["default"])({
-    placeholderId: "meeting-service-id",
-    wrapperSelector: wrapperSelector,
-    containerSelector: ".meeting-services-list",
-    fieldSelector: fieldSelector,
-    addFieldButtonSelector: ".add-service",
-    removeFieldButtonSelector: ".remove-service",
-    moveUpFieldButtonSelector: ".move-up-service",
-    moveDownFieldButtonSelector: ".move-down-service",
-    onAddField: function onAddField() {
-      createSortableList();
-      autoLabelByPosition.run();
-      autoButtonsByPosition.run();
-    },
-    onRemoveField: function onRemoveField() {
-      autoLabelByPosition.run();
-      autoButtonsByPosition.run();
-    },
-    onMoveUpField: function onMoveUpField() {
-      autoLabelByPosition.run();
-      autoButtonsByPosition.run();
-    },
-    onMoveDownField: function onMoveDownField() {
-      autoLabelByPosition.run();
-      autoButtonsByPosition.run();
-    }
-  });
-  createSortableList();
-  $(fieldSelector).each(function (idx, el) {
-    var $target = $(el);
-    hideDeletedService($target);
-  });
-  autoLabelByPosition.run();
-  autoButtonsByPosition.run();
-  var $form = $(".edit_meeting, .new_meeting, .copy_meetings");
-  if ($form.length > 0) {
-    var $privateMeeting = $form.find("#private_meeting");
-    var $transparent = $form.find("#transparent");
-    var toggleDisabledHiddenFields = function toggleDisabledHiddenFields() {
-      var enabledPrivateSpace = $privateMeeting.find("input[type='checkbox']").prop("checked");
-      $transparent.find("input[type='checkbox']").attr("disabled", "disabled");
-      if (enabledPrivateSpace) {
-        $transparent.find("input[type='checkbox']").attr("disabled", !enabledPrivateSpace);
-      }
-    };
-    $privateMeeting.on("change", toggleDisabledHiddenFields);
-    toggleDisabledHiddenFields();
-    (0,src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_5__["default"])($form.find("#meeting_address"));
-    var $meetingRegistrationType = $form.find("#meeting_registration_type");
-    var $meetingRegistrationUrl = $form.find("#meeting_registration_url");
-    var toggleDependsOnSelect = function toggleDependsOnSelect($target, $showDiv, type) {
-      var value = $target.val();
-      $showDiv.toggle(value === type);
-    };
-    $meetingRegistrationType.on("change", function (ev) {
-      var $target = $(ev.target);
-      toggleDependsOnSelect($target, $meetingRegistrationUrl, "on_different_platform");
-    });
-    toggleDependsOnSelect($meetingRegistrationType, $meetingRegistrationUrl, "on_different_platform");
-    var $meetingTypeOfMeeting = $form.find("#meeting_type_of_meeting");
-    var $meetingOnlineFields = $form.find(".field[data-meeting-type='online']");
-    var $meetingInPersonFields = $form.find(".field[data-meeting-type='in_person']");
-    var $meetingOnlineAccessLevelFields = $form.find(".field[data-meeting-type='online-access-level']");
-    var $meetingIframeEmbedType = $form.find("#meeting_iframe_embed_type");
-    var toggleTypeDependsOnSelect = function toggleTypeDependsOnSelect($target, $showDiv, type) {
-      var value = $target.val();
-      if (value === "hybrid") {
-        $showDiv.show();
-      } else {
-        $showDiv.hide();
-        if (value === type) {
-          $showDiv.show();
-        }
-      }
-    };
-    $meetingTypeOfMeeting.on("change", function (ev) {
-      var $target = $(ev.target);
-      var embedTypeValue = $("#meeting_iframe_embed_type select").val();
-      toggleTypeDependsOnSelect($target, $meetingOnlineFields, "online");
-      toggleTypeDependsOnSelect($target, $meetingInPersonFields, "in_person");
-      if (embedTypeValue === "none") {
-        $meetingOnlineAccessLevelFields.hide();
-      } else {
-        toggleTypeDependsOnSelect($target, $meetingOnlineAccessLevelFields, "online");
-      }
-    });
-    toggleTypeDependsOnSelect($meetingTypeOfMeeting, $meetingOnlineFields, "online");
-    toggleTypeDependsOnSelect($meetingTypeOfMeeting, $meetingInPersonFields, "in_person");
-    (0,src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_4__["default"])({
-      controllerField: $meetingIframeEmbedType,
-      wrapperSelector: ".iframe-fields",
-      dependentFieldsSelector: ".iframe-fields--access-level",
-      dependentInputSelector: "input",
-      enablingCondition: function enablingCondition($field) {
-        return $field.find("select").val() !== "none";
-      }
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_form.js":
-/*!********************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_form.js ***!
-  \********************************************************************************************************************************************/
-/***/ (function() {
-
-$(function () {
-  var $form = $(".edit_meeting_registrations");
-  if ($form.length > 0) {
-    var $registrationsEnabled = $form.find("#meeting_registrations_enabled");
-    var $availableSlots = $form.find("#meeting_available_slots");
-    var $reservedSlots = $form.find("#meeting_reserved_slots");
-    var $customizeRegistrationEmail = $form.find("#meeting_customize_registration_email");
-    var toggleDisabledFields = function toggleDisabledFields() {
-      var enabled = $registrationsEnabled.prop("checked");
-      $availableSlots.attr("disabled", !enabled);
-      $reservedSlots.attr("disabled", !enabled);
-      $customizeRegistrationEmail.attr("disabled", !enabled);
-      $form.find(".editor-container").each(function (idx, node) {
-        var quill = Quill.find(node);
-        quill.enable(enabled);
-      });
-    };
-    $registrationsEnabled.on("change", toggleDisabledFields);
-    toggleDisabledFields();
-  }
-});
-
-/***/ }),
-
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_invite_form.js":
-/*!***************************************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_invite_form.js ***!
-  \***************************************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/admin/field_dependent_inputs.component */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js");
-
-$(function () {
-  var $attendeeType = $('[name="meeting_registration_invite[existing_user]"');
-  (0,src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    controllerField: $attendeeType,
-    wrapperSelector: ".attendee-fields",
-    dependentFieldsSelector: ".attendee-fields--new-user",
-    dependentInputSelector: "input",
-    enablingCondition: function enablingCondition() {
-      return $("#meeting_registration_invite_existing_user_false").is(":checked");
-    }
-  });
-  (0,src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    controllerField: $attendeeType,
-    wrapperSelector: ".attendee-fields",
-    dependentFieldsSelector: ".attendee-fields--user-picker",
-    dependentInputSelector: "input",
-    enablingCondition: function enablingCondition() {
-      return $("#meeting_registration_invite_existing_user_true").is(":checked");
-    }
-  });
-});
-
-/***/ }),
-
 /***/ "./app/packs/src/decidim/editor.js":
 /*!*****************************************!*\
   !*** ./app/packs/src/decidim/editor.js ***!
@@ -669,7 +151,6 @@ function createQuillEditor(container) {
         copyAndPasteText(element.title, element.url);
         modalContainer.style.display = 'none'; // Close the modal
       });
-
       if (element !== modalData[modalData.length - 1]) {
         linksDiv.appendChild(document.createElement('br'));
       }
@@ -952,6 +433,523 @@ function getCoordinateInputName(coordinate, $input, options) {
   return coordinate;
 }
 
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js":
+/*!*********************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js ***!
+  \*********************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ createFieldDependentInputs; }
+/* harmony export */ });
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, _typeof(obj);
+}
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
+  }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+/* eslint-disable require-jsdoc */
+var FieldDependentInputsComponent = /*#__PURE__*/function () {
+  function FieldDependentInputsComponent() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    _classCallCheck(this, FieldDependentInputsComponent);
+    this.controllerField = options.controllerField;
+    this.wrapperSelector = options.wrapperSelector;
+    this.dependentFieldsSelector = options.dependentFieldsSelector;
+    this.dependentInputSelector = options.dependentInputSelector;
+    this.enablingCondition = options.enablingCondition;
+    this._bindEvent();
+    this._run();
+  }
+  return _createClass(FieldDependentInputsComponent, [{
+    key: "_run",
+    value: function _run() {
+      var $controllerField = this.controllerField;
+      var $dependentFields = $controllerField.parents(this.wrapperSelector).find(this.dependentFieldsSelector);
+      var $dependentInputs = $dependentFields.find(this.dependentInputSelector);
+      if (this.enablingCondition($controllerField)) {
+        $dependentInputs.prop("disabled", false);
+        $dependentFields.show();
+      } else {
+        $dependentInputs.prop("disabled", true);
+        $dependentFields.hide();
+      }
+    }
+  }, {
+    key: "_bindEvent",
+    value: function _bindEvent() {
+      var _this = this;
+      this.controllerField.on("change", function () {
+        _this._run();
+      });
+    }
+  }]);
+}();
+function createFieldDependentInputs(options) {
+  return new FieldDependentInputsComponent(options);
+}
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js":
+/*!********************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js ***!
+  \********************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_decidim_meetings_admin_agendas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/meetings/admin/agendas */ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/agendas.js");
+/* harmony import */ var src_decidim_meetings_admin_destroy_meeting_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/meetings/admin/destroy_meeting_alert */ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/destroy_meeting_alert.js");
+/* harmony import */ var src_decidim_meetings_admin_destroy_meeting_alert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(src_decidim_meetings_admin_destroy_meeting_alert__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var src_decidim_meetings_admin_meetings_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/meetings/admin/meetings_form */ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/meetings_form.js");
+/* harmony import */ var src_decidim_meetings_admin_registrations_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/meetings/admin/registrations_form */ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_form.js");
+/* harmony import */ var src_decidim_meetings_admin_registrations_form__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(src_decidim_meetings_admin_registrations_form__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var src_decidim_meetings_admin_registrations_invite_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/meetings/admin/registrations_invite_form */ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_invite_form.js");
+
+
+
+
+
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/agendas.js":
+/*!********************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/agendas.js ***!
+  \********************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/admin/auto_buttons_by_position.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_buttons_by_position.component.js");
+/* harmony import */ var src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/admin/auto_label_by_position.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_label_by_position.component.js");
+/* harmony import */ var src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/admin/sort_list.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/sort_list.component.js");
+/* harmony import */ var src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/admin/dynamic_fields.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/dynamic_fields.component.js");
+/* harmony import */ var src_decidim_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/editor */ "./app/packs/src/decidim/editor.js");
+
+
+
+
+
+var wrapperSelector = ".meeting-agenda-items";
+var fieldSelector = ".meeting-agenda-item";
+var childsWrapperSelector = ".meeting-agenda-item-childs";
+var childFieldSelector = ".meeting-agenda-item-child";
+var autoLabelByPosition = new src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  listSelector: ".meeting-agenda-item:not(.hidden)",
+  labelSelector: ".card-title span:first",
+  onPositionComputed: function onPositionComputed(el, idx) {
+    $(el).find("input[name$=\\[position\\]]").val(idx);
+  }
+});
+var autoButtonsByPosition = new src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  listSelector: ".meeting-agenda-item:not(.hidden)",
+  hideOnFirstSelector: ".move-up-agenda-item",
+  hideOnLastSelector: ".move-down-agenda-item"
+});
+var createSortableList = function createSortableList() {
+  (0,src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__["default"])(".meeting-agenda-items-list:not(.published)", {
+    handle: ".agenda-item-divider",
+    placeholder: '<div style="border-style: dashed; border-color: #000"></div>',
+    forcePlaceholderSize: true,
+    onSortUpdate: function onSortUpdate() {
+      autoLabelByPosition.run();
+    }
+  });
+};
+var createSortableListChild = function createSortableListChild() {
+  (0,src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__["default"])(".meeting-agenda-item-childs-list:not(.published)", {
+    handle: ".agenda-item-child-divider",
+    placeholder: '<div style="border-style: dashed; border-color: #000"></div>',
+    forcePlaceholderSize: true,
+    onSortUpdate: function onSortUpdate() {
+      autoLabelByPosition.run();
+    }
+  });
+};
+var autoLabelByPositionChild = new src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  listSelector: ".meeting-agenda-item-child:not(.hidden)",
+  labelSelector: ".card-title span:first",
+  onPositionComputed: function onPositionComputed(el, idx) {
+    $(el).find("input[name$=\\[position\\]]").val(idx);
+  }
+});
+var autoButtonsByPositionChild = new src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  listSelector: ".meeting-agenda-item-child:not(.hidden)",
+  hideOnFirstSelector: ".move-up-agenda-item-child",
+  hideOnLastSelector: ".move-down-agenda-item-child"
+});
+var createDynamicFieldsForAgendaItemChilds = function createDynamicFieldsForAgendaItemChilds(fieldId) {
+  return (0,src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    placeholderId: "meeting-agenda-item-child-id",
+    wrapperSelector: "#".concat(fieldId, " ").concat(childsWrapperSelector),
+    containerSelector: ".meeting-agenda-item-childs-list",
+    fieldSelector: childFieldSelector,
+    addFieldButtonSelector: ".add-agenda-item-child",
+    removeFieldButtonSelector: ".remove-agenda-item-child",
+    moveUpFieldButtonSelector: ".move-up-agenda-item-child",
+    moveDownFieldButtonSelector: ".move-down-agenda-item-child",
+    onAddField: function onAddField($field) {
+      createSortableListChild();
+      $field.find(".editor-container").each(function (idx, el) {
+        (0,src_decidim_editor__WEBPACK_IMPORTED_MODULE_4__["default"])(el);
+      });
+      autoLabelByPositionChild.run();
+      autoButtonsByPositionChild.run();
+    },
+    onRemoveField: function onRemoveField() {
+      autoLabelByPositionChild.run();
+      autoButtonsByPositionChild.run();
+    },
+    onMoveUpField: function onMoveUpField() {
+      autoLabelByPositionChild.run();
+      autoButtonsByPositionChild.run();
+    },
+    onMoveDownField: function onMoveDownField() {
+      autoLabelByPositionChild.run();
+      autoButtonsByPositionChild.run();
+    }
+  });
+};
+var dynamicFieldsForAgendaItemChilds = {};
+var setupInitialAgendaItemChildAttributes = function setupInitialAgendaItemChildAttributes($target) {
+  var fieldId = $target.attr("id");
+  dynamicFieldsForAgendaItemChilds[fieldId] = createDynamicFieldsForAgendaItemChilds(fieldId);
+};
+var hideDeletedAgendaItem = function hideDeletedAgendaItem($target) {
+  var inputDeleted = $target.find("input[name$=\\[deleted\\]]").val();
+  if (inputDeleted === "true") {
+    $target.addClass("hidden");
+    $target.hide();
+  }
+};
+(0,src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__["default"])({
+  placeholderId: "meeting-agenda-item-id",
+  wrapperSelector: wrapperSelector,
+  containerSelector: ".meeting-agenda-items-list",
+  fieldSelector: fieldSelector,
+  addFieldButtonSelector: ".add-agenda-item",
+  removeFieldButtonSelector: ".remove-agenda-item",
+  moveUpFieldButtonSelector: ".move-up-agenda-item",
+  moveDownFieldButtonSelector: ".move-down-agenda-item",
+  onAddField: function onAddField($field) {
+    // createDynamicFieldsForAgendaItemChilds($field);
+    setupInitialAgendaItemChildAttributes($field);
+    createSortableList();
+    $field.find(".editor-container").each(function (idx, el) {
+      (0,src_decidim_editor__WEBPACK_IMPORTED_MODULE_4__["default"])(el);
+    });
+    autoLabelByPosition.run();
+    autoButtonsByPosition.run();
+  },
+  onRemoveField: function onRemoveField() {
+    autoLabelByPosition.run();
+    autoButtonsByPosition.run();
+  },
+  onMoveUpField: function onMoveUpField() {
+    autoLabelByPosition.run();
+    autoButtonsByPosition.run();
+  },
+  onMoveDownField: function onMoveDownField() {
+    autoLabelByPosition.run();
+    autoButtonsByPosition.run();
+  }
+});
+createSortableList();
+$(fieldSelector).each(function (idx, el) {
+  var $target = $(el);
+  hideDeletedAgendaItem($target);
+  setupInitialAgendaItemChildAttributes($target);
+});
+autoLabelByPosition.run();
+autoButtonsByPosition.run();
+autoLabelByPositionChild.run();
+autoButtonsByPositionChild.run();
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/destroy_meeting_alert.js":
+/*!**********************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/destroy_meeting_alert.js ***!
+  \**********************************************************************************************************************/
+/***/ (function() {
+
+var removeNewlineAdjacentSpaces = function removeNewlineAdjacentSpaces(text) {
+  return text.replace(/\n\s/g, "\n");
+};
+$(function () {
+  var $confirmButton = $(".destroy-meeting-alert");
+  if ($confirmButton.length > 0) {
+    $confirmButton.on("click", function () {
+      var alertText = "".concat($confirmButton.data("invalid-destroy-message"), " \n\n");
+      alertText += removeNewlineAdjacentSpaces($confirmButton.data("proposal-titles"));
+      alert(alertText); // eslint-disable-line no-alert
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/meetings_form.js":
+/*!**************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/meetings_form.js ***!
+  \**************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/admin/auto_buttons_by_position.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_buttons_by_position.component.js");
+/* harmony import */ var src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/decidim/admin/auto_label_by_position.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/auto_label_by_position.component.js");
+/* harmony import */ var src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/decidim/admin/sort_list.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/sort_list.component.js");
+/* harmony import */ var src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/decidim/admin/dynamic_fields.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/dynamic_fields.component.js");
+/* harmony import */ var src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/admin/field_dependent_inputs.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js");
+/* harmony import */ var src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/decidim/geocoding/attach_input */ "./app/packs/src/decidim/geocoding/attach_input.js");
+
+
+
+
+
+
+$(function () {
+  var wrapperSelector = ".meeting-services";
+  var fieldSelector = ".meeting-service";
+  var autoLabelByPosition = new src_decidim_admin_auto_label_by_position_component__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    listSelector: ".meeting-service:not(.hidden)",
+    labelSelector: ".card-title span:first",
+    onPositionComputed: function onPositionComputed(el, idx) {
+      $(el).find("input[name$=\\[position\\]]").val(idx);
+    }
+  });
+  var autoButtonsByPosition = new src_decidim_admin_auto_buttons_by_position_component__WEBPACK_IMPORTED_MODULE_0__["default"]({
+    listSelector: ".meeting-service:not(.hidden)",
+    hideOnFirstSelector: ".move-up-service",
+    hideOnLastSelector: ".move-down-service"
+  });
+  var createSortableList = function createSortableList() {
+    (0,src_decidim_admin_sort_list_component__WEBPACK_IMPORTED_MODULE_2__["default"])(".meeting-services-list:not(.published)", {
+      handle: ".service-divider",
+      placeholder: '<div style="border-style: dashed; border-color: #000"></div>',
+      forcePlaceholderSize: true,
+      onSortUpdate: function onSortUpdate() {
+        autoLabelByPosition.run();
+      }
+    });
+  };
+  var hideDeletedService = function hideDeletedService($target) {
+    var inputDeleted = $target.find("input[name$=\\[deleted\\]]").val();
+    if (inputDeleted === "true") {
+      $target.addClass("hidden");
+      $target.hide();
+    }
+  };
+  (0,src_decidim_admin_dynamic_fields_component__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    placeholderId: "meeting-service-id",
+    wrapperSelector: wrapperSelector,
+    containerSelector: ".meeting-services-list",
+    fieldSelector: fieldSelector,
+    addFieldButtonSelector: ".add-service",
+    removeFieldButtonSelector: ".remove-service",
+    moveUpFieldButtonSelector: ".move-up-service",
+    moveDownFieldButtonSelector: ".move-down-service",
+    onAddField: function onAddField() {
+      createSortableList();
+      autoLabelByPosition.run();
+      autoButtonsByPosition.run();
+    },
+    onRemoveField: function onRemoveField() {
+      autoLabelByPosition.run();
+      autoButtonsByPosition.run();
+    },
+    onMoveUpField: function onMoveUpField() {
+      autoLabelByPosition.run();
+      autoButtonsByPosition.run();
+    },
+    onMoveDownField: function onMoveDownField() {
+      autoLabelByPosition.run();
+      autoButtonsByPosition.run();
+    }
+  });
+  createSortableList();
+  $(fieldSelector).each(function (idx, el) {
+    var $target = $(el);
+    hideDeletedService($target);
+  });
+  autoLabelByPosition.run();
+  autoButtonsByPosition.run();
+  var $form = $(".edit_meeting, .new_meeting, .copy_meetings");
+  if ($form.length > 0) {
+    var $privateMeeting = $form.find("#private_meeting");
+    var $transparent = $form.find("#transparent");
+    var toggleDisabledHiddenFields = function toggleDisabledHiddenFields() {
+      var enabledPrivateSpace = $privateMeeting.find("input[type='checkbox']").prop("checked");
+      $transparent.find("input[type='checkbox']").attr("disabled", "disabled");
+      if (enabledPrivateSpace) {
+        $transparent.find("input[type='checkbox']").attr("disabled", !enabledPrivateSpace);
+      }
+    };
+    $privateMeeting.on("change", toggleDisabledHiddenFields);
+    toggleDisabledHiddenFields();
+    (0,src_decidim_geocoding_attach_input__WEBPACK_IMPORTED_MODULE_5__["default"])($form.find("#meeting_address"));
+    var $meetingRegistrationType = $form.find("#meeting_registration_type");
+    var $meetingRegistrationUrl = $form.find("#meeting_registration_url");
+    var toggleDependsOnSelect = function toggleDependsOnSelect($target, $showDiv, type) {
+      var value = $target.val();
+      $showDiv.toggle(value === type);
+    };
+    $meetingRegistrationType.on("change", function (ev) {
+      var $target = $(ev.target);
+      toggleDependsOnSelect($target, $meetingRegistrationUrl, "on_different_platform");
+    });
+    toggleDependsOnSelect($meetingRegistrationType, $meetingRegistrationUrl, "on_different_platform");
+    var $meetingTypeOfMeeting = $form.find("#meeting_type_of_meeting");
+    var $meetingOnlineFields = $form.find(".field[data-meeting-type='online']");
+    var $meetingInPersonFields = $form.find(".field[data-meeting-type='in_person']");
+    var $meetingOnlineAccessLevelFields = $form.find(".field[data-meeting-type='online-access-level']");
+    var $meetingIframeEmbedType = $form.find("#meeting_iframe_embed_type");
+    var toggleTypeDependsOnSelect = function toggleTypeDependsOnSelect($target, $showDiv, type) {
+      var value = $target.val();
+      if (value === "hybrid") {
+        $showDiv.show();
+      } else {
+        $showDiv.hide();
+        if (value === type) {
+          $showDiv.show();
+        }
+      }
+    };
+    $meetingTypeOfMeeting.on("change", function (ev) {
+      var $target = $(ev.target);
+      var embedTypeValue = $("#meeting_iframe_embed_type select").val();
+      toggleTypeDependsOnSelect($target, $meetingOnlineFields, "online");
+      toggleTypeDependsOnSelect($target, $meetingInPersonFields, "in_person");
+      if (embedTypeValue === "none") {
+        $meetingOnlineAccessLevelFields.hide();
+      } else {
+        toggleTypeDependsOnSelect($target, $meetingOnlineAccessLevelFields, "online");
+      }
+    });
+    toggleTypeDependsOnSelect($meetingTypeOfMeeting, $meetingOnlineFields, "online");
+    toggleTypeDependsOnSelect($meetingTypeOfMeeting, $meetingInPersonFields, "in_person");
+    (0,src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_4__["default"])({
+      controllerField: $meetingIframeEmbedType,
+      wrapperSelector: ".iframe-fields",
+      dependentFieldsSelector: ".iframe-fields--access-level",
+      dependentInputSelector: "input",
+      enablingCondition: function enablingCondition($field) {
+        return $field.find("select").val() !== "none";
+      }
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_form.js":
+/*!*******************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_form.js ***!
+  \*******************************************************************************************************************/
+/***/ (function() {
+
+$(function () {
+  var $form = $(".edit_meeting_registrations");
+  if ($form.length > 0) {
+    var $registrationsEnabled = $form.find("#meeting_registrations_enabled");
+    var $availableSlots = $form.find("#meeting_available_slots");
+    var $reservedSlots = $form.find("#meeting_reserved_slots");
+    var $customizeRegistrationEmail = $form.find("#meeting_customize_registration_email");
+    var toggleDisabledFields = function toggleDisabledFields() {
+      var enabled = $registrationsEnabled.prop("checked");
+      $availableSlots.attr("disabled", !enabled);
+      $reservedSlots.attr("disabled", !enabled);
+      $customizeRegistrationEmail.attr("disabled", !enabled);
+      $form.find(".editor-container").each(function (idx, node) {
+        var quill = Quill.find(node);
+        quill.enable(enabled);
+      });
+    };
+    $registrationsEnabled.on("change", toggleDisabledFields);
+    toggleDisabledFields();
+  }
+});
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_invite_form.js":
+/*!**************************************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/src/decidim/meetings/admin/registrations_invite_form.js ***!
+  \**************************************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/admin/field_dependent_inputs.component */ "../usr/local/bundle/gems/decidim-admin-0.27.2/app/packs/src/decidim/admin/field_dependent_inputs.component.js");
+
+$(function () {
+  var $attendeeType = $('[name="meeting_registration_invite[existing_user]"');
+  (0,src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    controllerField: $attendeeType,
+    wrapperSelector: ".attendee-fields",
+    dependentFieldsSelector: ".attendee-fields--new-user",
+    dependentInputSelector: "input",
+    enablingCondition: function enablingCondition() {
+      return $("#meeting_registration_invite_existing_user_false").is(":checked");
+    }
+  });
+  (0,src_decidim_admin_field_dependent_inputs_component__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    controllerField: $attendeeType,
+    wrapperSelector: ".attendee-fields",
+    dependentFieldsSelector: ".attendee-fields--user-picker",
+    dependentInputSelector: "input",
+    enablingCondition: function enablingCondition() {
+      return $("#meeting_registration_invite_existing_user_true").is(":checked");
+    }
+  });
+});
+
 /***/ })
 
 /******/ 	});
@@ -1130,7 +1128,7 @@ function getCoordinateInputName(coordinate, $input, options) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_quill_formats_code_js","vendors-node_modules_html5sortable_dist_html5sortable_es_js","app_packs_src_decidim_editor_clipboard_override_js-app_packs_src_decidim_editor_linebreak_mod-c679aa","_rbenv_versions_3_0_2_lib_ruby_gems_3_0_0_gems_decidim-admin-0_27_2_app_packs_src_decidim_adm-ee1f76"], function() { return __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_quill_formats_code_js","vendors-node_modules_html5sortable_dist_html5sortable_es_js","app_packs_src_decidim_editor_clipboard_override_js-app_packs_src_decidim_editor_linebreak_mod-c679aa","usr_local_bundle_gems_decidim-admin-0_27_2_app_packs_src_decidim_admin_auto_buttons_by_positi-931572"], function() { return __webpack_require__("../usr/local/bundle/gems/decidim-meetings-0.27.2/app/packs/entrypoints/decidim_meetings_admin.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

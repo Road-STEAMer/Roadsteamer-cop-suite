@@ -19,7 +19,8 @@ RUN npm install -g npm@8.19.x
 RUN gem install bundler
 RUN gem install decidim
 
-ENV RAILS_ENV=development
+#ENV RAILS_ENV=development
+ENV RAILS_ENV=production
 ENV PORT=3000
 
 COPY Gemfile Gemfile.lock ./

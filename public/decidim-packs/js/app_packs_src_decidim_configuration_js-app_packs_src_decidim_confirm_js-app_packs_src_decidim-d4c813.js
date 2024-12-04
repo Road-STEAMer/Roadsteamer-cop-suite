@@ -96,7 +96,7 @@ var Configuration = /*#__PURE__*/function () {
     _classCallCheck(this, Configuration);
     this.config = {};
   }
-  _createClass(Configuration, [{
+  return _createClass(Configuration, [{
     key: "set",
     value: function set(key) {
       var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -112,7 +112,6 @@ var Configuration = /*#__PURE__*/function () {
       return this.config[key];
     }
   }]);
-  return Configuration;
 }();
 
 
@@ -198,7 +197,7 @@ var ConfirmDialog = /*#__PURE__*/function () {
     $("body").append(this.$modal);
     this.$modal.foundation();
   }
-  _createClass(ConfirmDialog, [{
+  return _createClass(ConfirmDialog, [{
     key: "confirm",
     value: function confirm(message) {
       var _this = this;
@@ -224,7 +223,6 @@ var ConfirmDialog = /*#__PURE__*/function () {
       });
     }
   }]);
-  return ConfirmDialog;
 }(); // Override the default confirm dialog by Rails
 // See:
 // https://github.com/rails/rails/blob/fba1064153d8e2f4654df7762a7d3664b93e9fc8/actionview/app/assets/javascripts/rails-ujs/features/confirm.coffee
@@ -543,7 +541,7 @@ var UploadModal = /*#__PURE__*/function () {
     this.activeAttachments = this.uploadContainer.querySelector(".active-uploads");
     this.trashCan = this.createTrashCan();
   }
-  _createClass(UploadModal, [{
+  return _createClass(UploadModal, [{
     key: "uploadFile",
     value: function uploadFile(file) {
       var _this = this;
@@ -749,7 +747,6 @@ var UploadModal = /*#__PURE__*/function () {
       });
     }
   }]);
-  return UploadModal;
 }();
 
 
@@ -937,7 +934,7 @@ var Uploader = /*#__PURE__*/function () {
       this.upload = new _rails_activestorage__WEBPACK_IMPORTED_MODULE_0__.DirectUpload(options.file, options.url, this);
     }
   }
-  _createClass(Uploader, [{
+  return _createClass(Uploader, [{
     key: "showError",
     value: function showError(errors) {
       this.progressBar.classList.add("filled");
@@ -1015,7 +1012,6 @@ var Uploader = /*#__PURE__*/function () {
       });
     }
   }]);
-  return Uploader;
 }();
 
 /***/ }),
@@ -1169,7 +1165,6 @@ function createQuillEditor(container) {
         copyAndPasteText(element.title, element.url);
         modalContainer.style.display = 'none'; // Close the modal
       });
-
       if (element !== modalData[modalData.length - 1]) {
         linksDiv.appendChild(document.createElement('br'));
       }

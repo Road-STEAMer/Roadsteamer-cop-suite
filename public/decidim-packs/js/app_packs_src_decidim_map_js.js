@@ -121,7 +121,7 @@ var MapController = /*#__PURE__*/function () {
     this.eventHandlers = {};
     src_decidim_map_controller_registry__WEBPACK_IMPORTED_MODULE_2__["default"].setController(mapId, this);
   }
-  _createClass(MapController, [{
+  return _createClass(MapController, [{
     key: "getConfig",
     value: function getConfig() {
       return this.config;
@@ -183,7 +183,6 @@ var MapController = /*#__PURE__*/function () {
       return null;
     }
   }]);
-  return MapController;
 }();
 
 
@@ -250,6 +249,40 @@ function _toPrimitive(input, hint) {
   }
   return (hint === "string" ? String : Number)(input);
 }
+function _callSuper(_this, derived, args) {
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+      return !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    } catch (e) {
+      return false;
+    }
+  }
+  derived = _getPrototypeOf(derived);
+  return _possibleConstructorReturn(_this, isNativeReflectConstruct() ? Reflect.construct(derived, args || [], _getPrototypeOf(_this).constructor) : derived.apply(_this, args));
+}
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -273,62 +306,16 @@ function _setPrototypeOf(o, p) {
   };
   return _setPrototypeOf(o, p);
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return _possibleConstructorReturn(this, result);
-  };
-}
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
 
 
 
 var MapDragMarkerController = /*#__PURE__*/function (_MapController) {
-  _inherits(MapDragMarkerController, _MapController);
-  var _super = _createSuper(MapDragMarkerController);
   function MapDragMarkerController() {
     _classCallCheck(this, MapDragMarkerController);
-    return _super.apply(this, arguments);
+    return _callSuper(this, MapDragMarkerController, arguments);
   }
-  _createClass(MapDragMarkerController, [{
+  _inherits(MapDragMarkerController, _MapController);
+  return _createClass(MapDragMarkerController, [{
     key: "start",
     value: function start() {
       if (this.config.marker) {
@@ -340,7 +327,7 @@ var MapDragMarkerController = /*#__PURE__*/function (_MapController) {
   }, {
     key: "addMarker",
     value: function addMarker(markerData) {
-      var _this = this;
+      var _this2 = this;
       if (markerData.latitude === null || markerData.longitude === null) {
         return;
       }
@@ -356,7 +343,7 @@ var MapDragMarkerController = /*#__PURE__*/function (_MapController) {
         draggable: true
       });
       this.marker.on("drag", function (ev) {
-        _this.triggerEvent("coordinates", [ev.target.getLatLng()]);
+        _this2.triggerEvent("coordinates", [ev.target.getLatLng()]);
       });
       this.marker.addTo(this.map);
       var zoom = parseInt(this.config.zoom, 10) || 14;
@@ -376,7 +363,6 @@ var MapDragMarkerController = /*#__PURE__*/function (_MapController) {
       }
     }
   }]);
-  return MapDragMarkerController;
 }(src_decidim_map_controller__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
@@ -445,6 +431,40 @@ function _toPrimitive(input, hint) {
   }
   return (hint === "string" ? String : Number)(input);
 }
+function _callSuper(_this, derived, args) {
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+      return !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    } catch (e) {
+      return false;
+    }
+  }
+  derived = _getPrototypeOf(derived);
+  return _possibleConstructorReturn(_this, isNativeReflectConstruct() ? Reflect.construct(derived, args || [], _getPrototypeOf(_this).constructor) : derived.apply(_this, args));
+}
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -468,63 +488,17 @@ function _setPrototypeOf(o, p) {
   };
   return _setPrototypeOf(o, p);
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return _possibleConstructorReturn(this, result);
-  };
-}
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
 
 
 
 
 var MapMarkersController = /*#__PURE__*/function (_MapController) {
-  _inherits(MapMarkersController, _MapController);
-  var _super = _createSuper(MapMarkersController);
   function MapMarkersController() {
     _classCallCheck(this, MapMarkersController);
-    return _super.apply(this, arguments);
+    return _callSuper(this, MapMarkersController, arguments);
   }
-  _createClass(MapMarkersController, [{
+  _inherits(MapMarkersController, _MapController);
+  return _createClass(MapMarkersController, [{
     key: "start",
     value: function start() {
       this.markerClusters = null;
@@ -537,7 +511,7 @@ var MapMarkersController = /*#__PURE__*/function (_MapController) {
   }, {
     key: "addMarkers",
     value: function addMarkers(markersData) {
-      var _this = this;
+      var _this2 = this;
       if (this.markerClusters === null) {
         this.markerClusters = new leaflet__WEBPACK_IMPORTED_MODULE_1__.MarkerClusterGroup();
         this.map.addLayer(this.markerClusters);
@@ -550,19 +524,19 @@ var MapMarkersController = /*#__PURE__*/function (_MapController) {
       }));
       markersData.forEach(function (markerData) {
         var marker = new leaflet__WEBPACK_IMPORTED_MODULE_1__.Marker([markerData.latitude, markerData.longitude], {
-          icon: _this.createIcon(),
+          icon: _this2.createIcon(),
           keyboard: true,
           title: markerData.title
         });
         var node = document.createElement("div");
-        $.tmpl(_this.config.popupTemplateId, markerData).appendTo(node);
+        $.tmpl(_this2.config.popupTemplateId, markerData).appendTo(node);
         marker.bindPopup(node, {
           maxwidth: 640,
           minWidth: 500,
           keepInView: true,
           className: "map-info"
         }).openPopup();
-        _this.markerClusters.addLayer(marker);
+        _this2.markerClusters.addLayer(marker);
       });
 
       // Make sure there is enough space in the map for the padding to be
@@ -591,7 +565,6 @@ var MapMarkersController = /*#__PURE__*/function (_MapController) {
       this.map.addLayer(this.markerClusters);
     }
   }]);
-  return MapMarkersController;
 }(src_decidim_map_controller__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 
@@ -656,6 +629,40 @@ function _toPrimitive(input, hint) {
   }
   return (hint === "string" ? String : Number)(input);
 }
+function _callSuper(_this, derived, args) {
+  function isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === "function") return true;
+    try {
+      return !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    } catch (e) {
+      return false;
+    }
+  }
+  derived = _getPrototypeOf(derived);
+  return _possibleConstructorReturn(_this, isNativeReflectConstruct() ? Reflect.construct(derived, args || [], _getPrototypeOf(_this).constructor) : derived.apply(_this, args));
+}
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return _assertThisInitialized(self);
+}
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -679,65 +686,19 @@ function _setPrototypeOf(o, p) {
   };
   return _setPrototypeOf(o, p);
 }
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-      result;
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-    return _possibleConstructorReturn(this, result);
-  };
-}
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return _assertThisInitialized(self);
-}
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
 
 
 var openLink = window.open;
 var MapStaticController = /*#__PURE__*/function (_MapController) {
-  _inherits(MapStaticController, _MapController);
-  var _super = _createSuper(MapStaticController);
   function MapStaticController() {
     _classCallCheck(this, MapStaticController);
-    return _super.apply(this, arguments);
+    return _callSuper(this, MapStaticController, arguments);
   }
-  _createClass(MapStaticController, [{
+  _inherits(MapStaticController, _MapController);
+  return _createClass(MapStaticController, [{
     key: "start",
     value: function start() {
-      var _this = this;
+      var _this2 = this;
       this.map.removeControl(this.map.zoomControl);
       this.map.dragging.disable();
       this.map.touchZoom.disable();
@@ -766,13 +727,12 @@ var MapStaticController = /*#__PURE__*/function (_MapController) {
       if (this.config.link) {
         this.map._container.addEventListener("click", function (ev) {
           ev.preventDefault();
-          _this.map._container.focus();
-          openLink(_this.config.link, "_blank");
+          _this2.map._container.focus();
+          openLink(_this2.config.link, "_blank");
         });
       }
     }
   }]);
-  return MapStaticController;
 }(src_decidim_map_controller__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
@@ -839,7 +799,7 @@ var MapControllerRegistry = /*#__PURE__*/function () {
   function MapControllerRegistry() {
     _classCallCheck(this, MapControllerRegistry);
   }
-  _createClass(MapControllerRegistry, null, [{
+  return _createClass(MapControllerRegistry, null, [{
     key: "getController",
     value: function getController(mapId) {
       return CONTROLLER_REGISTRY[mapId];
@@ -857,7 +817,6 @@ var MapControllerRegistry = /*#__PURE__*/function () {
       });
     }
   }]);
-  return MapControllerRegistry;
 }();
 
 
@@ -1086,7 +1045,6 @@ window.Decidim.createMapController = createMapController;
       if (!_tmpl) {
         return []; // Could throw...
       }
-
       if (typeof data === "function") {
         data = data.call(parentItem || {});
       }
@@ -1154,7 +1112,6 @@ window.Decidim.createMapController = createMapController;
         // This means that {{tmpl foo}} treats foo as a template (which IS a function).
         // Explicit parens can be used if foo is a function that returns a template: {{tmpl foo()}}.
       },
-
       "wrap": {
         _default: {
           $2: "null"

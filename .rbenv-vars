@@ -1,5 +1,0 @@
-cat << EOF > .rbenv-vars
-DATABASE_HOST=localhost
-DATABASE_USERNAME=decidim_app
-DATABASE_PASSWORD=newpassword
-EOF

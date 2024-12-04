@@ -2,99 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.js":
-/*!**************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.js ***!
-  \**************************************************************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var entrypoints_decidim_api_graphiql_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_api_graphiql.scss */ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.scss");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index-exposed.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var graphiql__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! graphiql */ "./node_modules/graphiql/esm/index.js");
-/* harmony import */ var src_decidim_configuration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/configuration */ "./app/packs/src/decidim/configuration.js");
-/* eslint-disable require-jsdoc */
-
-
-
-
-
-
-window.Decidim = window.Decidim || {};
-window.Decidim.config = new src_decidim_configuration__WEBPACK_IMPORTED_MODULE_4__["default"]();
-var parameters = {};
-
-// Parse the search string to get url parameters.
-var search = window.location.search;
-search.substr(1).split("&").forEach(function (entry) {
-  var eq = entry.indexOf("=");
-  if (eq >= 0) {
-    parameters[decodeURIComponent(entry.slice(0, eq))] = decodeURIComponent(entry.slice(eq + 1));
-  }
-});
-// if variables was provided, try to format it.
-if (parameters.variables) {
-  try {
-    parameters.variables = JSON.stringify(JSON.parse(parameters.variables), null, 2);
-  } catch (error) {
-    // Do nothing, we want to display the invalid JSON as a string, rather
-    // than present an error.
-  }
-}
-var updateURL = function updateURL() {
-  var newSearch = Object.keys(parameters).map(function (key) {
-    return "".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(parameters[key]));
-  }).join("&");
-  history.replaceState(null, null, "?".concat(newSearch));
-};
-
-// When the query and variables string is edited, update the URL bar so
-// that it can be easily shared
-var onEditQuery = function onEditQuery(newQuery) {
-  parameters.query = newQuery;
-  updateURL();
-};
-var onEditVariables = function onEditVariables(newVariables) {
-  parameters.variables = newVariables;
-  updateURL();
-};
-
-// Defines a GraphQL fetcher using the fetch API.
-var graphQLFetcher = function graphQLFetcher(graphQLParams) {
-  var graphQLEndpoint = window.Decidim.config.get("graphql_endpoint");
-  return fetch(graphQLEndpoint, {
-    method: "post",
-    headers: JSON.parse(window.Decidim.config.get("request_headers")),
-    body: JSON.stringify(graphQLParams),
-    credentials: "include"
-  }).then(function (response) {
-    try {
-      return response.json();
-    } catch (error) {
-      return {
-        "status": response.status,
-        "message": "The server responded with invalid JSON, this is probably a server-side error",
-        "response": response.text()
-      };
-    }
-  });
-};
-window.addEventListener("DOMContentLoaded", function () {
-  // Render <GraphiQL /> into the body.
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(graphiql__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    fetcher: graphQLFetcher,
-    defaultQuery: window.Decidim.config.get("default_query"),
-    query: parameters.query,
-    variables: parameters.variables,
-    onEditQuery: onEditQuery,
-    onEditVariables: onEditVariables
-  }), document.getElementById("graphiql-container"));
-});
-
-/***/ }),
-
 /***/ "./app/packs/src/decidim/configuration.js":
 /*!************************************************!*\
   !*** ./app/packs/src/decidim/configuration.js ***!
@@ -190,7 +97,7 @@ var Configuration = /*#__PURE__*/function () {
     _classCallCheck(this, Configuration);
     this.config = {};
   }
-  _createClass(Configuration, [{
+  return _createClass(Configuration, [{
     key: "set",
     value: function set(key) {
       var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -206,16 +113,108 @@ var Configuration = /*#__PURE__*/function () {
       return this.config[key];
     }
   }]);
-  return Configuration;
 }();
 
 
 /***/ }),
 
-/***/ "../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.scss":
-/*!****************************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.scss ***!
-  \****************************************************************************************************************************/
+/***/ "../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.js":
+/*!*************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.js ***!
+  \*************************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var entrypoints_decidim_api_graphiql_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! entrypoints/decidim_api_graphiql.scss */ "../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.scss");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index-exposed.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var graphiql__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! graphiql */ "./node_modules/graphiql/esm/index.js");
+/* harmony import */ var src_decidim_configuration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/decidim/configuration */ "./app/packs/src/decidim/configuration.js");
+/* eslint-disable require-jsdoc */
+
+
+
+
+
+
+window.Decidim = window.Decidim || {};
+window.Decidim.config = new src_decidim_configuration__WEBPACK_IMPORTED_MODULE_4__["default"]();
+var parameters = {};
+
+// Parse the search string to get url parameters.
+var search = window.location.search;
+search.substr(1).split("&").forEach(function (entry) {
+  var eq = entry.indexOf("=");
+  if (eq >= 0) {
+    parameters[decodeURIComponent(entry.slice(0, eq))] = decodeURIComponent(entry.slice(eq + 1));
+  }
+});
+// if variables was provided, try to format it.
+if (parameters.variables) {
+  try {
+    parameters.variables = JSON.stringify(JSON.parse(parameters.variables), null, 2);
+  } catch (error) {
+    // Do nothing, we want to display the invalid JSON as a string, rather
+    // than present an error.
+  }
+}
+var updateURL = function updateURL() {
+  var newSearch = Object.keys(parameters).map(function (key) {
+    return "".concat(encodeURIComponent(key), "=").concat(encodeURIComponent(parameters[key]));
+  }).join("&");
+  history.replaceState(null, null, "?".concat(newSearch));
+};
+
+// When the query and variables string is edited, update the URL bar so
+// that it can be easily shared
+var onEditQuery = function onEditQuery(newQuery) {
+  parameters.query = newQuery;
+  updateURL();
+};
+var onEditVariables = function onEditVariables(newVariables) {
+  parameters.variables = newVariables;
+  updateURL();
+};
+
+// Defines a GraphQL fetcher using the fetch API.
+var graphQLFetcher = function graphQLFetcher(graphQLParams) {
+  var graphQLEndpoint = window.Decidim.config.get("graphql_endpoint");
+  return fetch(graphQLEndpoint, {
+    method: "post",
+    headers: JSON.parse(window.Decidim.config.get("request_headers")),
+    body: JSON.stringify(graphQLParams),
+    credentials: "include"
+  }).then(function (response) {
+    try {
+      return response.json();
+    } catch (error) {
+      return {
+        "status": response.status,
+        "message": "The server responded with invalid JSON, this is probably a server-side error",
+        "response": response.text()
+      };
+    }
+  });
+};
+window.addEventListener("DOMContentLoaded", function () {
+  // Render <GraphiQL /> into the body.
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(graphiql__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    fetcher: graphQLFetcher,
+    defaultQuery: window.Decidim.config.get("default_query"),
+    query: parameters.query,
+    variables: parameters.variables,
+    onEditQuery: onEditQuery,
+    onEditVariables: onEditVariables
+  }), document.getElementById("graphiql-container"));
+});
+
+/***/ }),
+
+/***/ "../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.scss":
+/*!***************************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.scss ***!
+  \***************************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -466,7 +465,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 								}
 /******/ 							};
 /******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
-/******/ 						} else installedChunks[chunkId] = 0;
+/******/ 						}
 /******/ 					}
 /******/ 				}
 /******/ 		};
@@ -518,7 +517,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_graphiql_esm_index_js-node_modules_graphiql_graphiql_css"], function() { return __webpack_require__("../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.js"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_graphiql_esm_index_js-node_modules_graphiql_graphiql_css"], function() { return __webpack_require__("../usr/local/bundle/gems/decidim-api-0.27.2/app/packs/entrypoints/decidim_api_graphiql.js"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

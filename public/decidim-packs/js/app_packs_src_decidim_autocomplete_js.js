@@ -549,7 +549,7 @@ var AutoComplete = /*#__PURE__*/function () {
       default:
     }
   }
-  _createClass(AutoComplete, [{
+  return _createClass(AutoComplete, [{
     key: "setInput",
     value: function setInput(value) {
       this.autocomplete.input.value = value;
@@ -716,7 +716,6 @@ var AutoComplete = /*#__PURE__*/function () {
       this.acWrapper.appendChild(this.promptDiv);
     }
   }]);
-  return AutoComplete;
 }();
 
 

@@ -1436,9 +1436,9 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
 "use strict";
-/*!*****************************************************************************************************************!*\
-  !*** ../.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/decidim-core-0.27.2/app/packs/entrypoints/decidim_sw.js ***!
-  \*****************************************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** ../usr/local/bundle/gems/decidim-core-0.27.2/app/packs/entrypoints/decidim_sw.js ***!
+  \****************************************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_decidim_sw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/decidim/sw */ "./app/packs/src/decidim/sw/index.js");
 

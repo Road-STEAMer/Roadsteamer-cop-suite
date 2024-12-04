@@ -199,7 +199,6 @@ function createQuillEditor(container) {
         copyAndPasteText(element.title, element.url);
         modalContainer.style.display = 'none'; // Close the modal
       });
-
       if (element !== modalData[modalData.length - 1]) {
         linksDiv.appendChild(document.createElement('br'));
       }

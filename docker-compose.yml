@@ -1,32 +1,36 @@
 version: '3'
+networks:
+  frontend:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24 
 services:
   app:
     image: ghcr.io/opsilab/roadsteamer-cop-suite:v0.1
     volumes:
       - .:/code
-      - bundle:/usr/local/bundle
-      - node_modules:/app/node_modules
+#      - bundle:/usr/local/bundle
+#      - node_modules:/app/node_modules
     environment:
       - PORT=3000
-      - DATABASE_HOST=pg
+        #      - DATABASE_HOST=172.17.0.1
+      - DATABASE_HOST=192.168.100.2
       - DATABASE_PORT=5432
-      - DATABASE_USERNAME=postgres
-      - DATABASE_PASSWORD=ADMIN
+      - DATABASE_USERNAME=copsuite
+      - DATABASE_PASSWORD=Hgty45-89MB.4500
+#      - RAILS_ENV=development
+      - RAILS_ENV=production
+      - DATABASE_URL=postgresql://copsuite:Hgty45-89MB.4500@192.168.100.2:5432/copsuite24
+#      - SECRET_KEY_BASE=dee501ba12b66ee6d05b99bf086e53a4eb3979cedc0160f43bcdf7be444acdd696ddc09f582c0875d26f3c1c5f625d5f541a24ab6a4ac71ecf2c6aa4cc40ed42
+      - SECRET_KEY_BASE=4e4ebcbffcbaf9d5ed08bf6563e91d0446d90025fcf7396cbc25e8313ce44179b9cb945ed15252bc88cbe9f62039ac1106130c776c29c00164b1074fb9b74cfd
+      - RAILS_LOG_TO_STDOUT=1
+      - RAILS_SERVE_STATIC_FILES=1
+      - MAPS_PROVIDER=here
+      - MAPS_API_KEY=YCLc71QVvgJqkkyEucMaSz0s6RqEFa9g1Ei6SlWFxB0
     ports:
-      - 3000:3000
-    links:
-      - pg
+      - 3012:3000
     command: /code/init.sh
-  pg:
-    image: postgres
-    ports: 
-     - 5000:5432 
-    volumes:
-         - pg-data:/var/lib/postgresql/data
-    environment:
-     - POSTGRES_HOST_AUTH_METHOD=trust
-
-volumes:
-  node_modules: {}
-  bundle: {}
-  pg-data: {}
+    networks:
+      frontend:
+        ipv4_address: 172.20.0.2
+   
