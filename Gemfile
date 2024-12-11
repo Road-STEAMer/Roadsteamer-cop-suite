@@ -31,9 +31,9 @@ gem "wicked_pdf", "~> 2.1"
 
 gem 'erb-formatter'
 
-#gem "decidim-keycloak", git: "https://github.com/Platoniq/decidim-module-keycloak", branch: "main"
+gem "decidim-keycloak", git: "https://github.com/Platoniq/decidim-module-keycloak", branch: "main"
 
-gem 'devise'
+#gem 'devise'
 
 gem "invisible_captcha", "~> 0.13.0"
 
