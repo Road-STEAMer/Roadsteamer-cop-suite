@@ -1,25 +1,33 @@
 version: '3'
 services:
   app:
-    image: decidim/decidim:0.27.2
+    image: roadsteamer-cop-suite:v0.2
     volumes:
-      - .:/app
+      - .:/code
       - bundle:/usr/local/bundle
       - node_modules:/app/node_modules
     environment:
+      - RAILS_ENV=production
+      - SECRET_KEY_BASE=c1ba4d2be1737f0b079dcbd399fb3db2aa2f9329eaf2a8ba2cf5e2de7f3e72a6ccc62b5c30227a62405bf2cd7db34373be0ef435db259eab7a2cd6295c89166f
       - PORT=3000
-      - DATABASE_HOST=pg
+      - DATABASE_HOST=host.docker.internal
+      - DATABASE_PORT=5432
       - DATABASE_USERNAME=postgres
-      - RAILS_ENV=development
+      - DATABASE_PASSWORD=***********
     ports:
       - 3000:3000
     links:
       - pg
-    command: bundle exec puma
+    command: /code/init.sh
   pg:
     image: postgres
+    ports:
+     - 5000:5432
     volumes:
-      - pg-data:/var/lib/postgresql/data
+         - pg-data:/var/lib/postgresql/data
+    environment:
+     - POSTGRES_HOST_AUTH_METHOD=trust
+ 
 volumes:
   node_modules: {}
   bundle: {}
