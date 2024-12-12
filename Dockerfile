@@ -15,7 +15,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
  && echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" |  tee /etc/apt/sources.list.d/yarn.list \
  && apt-get update && apt-get install -y yarn
 
-RUN npm install -g npm@8.19.x
+RUN npm install -g npm@8.19.4
 RUN gem install bundler
 RUN gem install decidim
 

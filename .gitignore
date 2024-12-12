@@ -36,3 +36,5 @@
 public/uploads
 /config/credentials/production.key
 node_modules
+.rbenv-vars
+/config/secrets.yml
